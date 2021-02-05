@@ -5841,6 +5841,9 @@ div#vmap {
 .pr-0 {
   padding-right: 0 !important;
 }
+.pr-10 {
+  padding-right: 10px;
+}
 .pr-15 {
   padding-right: 15px;
 }
@@ -5849,6 +5852,21 @@ div#vmap {
 }
 .mb-0 {
   margin-bottom: 0 !important;
+}
+.mb-10 {
+  margin-bottom: 10px !important;
+}
+.mb-20 {
+  margin-bottom: 20px !important;
+}
+.mb-30 {
+  margin-bottom: 30px !important;
+}
+.mb-40 {
+  margin-bottom: 40px !important;
+}
+.mb-50 {
+  margin-bottom: 50px !important;
 }
 .pr-7 {
   padding-right: 7px;
@@ -6017,7 +6035,15 @@ hr {
     border-radius: 3px;
     vertical-align: middle;
     padding: 3px 15px;
-    display: inline-block;
+    /*display: inline-block;*/
+    color: #707070;
+}
+.txt-no-border {
+  background-color: #ffffff;
+    border: none;
+    font-size: 14px;
+    vertical-align: middle;
+    /*display: inline-block;*/
     color: #707070;
 }
 .button-done {
@@ -6285,6 +6311,33 @@ hr {
 .ml-10 {
   margin-left: 10px;
 }
+.ml-20 {
+  margin-left: 20px;
+}
+.ml-30 {
+  margin-left: 30px;
+}
+.ml-40 {
+  margin-left: 40px;
+}
+.ml-50 {
+  margin-left: 50px;
+}
+.ml-60 {
+  margin-left: 60px;
+}
+.ml-70 {
+  margin-left: 70px;
+}
+.ml-80 {
+  margin-left: 80px;
+}
+.ml-90 {
+  margin-left: 90px;
+}
+.ml-100 {
+  margin-left: 100px;
+}
 .ml-5 {
   margin-left: 5px !important;
 }
@@ -6405,6 +6458,12 @@ input[type=checkbox], input[type=radio] {
 }
 .bl-1-green {
   border-left: 1px solid #01C875;
+}
+.bl-1-gray {
+  border-left: 1px solid #ABABAB !important;
+}
+.br-1-gray {
+  border-right: 1px solid #ABABAB;
 }
 .bl-2-gray {
   border-left: 2px solid #ABABAB;
@@ -6932,6 +6991,12 @@ input[type=checkbox], input[type=radio] {
 .p-all-10 {
   padding: 10px;
 }
+.p-all-20 {
+  padding: 20px;
+}
+.p-all-30 {
+  padding: 30px;
+}
 .tab-menu-item {
   padding: 5px;
   margin-bottom: 10px;
@@ -7007,7 +7072,7 @@ input[type=checkbox], input[type=radio] {
 }
 
 .bl-gray {
-  border-left: 1px solid #f1f1f1;
+  border-left: 1px solid #f1f1f1 !important;
 }
 .payment-2col {
   width: 50%; float: left;
@@ -7138,6 +7203,18 @@ nav.sub-menu ul li{
 .lh-14 {
   line-height: 14px;
 }
+.lh-16 {
+  line-height: 16px;
+}
+.lh-18 {
+  line-height: 18px;
+}
+.lh-20 {
+  line-height: 20px;
+}
+.lh-22 {
+  line-height: 22px;
+}
 .ft-lighter {
   font-weight: lighter;
 }
@@ -7153,4 +7230,25 @@ sup {
 }
 .lh-45 {
   line-height: 45px;
+}
+.font-purple {
+  color: #7C4791;
+}
+.collapse.in {
+  display: block;
+}
+.bb-1-purple {
+  border-bottom: 1px solid #7C4791;
+}
+.bb-2-purple {
+  border-bottom: 2px solid #7C4791;
+}
+.bb-3-purple {
+  border-bottom: 3px solid #7C4791;
+}
+.bb-4-purple {
+  border-bottom: 4px solid #7C4791;
+}
+.bb-5-purple {
+  border-bottom: 5px solid #7C4791;
 }
