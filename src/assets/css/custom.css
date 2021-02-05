@@ -5841,6 +5841,9 @@ div#vmap {
 .pr-0 {
   padding-right: 0 !important;
 }
+.pr-15 {
+  padding-right: 15px;
+}
 .pb-0 {
   padding-bottom: 0 !important;
 }
@@ -6050,6 +6053,9 @@ hr {
 }
 .pl-0 {
   padding-left: 0 !important;
+}
+.pl-10 {
+  padding-left: 10px !important;
 }
 .mr-30 {
   margin-right: 30px;
@@ -6594,7 +6600,12 @@ button:focus {
 
 .bg-purple{
   background-color: #7C4791 !important;
+  color: #ffffff;
 }
+.bg-dark-gray{
+  background-color: #D9D9D9 !important;
+}
+
 .bg-green{
   background:#01c875;
 }
@@ -7139,4 +7150,7 @@ sup {
     font-size: 15px;
     font-weight: bold;
     top: 0;
+}
+.lh-45 {
+  line-height: 45px;
 }
