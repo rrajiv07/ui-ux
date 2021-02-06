@@ -1,4 +1,4 @@
-<main>
+<main class="mr-15">
 <div id="Tab1" class="tabcontent">
     <div class="tab-header">
 
@@ -56,12 +56,58 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">                         
+                            <div class="col-sm-12 pt-20">
+                                <input formcontrolname="uploadFile" id="uploadFile" type="file" name="uploadFile" class="ng-untouched ng-pristine ng-valid" ng-reflect-name="uploadFile" ng-reflect-ng-class="[object Object]">
+                            </div>  
+                            <div class="col-sm-4 pt-20">
+                                <input type="text" name="uploadFile" class="txt-outline bg-white w-100" placeholder="URL 1">
+                            </div>  
+                            <div class="col-sm-4 pt-20">
+                                <input type="text" name="uploadFile" class="txt-outline bg-white w-100" placeholder="URL 1">
+                            </div> 
+                            <div class="col-sm-4 pt-20">
+                                <input type="text" name="uploadFile" class="txt-outline bg-white w-100" placeholder="URL 1">
+                            </div> 
+                        </div>
                          <div *ngIf="commonService.getRole() =='idea-owner'" class="row">  
-                            <div class="col-sm-2"></div>                          
-                            <div class="col-sm-5 pt-20">
+                            <div class="col-sm-12 pt-20">
                                 <button class="btn button-save">Save</button>
                             </div>                                                       
                         </div>
+
+
+                        <div class="row section-spacing">
+                            <div class="col-sm-12">
+                                <div class="page-sub-heading">Recommended Style Guides</div>
+                            </div>
+                        </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class=" bg-white border-gray mt-10 radius-all-3 p-all-10 style-guide">
+                                        <img src="assets/images/style-guide.jpg">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class=" bg-white border-gray mt-10 radius-all-3 p-all-10 style-guide">
+                                        <img src="assets/images/style-guide.jpg">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class=" bg-white border-gray mt-10 radius-all-3 p-all-10 style-guide">
+                                        <img src="assets/images/style-guide.jpg">
+                                    </div>
+                                </div>
+                                    <div class="col-sm-12 pt-20">
+                                        <button class="btn button-save mr-15">Download Design Guide</button>
+                                        <button class="btn button-save">Download CSS</button>
+                                    </div>    
+                            </div>
+
+
+
                         <!-- <div class="row pt-4">
                             <div class="col-sm-9 text-right ">
                                 <button class="btn btn-outline mr10px "><i class="fa fa-plus pr-2"></i> Add an
@@ -70,6 +116,161 @@
                         </div> -->
                     </div>
                 </form>
+
+                
+                <!--Code for second page SELECT STYLE GUIDE-->
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-heading">Select Style Guide</div>
+                    </div>
+                </div>
+                <form>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-2">
+                            <label class="control-label">Identified Keywords<sup>*</sup></label>
+                            </div>
+                            <div class="col-sm-5">
+                                <textarea type="text" placeholder="" rows="3" class="txt-outline bg-white w-100"></textarea>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                <label class="control-label">Associated Categories<sup>*</sup></label>
+                                </div>
+                                <div class="col-sm-5">
+                                    <textarea type="text" placeholder="" rows="3" class="txt-outline bg-white w-100"></textarea>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                    <label class="control-label">Add your Keywords/Categogories<sup>*</sup></label>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <textarea type="text" placeholder="" rows="3" class="txt-outline bg-white w-100"></textarea>
+                                    </div>
+                                    </div>
+                                </div>
+                    <div class="form-group">
+                         <div class="row"> 
+                            <div class="col-sm-2"></div>  
+                            <div class="col-sm-5 pt-20">
+                                <button class="btn button-save">Suggest Style</button>
+                            </div>                                                       
+                        </div>
+
+
+                        <div class="row section-spacing">
+                            <div class="col-sm-12">
+                                <div class="page-sub-heading">Based on your Requirements</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class=" bg-white border-gray mt-10 radius-all-3 p-all-10 style-guide">
+                                    <img src="assets/images/style-guide.jpg">
+                                </div>
+                                <label class="custom-chkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class=" bg-white border-gray mt-10 radius-all-3 p-all-10 style-guide">
+                                    <img src="assets/images/style-guide.jpg">
+                                </div>
+                                <label class="custom-chkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class=" bg-white border-gray mt-10 radius-all-3 p-all-10 style-guide">
+                                    <img src="assets/images/style-guide.jpg">
+                                </div>
+                                <label class="custom-chkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </div>
+                        </div>
+                        <div class="row section-spacing">
+                            <div class="col-sm-12">
+                                <div class="page-sub-heading">ShapeBased on your URL Choice </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class=" bg-white border-gray mt-10 radius-all-3 p-all-10 style-guide">
+                                    <img src="assets/images/style-guide.jpg">
+                                </div>
+                                <label class="custom-chkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class=" bg-white border-gray mt-10 radius-all-3 p-all-10 style-guide">
+                                    <img src="assets/images/style-guide.jpg">
+                                </div>
+                                <label class="custom-chkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class=" bg-white border-gray mt-10 radius-all-3 p-all-10 style-guide">
+                                    <img src="assets/images/style-guide.jpg">
+                                </div>
+                                <label class="custom-chkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </div> 
+                        </div>
+                        <div class="row section-spacing">
+                            <div class="col-sm-12">
+                                <div class="page-sub-heading">Already used by you</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class=" bg-white border-gray mt-10 radius-all-3 p-all-10 style-guide">
+                                    <img src="assets/images/style-guide.jpg">
+                                </div>
+                                <label class="custom-chkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class=" bg-white border-gray mt-10 radius-all-3 p-all-10 style-guide">
+                                    <img src="assets/images/style-guide.jpg">
+                                </div>
+                                <label class="custom-chkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class=" bg-white border-gray mt-10 radius-all-3 p-all-10 style-guide">
+                                    <img src="assets/images/style-guide.jpg">
+                                </div>
+                                <label class="custom-chkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </div>
+                        </div>
+                        <div class="row section-spacing">
+                            <div class="col-sm-12 pt-20">
+                                <button class="btn button-save">Suggest Style</button>
+                            </div>
+                        </div>  
+                    </div>
+                </form>
+
 
         </div>
 </div>
