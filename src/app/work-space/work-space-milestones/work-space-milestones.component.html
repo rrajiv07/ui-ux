@@ -6,7 +6,7 @@
           <div class="col-sm-12 milestons-list">
               <ul>
                 <ng-container *ngFor="let milestone of milestoneDtl;index as i">
-                <li [class.active]="milestone.statusCode != 'In-Progress' ">
+                <li *ngIf="i < 5" [class.active]="milestone.statusCode != 'In-Progress' ">
                   <div class="row">
                       <div class="col-sm-2">
                           <p class="ft-gray ft-14 pb-2 txt-caps">Milestone {{i+1}}</p>
