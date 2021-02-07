@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="101.432" height="47.718" viewBox="0 0 101.432 47.718">
+  <g id="Group_691" data-name="Group 691" transform="translate(0)">
+    <g id="Layer_1" data-name="Layer 1" transform="translate(91.92 13.036)">
+      <path id="Path_1624" data-name="Path 1624" d="M759.44,37.91l8.674,5.012-8.674,5.012Z" transform="translate(-759.44 -37.91)" fill="#008cd1" fill-rule="evenodd"/>
+    </g>
+    <text id="t" transform="translate(23.599 32)" fill="#001952" font-size="30" font-family="HeroNew-Medium, Hero New" font-weight="500"><tspan x="0" y="0">t</tspan></text>
+    <text id="d" transform="translate(0 31.199)" fill="#001952" font-size="29" font-family="HeroNew-Medium, Hero New" font-weight="500"><tspan x="0" y="0">d</tspan></text>
+    <path id="Path_1643" data-name="Path 1643" d="M734.716,53.277a22.384,22.384,0,0,1,15.931-20.312" transform="translate(-674.881 -26.347)" fill="none" stroke="#008cd1" stroke-miterlimit="2.613" stroke-width="1.5" fill-rule="evenodd"/>
+    <path id="Path_1644" data-name="Path 1644" d="M726.662,51.593h0a8.088,8.088,0,1,1-8.088,8.088" transform="translate(-679.687 -20.8)" fill="none" stroke="#008cd1" stroke-miterlimit="2.613" stroke-width="1.5" fill-rule="evenodd"/>
+    <path id="Path_1645" data-name="Path 1645" d="M720.211,48.057a6.534,6.534,0,1,1,6.534,6.534" transform="translate(-679.2 -23.798)" fill="none" stroke="#008cd1" stroke-miterlimit="2.613" stroke-width="1.5" fill-rule="evenodd"/>
+    <path id="Path_1646" data-name="Path 1646" d="M743.477,59.485a8.761,8.761,0,1,0-8.761-8.761A8.779,8.779,0,0,0,743.477,59.485Z" transform="translate(-674.881 -23.668)" fill="none" stroke="#008cd1" stroke-miterlimit="2.613" stroke-width="1.5" fill-rule="evenodd"/>
+    <path id="Path_1647" data-name="Path 1647" d="M769.038,46.343a8.762,8.762,0,1,1-7.588-4.38" transform="translate(-669.529 -23.668)" fill="none" stroke="#008cd1" stroke-miterlimit="2.613" stroke-width="1.5" fill-rule="evenodd"/>
+  </g>
+</svg>

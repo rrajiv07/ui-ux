@@ -1,0 +1,55 @@
+.card-img-top {
+  padding-left: 350px;
+}
+
+p {
+  font-size: large;
+}
+
+.container {
+  text-align: justify;
+}
+
+.image {
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.bs-example {
+  margin: 20;
+}
+
+
+[data-toggle="collapse"]:before {
+  display: inline-block;
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f054";
+  transform: rotate(90deg);
+  transition: all linear 0.25s;
+  float: right;
+}
+
+[data-toggle="collapse"].collapsed:before {
+  transform: rotate(0deg);
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+
+  padding: 10px;
+}
+
+.grid-container>div {
+  background-color: white;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 50px;
+}

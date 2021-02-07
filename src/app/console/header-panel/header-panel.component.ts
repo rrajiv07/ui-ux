@@ -9,9 +9,11 @@ import {EnvironmentService} from '../../../environments/environment.service';
 })
 export class HeaderPanelComponent implements OnInit {
   userName:any;
+  initialLetter:any;
   constructor(private commonService:CommonService,private route: Router,
     private environmentService:EnvironmentService) { 
-      this.userName =this.commonService.getUserName().charAt(0).toUpperCase();
+      this.initialLetter =this.commonService.getUserName().charAt(0).toUpperCase();
+      this.userName =this.commonService.getUserName();
     } 
 
   ngOnInit(): void {
