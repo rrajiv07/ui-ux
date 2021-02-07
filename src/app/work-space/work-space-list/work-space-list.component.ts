@@ -94,6 +94,6 @@ export class WorkSpaceListComponent implements OnInit {
   upgrade()
   {
     this.environmentService.setPOCId('null');
-    this.route.navigateByUrl('/subscription/manage-subscription');
+    this.route.navigateByUrl('/subscription/purchase-subcription');
   }
 }
