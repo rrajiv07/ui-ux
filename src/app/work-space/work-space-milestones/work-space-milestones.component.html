@@ -28,8 +28,8 @@
                       </div>
                       <div class="col-sm-3">
                           <div (click)="viewDetails(milestone)" class="btn button-save mt-47 pull-left mr-3">View</div>
-                          <div (click)="saveDetails(milestone)" class="btn button-save mt-47 pull-left mr-3">Save</div>
-                          <div (click)="complete(milestone)" class="btn button-save mt-47 pull-left">Complete</div>
+                          <div (click)="complete(milestone, 'In-Progress')" class="btn button-save mt-47 pull-left mr-3">Save</div>
+                          <div (click)="complete(milestone, 'Completed')" class="btn button-save mt-47 pull-left">Complete</div>
                       </div>
                   </div>
                  
