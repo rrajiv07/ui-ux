@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { SignUpEmailComponent} from '../sign-up-email/sign-up-email.component';
 import {CommonService} from '../../utils/common.service';
+import { AppConfigService } from '../../utils/app-config.service';
 
 @Component({
     selector: 'app-login',
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private loginService: LoginService,
         private dialogService: DialogService,
-        private commonService:CommonService) { }
+        private commonService:CommonService,
+        private appConfig: AppConfigService) { }
 
     getLoginDetails(token: any) {
         const formData = {};
@@ -42,14 +44,14 @@ export class LoginComponent implements OnInit {
 
                     if (  data['result_status'].toUpperCase() === 'SUCCESS')
                      {
-                    if (data['result_data'] && data['result_data'].userTypeCdoe == 'Idea Owner')
+                    if (data['result_data'].userTypeCdoe == 'Idea Owner' && data['result_data'] !=null)
                     {
                         this.commonService.setIdeaOwner();
                     }                         
 
-                    localStorage.setItem('tempCurrentUser', JSON.stringify(data['result_data']));
-                    localStorage.setItem('micrositeId',data['result_data'].micrositeId);
-                    this.getWorkSpace(localStorage.getItem("tempCurrentUserToken"));
+                    //localStorage.setItem('tempCurrentUser', JSON.stringify(data['result_data']));
+                    //localStorage.setItem('micrositeId',data['result_data'].micrositeId);
+                    this.getWorkSpace(token,JSON.stringify(data['result_data']),data['result_data'].micrositeId);
                     // data.result_data
                     return;
                     }
@@ -81,7 +83,7 @@ export class LoginComponent implements OnInit {
                 .subscribe(
                     data => {
                         if (  data.result_status.toUpperCase() === 'SUCCESS') {
-                            localStorage.setItem('tempCurrentUserToken', data.result_data.id_token);
+                            //localStorage.setItem('tempCurrentUserToken', data.result_data.id_token);
                             this.getLoginDetails(data.result_data.id_token);
                             //this.getWorkSpace(data.result_data.id_token);
                             return;
@@ -96,7 +98,7 @@ export class LoginComponent implements OnInit {
         }
     }
 
-    getWorkSpace(token: any) {
+    getWorkSpace(token: any,tempCurrentUser:any,micrositeId:any) {
         const header = {
             headers: new HttpHeaders()
                 .set('Authorization', `Bearer ${token}`)
@@ -106,8 +108,18 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 (data: any) => {
                     const len = data ? data.result_data.length : [];
+                    localStorage.setItem('tempCurrentUserToken', token);
+                    localStorage.setItem('tempCurrentUser', tempCurrentUser);
+                    localStorage.setItem('micrositeId',micrositeId);
                     //len ? this.router.navigate(['/workspace/createworkspace']) : this.router.navigate(['/workspace/createworkspace'])
                     len ? this.router.navigate(['/workspace']) : this.router.navigate(['/workspace'])
+                    /*
+                    const baseUrlFlag = this.appConfig.appConfig['flag'];
+                    if (baseUrlFlag == 'Y') {
+                      //window.location.href = "http://" + this.micrositeName + ".hivezen.com:9797/Hivezen/";
+                    }
+                    */
+                   
                     return;
                 },
                 error => {
