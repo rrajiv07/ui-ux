@@ -1,19 +1,42 @@
 <div class="modal-body">
     <button type="button" class="close dialog-close" (click)="Close()" data-dismiss="modal" aria-label="Close">
-       <img src="assets/images/close-popup.png">
-      </button>
-      <div class="row">
+        <img src="assets/images/close-popup.png">
+    </button>
+    <div class="row">
         <div class="col-sm-7">
-            <div class="dialog-left" style="padding:42px;"> 
-                    <div class="heading"><span>Yay! We're almost there</span></div>
-                    <div class="sub-heading" style="font-weight: inherit;">Invite your teammates and build your workflows together</div>
+            <div class="dialog-left" style="padding:42px;">
+                <div class="heading"><span>Yay! We're almost there</span></div>
+                <div class="sub-heading" style="font-weight: inherit;">Invite your teammates and build your workflows
+                    together</div>
+                <form [formGroup]="form">
                     <div class="row pt-50">
-                        <div class="col-sm-12"><div class="txt-lable">Email</div></div>
-                        <div class="col-sm-12"><input type="text" class="form-control bg-white" id="Email" placeholder="Add email here"></div>
-                        <div class="col-sm-12 pt-20"><div class="font-12"><img src="assets/images/add-icon.png"><span class="add-txt">Add another</span></div></div>  
-                        <div class="col-sm-6 pt-50 pr-0"><button class="btn button-no-bg mt-5 w100" (click)="later()" >I'll do it later</button></div>
-                        <div class="col-sm-6 pt-50 pl-0"><button class="btn button-save mt-5 w100" (click)="Invite()">Invite your team</button></div>
+                        <div class="col-sm-12">
+                            <div class="txt-lable">Email</div>
+                        </div>
+                        <div class="col-sm-12" formArrayName="emailIds">
+                            <div *ngFor="let emailId of emailIds.controls; let i = index" [formGroupName]="i" style="padding-bottom: 5px;">
+                             
+                              
+                              <div>
+                                <input type="text" class="form-control bg-white" id="Email" formControlName="emailId"
+                                  placeholder="Enter email here"
+                                  [ngClass]="{ 'is-invalid': submitted && emailIds.controls[i].get('emailId').errors }">
+                                  <div *ngIf="submitted && emailIds.controls[i].get('emailId').errors" class="invalid-feedback">
+                                    <div *ngIf="emailIds.controls[i].get('emailId').errors.required">Email ID is required</div>
+                                  </div>
+                                </div>                              
+                              </div>
+                          </div>
+                        <div class="col-sm-12 pt-20">
+                            <div class="font-12"><img (click)="addMember()"  src="assets/images/add-icon.png"><span class="add-txt">Add
+                                    another</span></div>
+                        </div>
+                        <div class="col-sm-6 pt-50 pr-0"><button class="btn button-no-bg mt-5 w100"
+                                (click)="later()">I'll do it later</button></div>
+                        <div class="col-sm-6 pt-50 pl-0"><button class="btn button-save mt-5 w100"
+                                (click)="Invite()">Invite your team</button></div>
                     </div>
+                </form>
             </div>
         </div>
         <div class="col-sm-5" style="padding: 0px;">
