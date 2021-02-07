@@ -8,6 +8,9 @@ import {WorkSpaceAddEstimationDetailsComponent} from '../work-space-add-estimati
 import {WorkSpaceEditEstimationDetailsComponent} from '../work-space-edit-estimation-details/work-space-edit-estimation-details.component';
 import {WorkSpaceFinancialsService} from './work-space-financials.service';
 import {CommonService} from '../../utils/common.service';
+import * as XLSX from 'xlsx';
+// AOA : array of array
+type AOA = any[][];
 
 @Component({
   selector: 'app-work-space-financials',
@@ -15,6 +18,25 @@ import {CommonService} from '../../utils/common.service';
   styleUrls: ['./work-space-financials.component.css']
 })
 export class WorkSpaceFinancialsComponent implements OnInit {
+  excelDataEncodeToJson;
+  excelTransformNum = [];
+  sheetMaxRow;
+  sheetJsExcelName = 'null.xlsx';
+  sheetBufferRender;
+  isEmptyDrop = true;
+  isExcelDrop = true;
+  origExcelData: AOA = [
+    ['Data: 2018/10/26'],
+    ['Data: 2018/10/26'],
+    ['Data: 2018/10/26'],
+  ];
+  localWorkBook;
+  sheetNameForTab: Array<string> = ['excel tab 1', 'excel tab 2'];
+  totalPage = this.sheetNameForTab.length;
+  selectDefault;
+  localwSheet;
+  sheetCellRange;
+  refExcelData: Array<any>;
   formGroup: FormGroup;
   fileSelect: FileList;
   blob: any;
@@ -110,7 +132,8 @@ export class WorkSpaceFinancialsComponent implements OnInit {
         });
   }
  
-  fileUpload(file: FileList) {
+  fileUpload(file: FileList,event) {
+    console.log(event,">>>>>>>>>>>>event")
     this.fileSelect = file;
   }
   upload()
@@ -173,6 +196,9 @@ export class WorkSpaceFinancialsComponent implements OnInit {
           var link = document.createElement('a');
           link.href = downloadURL;
           link.download = this.fileName;
+          //console.log(link);
+          var file = new File([this.blob], this.fileName, {lastModified: 1534584790000});
+          //this.inputExcelOnClick1(file);
           link.click();
         },
         error => {
@@ -233,5 +259,86 @@ export class WorkSpaceFinancialsComponent implements OnInit {
       this.getEstimationDetailInfo();
     });
   }
-
+  inputExcelOnClick1(evt) {
+    /*
+    const target: HTMLInputElement = evt.target;
+    if (target.files.length === 0) {
+      throw new Error('未上傳');
+    }
+    if (target.files.length > 1) {
+      throw new Error('Cannot use multiple files');
+    }
+    this.sheetJsExcelName = evt.target.files.item(0).name;
+    */
+   console.log(evt,">>>>>>>>>evt")
+    const reader: FileReader = new FileReader();
+    this.readerExcel(reader);
+    //console.log(target.files[0])
+    reader.readAsArrayBuffer(evt);
+    this.sheetBufferRender = evt;
+    this.isEmptyDrop = false;
+    this.isExcelDrop = true;
+  }
+  inputExcelOnClick(evt) {
+    const target: HTMLInputElement = evt.target;
+    if (target.files.length === 0) {
+      throw new Error('未上傳');
+    }
+    if (target.files.length > 1) {
+      throw new Error('Cannot use multiple files');
+    }
+    this.sheetJsExcelName = evt.target.files.item(0).name;
+    const reader: FileReader = new FileReader();
+    this.readerExcel(reader);
+    console.log(target.files[0])
+    reader.readAsArrayBuffer(target.files[0]);
+    this.sheetBufferRender = target.files[0];
+    this.isEmptyDrop = false;
+    this.isExcelDrop = true;
+  }
+  readerExcel(reader, index = 0) {
+    /* reset array */
+    this.origExcelData = [];
+    reader.onload = (e: any) => {
+      const data: string = e.target.result;
+      const wBook: XLSX.WorkBook = XLSX.read(data, { type: 'array' });
+      this.localWorkBook = wBook;
+      const wsname: string = wBook.SheetNames[index];
+      this.sheetNameForTab = wBook.SheetNames;
+      this.totalPage = this.sheetNameForTab.length;
+      this.selectDefault = this.sheetNameForTab[index];
+      const wSheet: XLSX.WorkSheet = wBook.Sheets[wsname];
+      this.localwSheet = wSheet;
+      this.sheetCellRange = XLSX.utils.decode_range(wSheet['!ref']);
+      this.sheetMaxRow = this.sheetCellRange.e.r;
+      this.origExcelData = <AOA>XLSX.utils.sheet_to_json(wSheet, {
+        header: 1,
+        range: wSheet['!ref'],
+        raw: true,
+      });
+     
+      //this.refExcelData = this.origExcelData.slice(1).map(value => Object.assign([], value));
+      this.refExcelData = this.origExcelData.map(value => Object.assign([], value));
+      /* 抓 range & 清除占存 A->Z */
+      this.excelTransformNum = [];
+      for (let idx = 0; idx <= this.sheetCellRange.e.c; idx++) {
+        this.excelTransformNum[idx] = this.transform(idx);
+      }
+      /* 加入 order 的佔位(#) */
+      this.refExcelData.map(x => x.unshift('#'));
+      this.excelTransformNum.unshift('order');
+      
+      /* 合併成JSON */
+      this.excelDataEncodeToJson = this.refExcelData.slice(0).map(item =>
+        item.reduce((obj, val, i) => {
+          obj[this.excelTransformNum[i]] = val;
+          return obj;
+        }, {}),
+      );
+      console.log(this.origExcelData,this.excelTransformNum,this.excelDataEncodeToJson,"origExcelData")
+    };
+  }
+  transform(value) {
+    return (value >= 26 ? this.transform(((value / 26) >> 0) - 1) : '') + 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[value % 26 >> 0];
+  }
 }
