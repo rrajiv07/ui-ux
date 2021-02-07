@@ -9,36 +9,58 @@
         <div class="sub-heading" style="font-weight: inherit;">Invite your teammates and build your workflows together
         </div>
         <form [formGroup]="form" (ngSubmit)="onInvite()">
-            <div class="row pt-50">
+          <div class="row pt-50">
+            <!--
               <div class="col-sm-12">
-                <div class="txt-lable" id="mail">Email</div>
-              </div>
-              <div class="col-sm-12">
-                <input type="text" class="form-control bg-white" id="Email" formControlName="emailId"
-                  placeholder="Enter email here" [ngClass]="{ 'is-invalid': submitted && f1.emailId.errors }">
+              <div class="txt-lable" id="mail">Email</div>
+            </div>
+            
+            <div class="col-sm-12">
+              <input type="text" class="form-control bg-white" id="Email" formControlName="emailId"
+                placeholder="Enter email here"
+                [ngClass]="{ 'is-invalid': submitted && f1.emailId.errors }">
                 <div *ngIf="submitted && f1.emailId.errors" class="invalid-feedback">
                   <div *ngIf="f1.emailId.errors.required">Email ID is required</div>
                 </div>
               </div>
-              <!--
-              <div class="col-sm-12">
-                <div class="txt-lable" id="name">Name</div>
-              </div>
-              <div class="col-sm-12">
-                <input type="text" class="form-control bg-white" id="name" formControlName="userName"
-                  placeholder="Enter name here"></div>
-              -->
-              <!-- <div class="col-sm-12 pt-20"><div class="font-12"><img src="assets/images/add-icon.png"><span class="add-txt">Add another</span></div></div>  
-              
-              <div class="col-sm-6 pt-50 pr-0">&nbsp;</div>
-               -->
-              <div class="col-sm-12 text-right"><button class="btn button-save mt-5" type="submit">Invite team
-                  member</button></div>
+            -->
+            <!--
+            <div class="col-sm-12">
+              <div class="txt-lable" id="name">Name</div>
             </div>
-          </form>
+            <div class="col-sm-12">
+              <input type="text" class="form-control bg-white" id="name" formControlName="userName"
+                placeholder="Enter name here"></div>
+            -->
+            <div class="col-sm-12">
+              <div class="txt-lable" id="mail">Email</div>
+            </div>
+            <div class="col-sm-12" formArrayName="emailIds">
+              <div *ngFor="let emailId of emailIds.controls; let i = index" [formGroupName]="i" style="padding-bottom: 5px;">
+               
+                
+                <div>
+                  <input type="text" class="form-control bg-white" id="Email" formControlName="emailId"
+                    placeholder="Enter email here"
+                    [ngClass]="{ 'is-invalid': submitted && emailIds.controls[i].get('emailId').errors }">
+                    <div *ngIf="submitted && emailIds.controls[i].get('emailId').errors" class="invalid-feedback">
+                      <div *ngIf="emailIds.controls[i].get('emailId').errors.required">Email ID is required</div>
+                    </div>
+                  </div>
+                
+                </div>
+            </div>
+            <div class="col-sm-12 pt-20"><div class="font-12"><img (click)="addMember()" src="assets/images/add-icon.png"><span (click)="addMember()"  class="add-txt">Add another</span></div></div>  
+            
+            <div class="col-sm-6 pt-50 pr-0">&nbsp;</div>
+            
+            <div class="col-sm-12 text-right"><button class="btn button-save mt-5" type="submit">Invite team
+                member</button></div>
+          </div>
+        </form>
       </div>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-5" style="padding: 0px;">
       <div class="dialog-right">
         <img src="assets/images/signup-3.png" class="mt-100">
         <div class="mt-50">Work better together.</div>

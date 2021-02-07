@@ -4,7 +4,7 @@ import { SubcriptionService } from '../subcription.service';
 import { first } from 'rxjs/operators';
 import { threadId } from 'worker_threads';
 import { CommonService } from '@app/utils/common.service';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -13,7 +13,6 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ['./expand-your-team.component.css']
 })
 export class ExpandYourTeamComponent implements OnInit {
-
   emailId: any;
   username: any;
   form: FormGroup;
@@ -41,10 +40,14 @@ export class ExpandYourTeamComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-
+    var emailIdArray=this.form.value.emailIds;
+    var emailIdArray_data = [];
+    emailIdArray.forEach(element => {
+      emailIdArray_data.push(element.emailId)
+    });
     const form = this.form.getRawValue();
     const reqdata = {
-      "emailIds": [form.emailId],
+      "emailIds": emailIdArray_data,
       "mailSent": true,
       "micrositeId": this.micrositeId
     }
@@ -65,11 +68,23 @@ export class ExpandYourTeamComponent implements OnInit {
   }
   init() {
     this.form = this.formBuilder.group({
-      emailId: ['', Validators.required],
-      userName: ['']
+      emailIds: this.formBuilder.array(
+				[this.createTeamFormGroup()],
+				[Validators.required])
     });
   }
-
+  createTeamFormGroup() {
+		return this.formBuilder.group({
+			emailId: ['', [Validators.required]]
+		})
+  }
+  get emailIds(): FormArray {
+		return this.form.get('emailIds') as FormArray;
+  }
+  addMember() {
+		let fg = this.createTeamFormGroup();
+		this.emailIds.push(fg);
+	}
   ngOnInit(): void {
     this.init();
   }
