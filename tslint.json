@@ -17,6 +17,8 @@
     "no-string-literal": false,
     "no-shadowed-variable":false,
     "no-angle-bracket-type-assertion":false,
+    "indent":false,
+    "no-bitwise":false,
     "radix":false,
     "variable-name":false,
     "array-type": false,

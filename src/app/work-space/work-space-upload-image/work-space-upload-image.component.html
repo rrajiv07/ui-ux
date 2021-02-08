@@ -45,8 +45,7 @@
                 <div class="row mt-40"  *ngIf="isEditFlag" >
                     <label class="control-label col-sm-2 width-100" for="cname">Name</label>
                     <div class="col-sm-8">                        
-                        <select id ="selectOptionid" (change)="onChange($event.target.value,$event)" class="form-control" 
-                        formControlName="docName" [(ngModel)]="selectedDocuments"
+                        <select id ="selectOptionid" (change)="onChange($event.target.value,$event)" class="form-control" formControlName="docName" [(ngModel)]="selectedDocuments"
                         [ngClass]=" { 'is-invalid' : submitted && f1.docName.errors }">
                             <option  *ngFor="let item of documentList" value={{item.docId}} id={{item.docName}}>{{item.docName}}
                             </option>
@@ -84,9 +83,11 @@
                         
                     </div>
                 </div>
-                <div class="row mt-40">
+                <div class="row">
                     <label class="control-label col-sm-2 width-100" for="cname">&nbsp;</label>
+                    <div class="col-sm-10 ml-4" style="text-align: right;">
                     <button class="btn button-save ml-4">Save</button>
+                </div>
                 </div>
             </div>
         </form>

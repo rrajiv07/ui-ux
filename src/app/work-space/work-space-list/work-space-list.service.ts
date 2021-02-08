@@ -9,7 +9,9 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 })
 export class WorkSpaceListService {
 
-  constructor(private http: HttpClient,private ngxService: NgxUiLoaderService) { }
+  constructor(private http: HttpClient,private ngxService: NgxUiLoaderService) { 
+    ;  
+  }
   getWorkSpaceList(header: any) {    
 	this.ngxService.start()
     return this.http.get<any>(`${environment.apiUrl}microsite/workspaces?micrositeId`+'='+localStorage.getItem('micrositeId'), header)

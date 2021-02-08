@@ -8,11 +8,11 @@
                                 <div class="bb-gray mr-4">
                                     <div class="payment-2col">
                                             <p class="pay-txt">PAYMENT AMOUNT</p>
-                                            <div class="ft-28">$20</div>
+                                            <div class="ft-28">{{basicAmount}}</div>
                                     </div>
                                     <div class="payment-2col">
                                             <p class="pay-txt">PLAN</p>
-                                            <div class="ft-28">E3</div>
+                                            <div class="ft-28">{{planType}}</div>
                                     </div>
                                     <div class="clear-float"></div>
                                 </div>
@@ -75,8 +75,8 @@
                     
                 </div>
 			<div class="payment-btn mt-3 text-center mt-3">
-				<button class="btn btn-primary" routerLink="/subscription/purchase-subcription">Back</button>        
-				<button class="btn btn-primary ml-3" routerLink="/subscription/manage-subscription" data-toggle="modal" data-target="#myModal">Pay</button>         
+				<button class="btn btn-primary" (click)="back()" >Back</button>        
+				<button class="btn btn-primary ml-3" (click)="pay()" data-toggle="modal" data-target="#myModal">Pay</button>         
 			</div>
 	  </div>
 </main>

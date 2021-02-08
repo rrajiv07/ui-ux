@@ -1,0 +1,32 @@
+<div class="row">
+  <div *ngIf="config.data.isAdobe" class="col-md-12" style="margin-top: 24px;">
+    <iframe width="1150" height="520" id='iframe' [src]="link" frameborder="0"></iframe>
+  </div>
+  <div *ngIf="!config.data.isAdobe"  class="col-md-12" style="margin-top: 24px;">
+    <app-pinch-component #pinch>
+      <img src="https://images.unsplash.com/photo-1444927714506-8492d94b4e3d">
+    </app-pinch-component>
+  </div>
+  <div class="col-md-12" style="margin-bottom: 3rem;">
+    <form class="form-horizontal" [formGroup]="formGroup">
+      <div *ngIf="commonService.getRole() !='developer'">
+        <div>
+          <label class="control-label width-125" style="font-weight: bold;" for="cname">Review Comments</label>
+          <textarea formControlName="reviewComment" class="form-control rounded-0 bg-white" id="reviewComment"
+            [ngClass]=" { 'is-invalid' : submitted && f1.reviewComment.errors }"></textarea>
+          <div *ngIf="submitted && f1.reviewComment.errors" class="invalid-feedback">
+            <div *ngIf="f1.reviewComment.errors.required">Comment is required</div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+    <div *ngIf="commonService.getRole() !='developer'" class="">
+      <div class="col-sm-9 " style="padding: 10px 0px;">
+        <button class="btn button-save" (click)="saveComments()">Save</button>
+        <button type="button" class="btn button-save" style="margin-left: 10px;" data-dismiss="modal" aria-label="Close"
+          (click)="Close()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

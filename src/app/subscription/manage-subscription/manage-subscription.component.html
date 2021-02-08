@@ -14,11 +14,11 @@
             <div class="row">
               <div class="col-sm-9">
                 <p class="ft-12 ft-light-gray pb-2">Current Plan</p>
-                <h5 class="ft-18 ft-color-green">Basic</h5>
+                <h5 class="ft-18 ft-color-green">{{planType}}</h5>
               </div>
               <div class="col-sm-3 pr-4 border-left">
                 <p>Seats</p>
-                <h5 class="ft-16 ft-bold pt-2">5</h5>
+                <h5 class="ft-16 ft-bold pt-2">{{totalLicense}}</h5>
               </div>
             </div>
             <div class="row mt-5">
@@ -27,7 +27,7 @@
                   any point of time.</p>
               </div>
               <div class="col-sm-3 p-0">
-                <button routerLink="/subscription/purchase-subcription" class="buy-more-btn m-0 ft-color-green">Buy
+                <button (click)="buyMoreSeats()" class="buy-more-btn m-0 ft-color-green">Buy
                   more<br>seats</button>
               </div>
             </div>
@@ -40,13 +40,13 @@
           <div class="plan-box">
             <div class="row">
               <div class="col-sm-4">
-                <p class="ft-18 color-purple">5 <span class="ft-14 ft-light-gray">Total Seats</span></p>
+                <p class="ft-18 color-purple">{{totalLicense}} <span class="ft-14 ft-light-gray">Total Seats</span></p>
               </div>
               <div class="col-sm-4 border-left">
-                <p class="ft-18 color-purple">4 <span class="ft-14 ft-light-gray">Unassigned Seats</span></p>
+                <p class="ft-18 color-purple">{{unallocatedLicense}} <span class="ft-14 ft-light-gray">Unassigned Seats</span></p>
               </div>
               <div class="col-sm-4 border-left">
-                <p class="ft-18 color-purple">1 <span class="ft-14 ft-light-gray">Allocated Seats</span></p>
+                <p class="ft-18 color-purple">{{allocatedLicense}} <span class="ft-14 ft-light-gray">Allocated Seats</span></p>
               </div>
             </div>
           </div>

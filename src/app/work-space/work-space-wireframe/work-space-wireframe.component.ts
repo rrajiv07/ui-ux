@@ -8,6 +8,7 @@ import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { EditCommentsReceivedComponent } from '../edit-comments-received/edit-comments-received.component';
 import { HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ImageModelComponent } from './image-model/image-model.component';
 @Component({
   selector: 'app-work-space-wireframe',
   templateUrl: './work-space-wireframe.component.html',
@@ -18,6 +19,7 @@ export class WorkSpaceWireframeComponent implements OnInit {
   submitted: boolean = false;
   formGroup: FormGroup;
   editCommentsDialogPtr: DynamicDialogRef;
+  imageModelDialog: DynamicDialogRef;
   reviewers = [];
   selectedRole: any;
   reviewer: object;
@@ -33,7 +35,7 @@ export class WorkSpaceWireframeComponent implements OnInit {
   boardId: any;
   wsPocId: any;
   // header:any;
-  micrositeId:any;
+  micrositeId: any;
   respAfterSavingLink: any;
   canShowReviewer: boolean = false;
   token = localStorage.getItem('tempCurrentUserToken');
@@ -41,7 +43,7 @@ export class WorkSpaceWireframeComponent implements OnInit {
     headers: new HttpHeaders()
       .set('Authorization', `Bearer ${this.token}`)
   };
-  
+
   // canShowIframe: boolean;
   constructor(private workspace: WorkSpaceWireframeService,
     private sanitizer: DomSanitizer,
@@ -57,7 +59,7 @@ export class WorkSpaceWireframeComponent implements OnInit {
     //   headers: new HttpHeaders()
     //     .set('Authorization', `Bearer ${token}`)
     // };
-    this.micrositeId =localStorage.getItem('micrositeId');
+    this.micrositeId = localStorage.getItem('micrositeId');
     this.actRoute.parent.paramMap
       .subscribe(params => {
         this.boardId = params['params'].boardId;
@@ -83,8 +85,8 @@ export class WorkSpaceWireframeComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data: any) => {
-          if (data.result_status.toUpperCase() == "SUCCESS" && data.result_data !=null) {
-            this.link = data.result_data[0] ?  data.result_data[0]['doclink'] : '';
+          if (data.result_status.toUpperCase() == "SUCCESS" && data.result_data != null) {
+            this.link = data.result_data[0]['doclink'];
             this.variablesSetting(data.result_data[0]);
             return;
           }
@@ -116,8 +118,8 @@ export class WorkSpaceWireframeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getParams();   
-    this.initForm(); 
+    this.getParams();
+    this.initForm();
     this.selectedReviewer = [];
     this.loadIframe();
     this.getReviewerCombo();
@@ -131,18 +133,17 @@ export class WorkSpaceWireframeComponent implements OnInit {
     });
   }
   get f1() { return this.formGroup.controls; }
-  getReviewerCombo()
-  {
+  getReviewerCombo() {
     const req_data = {
       'micrositeId': this.micrositeId,
       'workspaceId': this.wsPocId
     }
-    this.workspace.getReviewerCombo(req_data,this.header)
+    this.workspace.getReviewerCombo(req_data, this.header)
       .pipe(first())
       .subscribe(
         (data: any) => {
-          if ( data.result_data !=null && data.result_data.length) {     
-            this.reviewers= data.result_data;
+          if (data.result_data != null && data.result_data.length) {
+            this.reviewers = data.result_data;
             return;
           }
         },
@@ -187,8 +188,8 @@ export class WorkSpaceWireframeComponent implements OnInit {
     this.selectedReviewer.splice(index, 1);
   }
   editComments(item) {
-    item["wsPocId"]=this.wsPocId;
-	  item["boardId"]=this.boardId;
+    item["wsPocId"] = this.wsPocId;
+    item["boardId"] = this.boardId;
     this.editCommentsDialogPtr = this.dialogService.open(EditCommentsReceivedComponent, {
       //header: 'Setup your account',
       showHeader: false,
@@ -201,31 +202,50 @@ export class WorkSpaceWireframeComponent implements OnInit {
       this.getAllReviewComments();
     });
   }
-  saveComments()
-  {
+
+  onViewFullScreen() {
+    const item = [];
+    item["wsPocId"] = this.wsPocId;
+    item["boardId"] = this.boardId;
+    item['micrositeId'] = this.micrositeId;
+    item['header'] = this.header;
+    item['link'] = this.link;
+    item['isAdobe'] = true;
+    this.imageModelDialog = this.dialogService.open(ImageModelComponent, {
+      //header: 'Setup your account',
+      showHeader: false,
+      closable: true,
+      width: '80%',
+      contentStyle: { "max-height": "50%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "10px" },
+      data: item
+    });
+    this.imageModelDialog.onClose.subscribe((data) => {
+      this.getAllReviewComments();
+    });
+  }
+  saveComments() {
     const formData = this.formGroup.getRawValue();
     this.submitted = true;
     // stop here if form is invalid
     if (this.formGroup.invalid) {
-     return;
+      return;
     }
     const reqdata = {
       "reviewComment": formData.reviewComment,
       //"docName": formData.docName,
       "micrositeId": parseInt(this.micrositeId),
-      "workspaceId": parseInt(this.wsPocId), 
+      "workspaceId": parseInt(this.wsPocId),
       "workspaceDtlId": parseInt(this.boardId)
     }
-    this.workspace.saveComments(reqdata,this.header)
+    this.workspace.saveComments(reqdata, this.header)
       .pipe(first())
       .subscribe(
         (data: any) => {
           if (data.result_status.toUpperCase() === 'SUCCESS') {
             this.commonService.successMessage(data.result_msg);
-			      this.getAllReviewComments();
+            this.getAllReviewComments();
           }
-          else
-          {
+          else {
             this.commonService.failureMessage(data.result_msg);
           }
         },
@@ -233,11 +253,10 @@ export class WorkSpaceWireframeComponent implements OnInit {
         });
 
   }
-  getAllReviewComments()
-  {
+  getAllReviewComments() {
     const reqdata = {
       "micrositeId": parseInt(this.micrositeId),
-      "workspaceId": parseInt(this.wsPocId), 
+      "workspaceId": parseInt(this.wsPocId),
       "workspaceDtlId": parseInt(this.boardId)
     }
     this.workspace.getAllReviewComments(reqdata, this.header)
@@ -252,52 +271,49 @@ export class WorkSpaceWireframeComponent implements OnInit {
         error => {
         });
   }
-  submitReviewer()
-  {
-    var selectedReviewer=[];
+  submitReviewer() {
+    var selectedReviewer = [];
     this.selectedReviewer.forEach(element => {
-      var selectedReviewerobj={};
-      selectedReviewerobj["id"]=element.userId;
-      selectedReviewerobj["name"]=element.userName;
+      var selectedReviewerobj = {};
+      selectedReviewerobj["id"] = element.userId;
+      selectedReviewerobj["name"] = element.userName;
       selectedReviewer.push(selectedReviewerobj);
     });
     const reqdata = {
       "reviewerIds": selectedReviewer,
       //"docName": formData.docName,
       "micrositeId": parseInt(this.micrositeId),
-      "workspaceId": parseInt(this.wsPocId), 
+      "workspaceId": parseInt(this.wsPocId),
       "workspaceDtlId": parseInt(this.boardId)
     }
-    console.log(reqdata,">>>>>>>>>>>reqdata")
-    this.workspace.submitReviewer(reqdata,this.header)
+    console.log(reqdata, ">>>>>>>>>>>reqdata")
+    this.workspace.submitReviewer(reqdata, this.header)
       .pipe(first())
       .subscribe(
         (data: any) => {
           if (data.result_status.toUpperCase() === 'SUCCESS') {
             this.commonService.successMessage(data.result_msg);
-            this.selectedReviewer=[];
+            this.selectedReviewer = [];
             this.getAssignedReviewer();
           }
-          else
-          {
+          else {
             this.commonService.failureMessage(data.result_msg);
           }
         },
         error => {
         });
   }
-  getAssignedReviewer()
-  {
+  getAssignedReviewer() {
     const reqdata = {
       "micrositeId": parseInt(this.micrositeId),
-      "workspaceId": parseInt(this.wsPocId), 
+      "workspaceId": parseInt(this.wsPocId),
       "workspaceDtlId": parseInt(this.boardId)
     }
     this.workspace.getAssignedReviewer(reqdata, this.header)
       .pipe(first())
       .subscribe(
         (data: any) => {
-          if (data.result_status.toUpperCase() == "SUCCESS" && data.result_data !=null) {
+          if (data.result_status.toUpperCase() == "SUCCESS" && data.result_data != null) {
             this.existingReviewer = data.result_data;
             return;
           }
@@ -305,8 +321,7 @@ export class WorkSpaceWireframeComponent implements OnInit {
         error => {
         });
   }
-  sanitizeUrl(link)
-  {
+  sanitizeUrl(link) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(link);
   }
 }

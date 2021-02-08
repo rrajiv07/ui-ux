@@ -1,47 +1,27 @@
 <div class="modal-body">
-  <button type="button" class="close dialog-close" data-dismiss="modal" aria-label="Close" (click)="Close()">
-    <img src="assets/images/close-popup.png">
-  </button>
-  <form [formGroup]="formGroup">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="dialog-left">
-          <div class="heading"><span>Edit Comments</span></div>
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="txt-lable">Reviewer</div>
-            </div>
-            <div class="col-sm-12"><input formControlName="reviewer" type="text" disabled class="form-control bg-white"
-                id="Reviewer"></div>
-            <div class="col-sm-12">
-              <div class="txt-lable">Comments</div>
-            </div>
-            <div class="col-sm-12"><textarea formControlName="comments" class="form-control bg-white"
-                id="comments"></textarea>
-            </div>
-            <div *ngIf="commonService.getRole() =='idea-owner' && actionStatus =='Pending' " class="col-sm-12">
-              <div class="txt-lable">Assign To</div>
-            </div>
-            <div *ngIf="commonService.getRole() =='idea-owner' && actionStatus =='Pending' "
-              class="col-sm-12 multiselect-dropdown">
-              <select formControlName="assignTo" class="form-control" [(ngModel)]="assignToModel">
-                <option *ngFor="let item of developers" value={{item.userId}} id={{item.userId}}>{{item.userName}}
-                </option>
-              </select>
+    <button type="button" class="close dialog-close" data-dismiss="modal" aria-label="Close" (click)="Close()">
+       <img src="assets/images/close-popup.png">
+      </button>
+      <form [formGroup]="formGroup">
+      <div class="row">
+        <div class="col-sm-12">
+            <div class="dialog-left"> 
+                    <div class="heading"><span>Edit Comments</span></div>
+                      <div class="row">
+                        <div class="col-sm-12"><div class="txt-lable">Reviewer</div></div>
+                        <div class="col-sm-12"><input formControlName="reviewer" type="text" class="form-control bg-white" id="Reviewer"></div>
+						<div class="col-sm-12"><div class="txt-lable">Comments</div></div>
+                        <div class="col-sm-12"><textarea formControlName="comments"   class="form-control bg-white" id="comments" ></textarea>    
+                        </div>
+                        <div *ngIf="commonService.getRole() =='idea-owner' && actionStatus =='Pending' " class="col-sm-12"><div class="txt-lable">Assign To</div></div>
+                        <div *ngIf="commonService.getRole() =='idea-owner' && actionStatus =='Pending' " class="col-sm-12 multiselect-dropdown">
+                            <select formControlName="assignTo" class="form-control" [(ngModel)]="assignToModel">
+                            <option *ngFor="let item of developers" value={{item.userId}} id={{item.userId}}>{{item.userName}}
+                            </option>
+                          </select>
 
-            </div>
-            <div class="col-sm-12">
-              <div class="txt-lable">Status</div>
-            </div>
-            <div class="col-sm-12 multiselect-dropdown">
-              <select formControlName="status" class="form-control bg-white" [(ngModel)]="statusModel">
-                <option value="Reviewer1">Done</option>
-                <option value="Reviewer2">Inprogress</option>
-              </select>
-            </div>
-
-
-            <!--
+                            </div>
+                        <!--
                         <div *ngIf="actionStatus !='Pending'"  class="col-sm-12"><div class="txt-lable">Status</div></div>
                         <div *ngIf="actionStatus !='Pending'"  class="col-sm-12 multiselect-dropdown">
                             <select formControlName="status"  class="form-control bg-white" [(ngModel)]="statusModel">
@@ -51,33 +31,23 @@
                             <option value="Closed">Closed</option>
                             </select>
                                 </div>
-                        -->
-          </div>
-          <div class="row">
-            <div class="col-sm-12 pl-0">
-              <table style="width: 100%;">
-                <tr>
-                  <td><button (click)="accept()"
-                      *ngIf="commonService.getRole() =='idea-owner' && actionStatus =='Pending' "
-                      class="btn button-save mt-5 w100 ">Accept</button></td>
-                  <td><button (click)="reject()"
-                      *ngIf="commonService.getRole() =='idea-owner'  && actionStatus =='Pending'"
-                      class="btn button-save mt-5 w100">Reject</button></td>
-                  <td><button *ngIf="commentStatus =='Allocated' && commonService.getRole() =='developer'"
-                      (click)="Inprogress()" class="btn button-save mt-5 w100">Inprogress</button>
-                  </td>
-                  <td><button *ngIf="commentStatus =='In-Progress' && commonService.getRole() =='developer'"
-                      (click)="Completed()" class="btn button-save mt-5 w100">Completed</button>
-                  </td>
-                  <td><button
-                      *ngIf="( commonService.getRole() =='idea-owner' && actionStatus !='Pending') || (commentStatus =='Completed' && commonService.getRole() !='developer')"
-                      (click)="Closed()" class="btn button-save mt-5 w100">Closed</button></td>
-                </tr>
-              </table>
+                        -->                        
+                    </div>
+                    <div class="row">
+                    <div class="col-sm-12 pl-0">
+                        <table style="width: 100%;">
+                        <tr>
+                            <td style="padding-right:10px ;padding-left: 15px;"><button (click)="accept()" *ngIf="commonService.getRole() =='idea-owner' && actionStatus =='Pending' " style="background-color: #00C875 !important; border: 0px !important;" class="btn button-save mt-5 w100 ">Accept</button></td>
+                            <td style="padding-right:10px ;"><button  (click)="reject()" *ngIf="commonService.getRole() =='idea-owner'  && actionStatus =='Pending'" style="background-color: red !important; border: 0px !important;" class="btn button-save mt-5 w100">Reject</button></td>
+                            <td><button *ngIf="commentStatus =='Allocated' && commonService.getRole() =='developer'" (click)="Inprogress()" style="width: 100px;"  class="btn button-save mt-5 w100">Inprogress</button></td>
+                            <td><button *ngIf="commentStatus =='In-Progress' && commonService.getRole() =='developer'" (click)="Completed()" style="width: 100px;"  class="btn button-save mt-5 w100">Completed</button></td>
+                            <td><button *ngIf="( commonService.getRole() =='idea-owner' && actionStatus !='Pending') || (commentStatus =='Completed' && commonService.getRole() !='developer')" (click)="Closed()" style="width: 100px;"  class="btn button-save mt-5 w100">Closed</button></td>
+                        </tr>
+                        </table>
+                        </div>
+                    </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </form>
+</form>
 </div>

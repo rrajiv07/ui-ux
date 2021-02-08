@@ -5,7 +5,7 @@ import { WorkSpaceRoutingModule } from './work-space-routing.module';
 import { WorkSpaceListComponent } from './work-space-list/work-space-list.component';
 import { WorkSpaceSubNavComponent } from './work-space-sub-nav/work-space-sub-nav.component';
 import { WorkSpacePhaseComponent } from './work-space-phase/work-space-phase.component';
-import { ConsoleModule } from 'src/app/console/console.module';
+import {ConsoleModule} from 'src/app/console/console.module';
 import { WorkSpaceLandingComponent } from './work-space-landing/work-space-landing.component';
 import { CreateWorkSpaceComponent } from './create-work-space/create-work-space.component';
 import { WorkSpaceSummaryComponent } from './work-space-summary/work-space-summary.component';
@@ -31,42 +31,22 @@ import { EditCommentsReceivedComponent } from './edit-comments-received/edit-com
 import { EditInternalResourceComponent } from './edit-internal-resource/edit-internal-resource.component';
 import { EditWorkSpaceComponent } from './edit-work-space/edit-work-space.component';
 import { WorkSpaceEditEstimationDetailsComponent } from './work-space-edit-estimation-details/work-space-edit-estimation-details.component';
-
+import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
+import {CdkTableModule} from '@angular/cdk/table';
+import { ImageModelComponent } from './work-space-wireframe/image-model/image-model.component';
+import { PinchComponentComponent } from './work-space-wireframe/pinch-component/pinch-component.component';
+import { WorkspaceAiIntegrationComponent } from './workspace-ai-integration/workspace-ai-integration.component';
 @NgModule({
-  declarations: [WorkSpaceListComponent,
-    WorkSpaceSubNavComponent,
-    WorkSpacePhaseComponent,
-    WorkSpaceLandingComponent,
-    CreateWorkSpaceComponent,
-    WorkSpaceSummaryComponent,
-    WorkSpaceInitialRequirementComponent,
-    WorkSpaceProcessFlowComponent,
-    WorkSpaceInformationArchitectureComponent,
-    WorkSpaceWireframeComponent,
-    WorkSpacePrototypeComponent,
-    WorkSpacePocReviewComponent,
-    WorkSpaceDevelopmentDocumentComponent,
-    WorkSpaceSubMenuComponent,
-    WorkSpaceTeamComponent,
-    WorkSpaceDocumentsComponent,
-    WorkSpaceMilestonesComponent,
-    WorkSpaceFinancialsComponent,
-    FileValidator,
-    WorkSpaceUploadImageComponent,
-    WorkSpacePublishPocComponent,
-    AddInternalResourceComponent,
-    WorkSpaceAddEstimationDetailsComponent,
-    EditCommentsReceivedComponent,
-    EditInternalResourceComponent,
-    EditWorkSpaceComponent,
-    WorkSpaceEditEstimationDetailsComponent],
+  declarations: [WorkSpaceListComponent,WorkSpaceSubNavComponent, WorkSpacePhaseComponent, WorkSpaceLandingComponent, CreateWorkSpaceComponent, WorkSpaceSummaryComponent, WorkSpaceInitialRequirementComponent, WorkSpaceProcessFlowComponent, WorkSpaceInformationArchitectureComponent, WorkSpaceWireframeComponent, WorkSpacePrototypeComponent, WorkSpacePocReviewComponent, WorkSpaceDevelopmentDocumentComponent, WorkSpaceSubMenuComponent, WorkSpaceTeamComponent, WorkSpaceDocumentsComponent, WorkSpaceMilestonesComponent, WorkSpaceFinancialsComponent,FileValidator, WorkSpaceUploadImageComponent, WorkSpacePublishPocComponent, AddInternalResourceComponent, WorkSpaceAddEstimationDetailsComponent, EditCommentsReceivedComponent, EditInternalResourceComponent, EditWorkSpaceComponent, WorkSpaceEditEstimationDetailsComponent, ImageModelComponent, PinchComponentComponent, WorkspaceAiIntegrationComponent],
   imports: [
     CommonModule,
     WorkSpaceRoutingModule,
     ConsoleModule,
     FormsModule,
     FlashMessagesModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgImageFullscreenViewModule,
+    CdkTableModule
   ]
 })
 export class WorkSpaceModule { }

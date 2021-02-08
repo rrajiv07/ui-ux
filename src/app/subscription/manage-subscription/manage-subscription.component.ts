@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 import { SubcriptionService } from '../subcription.service';
 import { CommonService } from '@app/utils/common.service';
 import { HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-subscription',
@@ -27,7 +28,8 @@ export class ManageSubscriptionComponent implements OnInit {
   unallocatedLicense:any;
   constructor(private dialogService: DialogService,
     private service: SubcriptionService,
-    private common: CommonService) { }
+    private common: CommonService,
+    private route: Router) { }
 
   ngOnInit(): void {
     this.getAllMem(this.micrositeId);
@@ -77,7 +79,11 @@ export class ManageSubscriptionComponent implements OnInit {
 
     this.inviteMemberDialogPtr.onClose.subscribe((data) => {
       this.getAllMem(this.micrositeId);
+      this.getPlanDetails(this.micrositeId);
     });
 
+  }
+  buyMoreSeats(){
+    this.route.navigate(['/subscription/purchase-subcription'], { queryParams: { subscriptionId: this.planDetails['id'] ,totalLicense:this.totalLicense} });
   }
 }

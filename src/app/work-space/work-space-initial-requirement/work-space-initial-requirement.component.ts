@@ -1,7 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { first } from 'rxjs/operators';
 import {  CommonService} from '../../utils/common.service';
@@ -21,10 +21,12 @@ export class WorkSpaceInitialRequirementComponent implements OnInit {
   boardMapId: any;
   PocId: any;
   micrositeId:any;
+  wsPocName:any;
   constructor(private formBuilder: FormBuilder,
     private wpirService: WorkSpaceInitialRequirementService,
     private commonService: CommonService,
-    private actRoute: ActivatedRoute) { }
+    private actRoute: ActivatedRoute,
+    private route:Router) { }
 
   ngOnInit(): void {
     this.getParams();
@@ -119,7 +121,11 @@ export class WorkSpaceInitialRequirementComponent implements OnInit {
     this.actRoute.parent.paramMap
       .subscribe(params => {
         this.boardMapId = params['params'].boardId;
-        this.PocId = params['params'].subNav
+        this.PocId = params['params'].subNav;
+        this.wsPocName =params['wsPocName'].subNav;
       });
+  }
+  suggestStyleGuide(){
+    this.route.navigateByUrl("/workspace/view/"+this.PocId + '/' + this.wsPocName + '/' + this.boardMapId + '/phase/ai-integration');
   }
 }

@@ -16,6 +16,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SignUpInviteTeamComponent implements OnInit {
   signupDialogPtr: DynamicDialogRef;
+  laterDialogPtr: DynamicDialogRef;
   micrositeName: any;
   micrositeId : any;
   token : any;
@@ -61,7 +62,16 @@ export class SignUpInviteTeamComponent implements OnInit {
     this.dialog.close()
   }
   later() {
-    this.Success();
+    setTimeout(() => { 
+    this.dialog.close();
+    },500);
+    this.laterDialogPtr = this.dialogService.open(SignUpSucessComponent, {
+      showHeader: false,
+      closable: false,
+      width: '50%',
+      contentStyle: { "max-height": "30%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "10px" },
+    });
+
   }
 
   onInvite() {

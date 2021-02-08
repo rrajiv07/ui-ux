@@ -19,6 +19,8 @@ import {WorkSpaceFinancialsComponent} from './work-space-financials/work-space-f
 import { WorkSpacePublishPocComponent } from './work-space-publish-poc/work-space-publish-poc.component';
 import {NoPageAvailableComponent} from '../console/no-page-available/no-page-available.component';
 import { EditWorkSpaceComponent } from './edit-work-space/edit-work-space.component';
+import { WorkspaceAiIntegrationComponent } from './workspace-ai-integration/workspace-ai-integration.component';
+
 const routes: Routes = [
   {
     path: 'workspace',
@@ -73,6 +75,7 @@ const routes: Routes = [
         { path: 'development-document/:boardId', component: WorkSpaceDevelopmentDocumentComponent}
         */ 
         { path: 'initial-requirment', component: WorkSpaceInitialRequirementComponent},
+        { path:'ai-integration',component:WorkspaceAiIntegrationComponent},
         { path: 'process-flow', component: WorkSpaceProcessFlowComponent},
         { path: 'information-architecture', component: WorkSpaceInformationArchitectureComponent},
         { path: 'wireframe', component: WorkSpaceWireframeComponent},

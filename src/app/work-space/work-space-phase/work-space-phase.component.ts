@@ -11,6 +11,7 @@ import { CommonService } from '../../utils/common.service';
   styleUrls: ['./work-space-phase.component.css']
 })
 export class WorkSpacePhaseComponent implements OnInit {
+  collapseFlag:boolean=false;
   wsPocName: any;
   wsPocId: any;
   phaseId:any;
@@ -87,5 +88,13 @@ export class WorkSpacePhaseComponent implements OnInit {
     return flag;
 
 
+  }
+  setCollapse(flag)
+  {
+    this.collapseFlag =false;
+    if (flag == "true")
+    {
+      this.collapseFlag =true;
+    }
   }
 }

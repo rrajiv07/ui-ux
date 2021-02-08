@@ -10,6 +10,7 @@ import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { SignUpEmailComponent} from '../sign-up-email/sign-up-email.component';
 import {CommonService} from '../../utils/common.service';
 import { AppConfigService } from '../../utils/app-config.service';
+import {ForgotPasswordComponent} from '../forgot-password/forgot-password.component';
 
 @Component({
     selector: 'app-login',
@@ -19,6 +20,7 @@ import { AppConfigService } from '../../utils/app-config.service';
 })
 export class LoginComponent implements OnInit {
     signupDialogPtr: DynamicDialogRef;
+    forgotPasswordDialogPtr:DynamicDialogRef;
     loginForm: FormGroup;
     submitted: boolean = false;
     isLoginError: boolean = false;
@@ -156,6 +158,16 @@ export class LoginComponent implements OnInit {
         Object.keys(localStorage).forEach(function(key){
             localStorage.removeItem(key);
          });
+    }
+    forgotPassword(){
+        this.forgotPasswordDialogPtr = this.dialogService.open(ForgotPasswordComponent, {
+            //header: 'Setup your account',
+            showHeader:false,
+            closable:false,
+            width: '59%',
+            contentStyle: { "max-height": "30%", "overflow": "auto","padding":"0 1.1rem 0rem 1.5rem","border-radius":"10px"},
+          });
+        
     }
     
 }

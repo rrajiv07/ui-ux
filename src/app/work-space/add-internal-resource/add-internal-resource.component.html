@@ -7,45 +7,45 @@
       <div class="dialog-left">
         <div class="heading"><span>Add Internal Resource</span></div>
         <form [formGroup]="form" (ngSubmit)="onSave()">
-            <div class="row pt-50">
-              <div class="col-sm-12">
-                <div class="txt-lable">Resource</div>
-              </div>
-              <div class="col-sm-12">
-                <select class="form-control bg-white" formControlName="name" (change)="onChangeRes($event)"
-                  [ngClass]=" { 'is-invalid' : submitted && f1.name.errors }">
-                  <option *ngFor="let resource of resourcesList" value={{resource.id}}>{{resource.userName}}</option>
-                  <!-- <option value="John">John</option>
-                  <option value="Robert">Robert</option> -->
-                </select>
-                <div *ngIf="submitted && f1.name.errors" class="invalid-feedback">
-                  <div *ngIf="f1.name.errors.required">Resource is required</div>
-                </div>
-              </div>
-              <div class="col-sm-12">
-                <div class="txt-lable">Role</div>
-              </div>
-              <div class="col-sm-12">
-                <select class="form-control bg-white" formControlName="role"
-                  [ngClass]=" { 'is-invalid' : submitted && f1.role.errors }">
-                  <option *ngFor="let role of roles" value={{role.id}}>{{role.name}}</option>
-                  <!-- <option value="Developer">Developer</option>
-                  <option value="Reviewer">Reviewer</option> -->
-                </select>
-                <div *ngIf="submitted && f1.role.errors" class="invalid-feedback">
-                  <div *ngIf="f1.role.errors.required">Role is required</div>
-                </div>
-              </div>
-              <div class="col-sm-12">
-                <div class="txt-lable">Email</div>
-              </div>
-              <div class="col-sm-12"><input class="form-control bg-white" formControlName="email" id="Email"
-                  [readonly]="true" placeholder="Add email here"></div>
-  
-              <div class="col-sm-6 pr-0">&nbsp;</div>
-              <div class="col-sm-6 pl-0"><button type="submit" class="btn button-save mt-5 w100">Save</button></div>
+          <div class="row pt-50">
+            <div class="col-sm-12">
+              <div class="txt-lable">Resource</div>
             </div>
-          </form>
+            <div class="col-sm-12" >
+              <select class="form-control bg-white" formControlName="name" (change)="onChangeRes($event)"
+              [ngClass]=" { 'is-invalid' : submitted && f1.name.errors }" >
+                <option *ngFor="let resource of resourcesList" value={{resource.id}}>{{resource.userName}}</option>
+                <!-- <option value="John">John</option>
+                <option value="Robert">Robert</option> -->
+              </select>
+              <div *ngIf="submitted && f1.name.errors" class="invalid-feedback">
+                <div *ngIf="f1.name.errors.required">Resource is required</div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="txt-lable">Role</div>
+            </div>
+            <div class="col-sm-12">
+              <select class="form-control bg-white" formControlName="role"
+              [ngClass]=" { 'is-invalid' : submitted && f1.role.errors }">
+                <option *ngFor="let role of roles" value={{role.id}}>{{role.name}}</option>
+                <!-- <option value="Developer">Developer</option>
+                <option value="Reviewer">Reviewer</option> -->
+              </select>
+              <div *ngIf="submitted && f1.role.errors" class="invalid-feedback">
+                <div *ngIf="f1.role.errors.required">Role is required</div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="txt-lable">Email</div>
+            </div>
+            <div class="col-sm-12"><input class="form-control bg-white" formControlName="email" id="Email" [readonly] = "true"
+                placeholder="Add email here"></div>
+
+            <div class="col-sm-6 pr-0">&nbsp;</div>
+            <div class="col-sm-6 pl-0"><button type="submit" class="btn button-save mt-5 w100">Save</button></div>
+          </div>
+        </form>
       </div>
     </div>
   </div>

@@ -19,6 +19,9 @@ declare var jQuery:any;
   styleUrls: ['./work-space-information-architecture.component.css']
 })
 export class WorkSpaceInformationArchitectureComponent implements OnInit {
+  imageObject: Array<object> = [];
+  showFlag: boolean = false;
+  selectedImageIndex: number = -1;
   uploadDialogPtr: DynamicDialogRef;
   editCommentsDialogPtr: DynamicDialogRef;
   header:any;
@@ -419,4 +422,19 @@ export class WorkSpaceInformationArchitectureComponent implements OnInit {
         error => {
         });
   }
+  zoomImage(index)
+  {
+    var currentItem = jQuery("#myCarousel .item.active");
+    var currentIndex = jQuery('#myCarousel .item').index(currentItem);
+   this.imageObject = [{
+      image: this.allFiles[currentIndex].imageUrl
+        }
+        ];
+    this.selectedImageIndex = index;
+    this.showFlag = true;
+  }
+  closeEventHandler() {
+    this.showFlag = false;
+    this.currentIndex = -1;
+}
 }
