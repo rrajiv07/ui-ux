@@ -6347,6 +6347,9 @@ hr {
 .mt-20 {
   margin-top: 20px;
 }
+.mt-28 {
+  margin-top: 28px;
+}
 .mt-30 {
   margin-top: 30px;
 }
@@ -6733,6 +6736,9 @@ button:focus {
 .ft-20{
   font-size: 20px !important;
 }
+.ft-22{
+  font-size: 22px !important;
+}
 .ft-28{
   font-size: 28px !important;
 }
@@ -7029,16 +7035,20 @@ input[type=checkbox], input[type=radio] {
 }
 .buy-more-btn {
   background-color: #01C875;
-  color: #ffffff;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 20px;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    line-height: 14px;
 }
 .font-red {
   color: #e86778 !important;
 }
 .mt-58 {
   margin-top: 58px;
+}
+.mt-22 {
+  margin-top: 22px;
 }
 .table-custom.table th, .table-custom.table td {
   padding: 5px 0 !important;
@@ -7218,6 +7228,9 @@ nav.sub-menu ul li{
 .lh-22 {
   line-height: 22px;
 }
+.lh-40 {
+  line-height: 40px;
+}
 .ft-lighter {
   font-weight: lighter;
 }
@@ -7337,4 +7350,32 @@ sup {
 }
 .align-center {
   text-align: center;
+}
+
+.send-btn img {
+  height: 15px;
+}
+.send-btn {
+  padding: 5px 0;
+  text-align: right;
+}
+.user-icon {
+  height: 15px;
+  margin-right: 5px;
+  position: relative; 
+  top: -4px;
+}
+.time-icon {
+  height: 15px;
+  margin-right: 5px;
+  position: relative; 
+  top: -2px;
+}
+.edit-icon {
+  height: 15px;
+  margin-right: 10px;
+}
+.m-all-20 {
+  margin: 20px;
+  margin-top: 20px !important;
 }
