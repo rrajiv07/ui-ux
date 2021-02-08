@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import {CommonService} from '../../utils/common.service';
+import { AppConfigService } from '@app/utils/app-config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +19,12 @@ export class WorkSpaceWireframeService {
   // micrositeId = JSON.parse(localStorage.getItem('micrositeId'));
   constructor(private http: HttpClient,
     private ngxService: NgxUiLoaderService,
-    private commonService:CommonService) {
+    private commonService:CommonService,
+    private appService: AppConfigService) {
   }
   submitReviewer(value: any, header: any) {
     this.ngxService.start();
-    return this.http.post<any>(`${environment.apiUrl}phase/reviewer/mapping`, value, header)
+    return this.http.post<any>(`${this.appService.apiURL}phase/reviewer/mapping`, value, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -31,7 +33,7 @@ export class WorkSpaceWireframeService {
   }
   getReviewerCombo(id: any, header: any) {
     this.ngxService.start();
-    return this.http.get<any>(`${environment.apiUrl}workspace/team/user-byrole?workspaceId=${id.workspaceId}&micrositeId=${id.micrositeId}&roleId=${this.role_id}`, header)
+    return this.http.get<any>(`${this.appService.apiURL}workspace/team/user-byrole?workspaceId=${id.workspaceId}&micrositeId=${id.micrositeId}&roleId=${this.role_id}`, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -40,7 +42,7 @@ export class WorkSpaceWireframeService {
   }
   getAssignedReviewer(id: any, header: any) {
     this.ngxService.start();
-    return this.http.get<any>(`${environment.apiUrl}phase/mapped/reviewers?micrositeId=${id.micrositeId}&workspaceId=${id.workspaceId}&workspaceDtlId=${id.workspaceDtlId}`, header)
+    return this.http.get<any>(`${this.appService.apiURL}phase/mapped/reviewers?micrositeId=${id.micrositeId}&workspaceId=${id.workspaceId}&workspaceDtlId=${id.workspaceDtlId}`, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -49,7 +51,7 @@ export class WorkSpaceWireframeService {
   }
   getAllReviewComments(id: any, header: any) {
     this.ngxService.start();
-    return this.http.get<any>(`${environment.apiUrl}workspace/review/comments?micrositeId=${id.micrositeId}&workspaceId=${id.workspaceId}&workspaceDtlId=${id.workspaceDtlId}`, header)
+    return this.http.get<any>(`${this.appService.apiURL}workspace/review/comments?micrositeId=${id.micrositeId}&workspaceId=${id.workspaceId}&workspaceDtlId=${id.workspaceDtlId}`, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -58,7 +60,7 @@ export class WorkSpaceWireframeService {
   }
   saveComments(value: any,header:any) {
     this.ngxService.start();
-    return this.http.post<any>(`${environment.apiUrl}workspace/review/comment`, value,header)
+    return this.http.post<any>(`${this.appService.apiURL}workspace/review/comment`, value,header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -67,7 +69,7 @@ export class WorkSpaceWireframeService {
   }
   getAllStatus(header: any) {
     this.ngxService.start();
-    return this.http.get<any>(`${environment.apiUrl}status`, header)
+    return this.http.get<any>(`${this.appService.apiURL}status`, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -77,14 +79,14 @@ export class WorkSpaceWireframeService {
   onSaveLink(value: any, method: string, header: any) {
     this.ngxService.start();
     if (method === "SAVE") {
-      return this.http.post<any>(`${environment.apiUrl}workspace/xd/link`, value, header)
+      return this.http.post<any>(`${this.appService.apiURL}workspace/xd/link`, value, header)
         .pipe(map(data => {
           this.ngxService.stop();
           return data;
         }),
         );
     } else if (method === "UPDATE") {
-      return this.http.put<any>(`${environment.apiUrl}workspace/xd/link`, value, header)
+      return this.http.put<any>(`${this.appService.apiURL}workspace/xd/link`, value, header)
         .pipe(map(data => {
           this.ngxService.stop();
           return data;
@@ -96,7 +98,7 @@ export class WorkSpaceWireframeService {
 
   getLinkDetails(id: any, header: any) {
     this.ngxService.start();
-    return this.http.get<any>(`${environment.apiUrl}workspace/xd/links?micrositeId=${id.micrositeId}&workspaceId=${id.pocId}&workspaceDtlId=${id.pocBoardMapId}`, header)
+    return this.http.get<any>(`${this.appService.apiURL}workspace/xd/links?micrositeId=${id.micrositeId}&workspaceId=${id.pocId}&workspaceDtlId=${id.pocBoardMapId}`, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;

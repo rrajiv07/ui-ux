@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppConfigService {
   appConfig: string;
+  apiURL: string;
+
   constructor(private http: HttpClient) { }
   getAppConfigs() {
     return new Promise((resolve) => {
@@ -21,5 +23,6 @@ export class AppConfigService {
 }
 setAppConfigs(response) {
   this.appConfig = response;
+  this.apiURL = response['apiUrl'];
 }
 }

@@ -6,6 +6,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import {CommonService} from '../../utils/common.service';
 
 import { environment } from '@environments/environment';
+import { AppConfigService } from '@app/utils/app-config.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,13 +14,14 @@ import { environment } from '@environments/environment';
 export class WorkSpaceSevelopmentDocumentService {
   role_id =this.commonService.getReviewerId();
   constructor(private http: HttpClient,private ngxService: NgxUiLoaderService,
-    private commonService:CommonService) {
+    private commonService:CommonService,
+    private appService: AppConfigService) {
     
    }
 
   getDevelopmentDocumentationData(value: any, header: any) {
     this.ngxService.start();
-    return this.http.get<any>(`${environment.apiUrl}workspace/docs/details?` + value, header)
+    return this.http.get<any>(`${this.appService.apiURL}workspace/docs/details?` + value, header)
       .toPromise()
       .then(data => {
         this.ngxService.stop();
@@ -31,14 +33,14 @@ export class WorkSpaceSevelopmentDocumentService {
 
   formDataSave(formDataf: any, header: any) {
     this.ngxService.start();
-    return this.http.post(`${environment.apiUrl}workspace/doc/upload`, formDataf, header)
+    return this.http.post(`${this.appService.apiURL}workspace/doc/upload`, formDataf, header)
         .pipe(map(data => { 
           this.ngxService.stop();
           return data; }));
   }
   onDownloadFile(params: any,header:any) {
     let uri;
-    uri = `${environment.apiUrl}workspace/doc/download/attachment`;
+    uri = `${this.appService.apiURL}workspace/doc/download/attachment`;
     this.ngxService.start();
     return this.http.get(uri, { headers: header.headers, params: params, responseType: 'blob' })
       .pipe(map(data => {
@@ -49,7 +51,7 @@ export class WorkSpaceSevelopmentDocumentService {
   }
   saveComments(value: any,header:any) {
     this.ngxService.start();
-    return this.http.post<any>(`${environment.apiUrl}workspace/review/comment`, value,header)
+    return this.http.post<any>(`${this.appService.apiURL}workspace/review/comment`, value,header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -58,7 +60,7 @@ export class WorkSpaceSevelopmentDocumentService {
   }
   getAllReviewComments(id: any, header: any) {
     this.ngxService.start();
-    return this.http.get<any>(`${environment.apiUrl}workspace/review/comments?micrositeId=${id.micrositeId}&workspaceId=${id.workspaceId}&workspaceDtlId=${id.workspaceDtlId}`, header)
+    return this.http.get<any>(`${this.appService.apiURL}workspace/review/comments?micrositeId=${id.micrositeId}&workspaceId=${id.workspaceId}&workspaceDtlId=${id.workspaceDtlId}`, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -68,7 +70,7 @@ export class WorkSpaceSevelopmentDocumentService {
   getReviewerCombo(id: any, header: any) {
     this.ngxService.start();
     
-    return this.http.get<any>(`${environment.apiUrl}workspace/team/user-byrole?workspaceId=${id.workspaceId}&micrositeId=${id.micrositeId}&roleId=${this.role_id}`, header)
+    return this.http.get<any>(`${this.appService.apiURL}workspace/team/user-byrole?workspaceId=${id.workspaceId}&micrositeId=${id.micrositeId}&roleId=${this.role_id}`, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -77,7 +79,7 @@ export class WorkSpaceSevelopmentDocumentService {
   }
   getAssignedReviewer(id: any, header: any) {
     this.ngxService.start();
-    return this.http.get<any>(`${environment.apiUrl}phase/mapped/reviewers?micrositeId=${id.micrositeId}&workspaceId=${id.workspaceId}&workspaceDtlId=${id.workspaceDtlId}`, header)
+    return this.http.get<any>(`${this.appService.apiURL}phase/mapped/reviewers?micrositeId=${id.micrositeId}&workspaceId=${id.workspaceId}&workspaceDtlId=${id.workspaceDtlId}`, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -86,7 +88,7 @@ export class WorkSpaceSevelopmentDocumentService {
   }
   submitReviewer(value: any, header: any) {
     this.ngxService.start();
-    return this.http.post<any>(`${environment.apiUrl}phase/reviewer/mapping`, value, header)
+    return this.http.post<any>(`${this.appService.apiURL}phase/reviewer/mapping`, value, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;

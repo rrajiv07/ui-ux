@@ -3,17 +3,18 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { AppConfigService } from '@app/utils/app-config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EditWorkSpaceService {
 
-  constructor(private http: HttpClient,private ngxService: NgxUiLoaderService) {        
+  constructor(private http: HttpClient,private ngxService: NgxUiLoaderService,private appService: AppConfigService) {        
   }
   getWorkSpaceboards(header: any) {    
     this.ngxService.start(); 
-    return this.http.get<any>(`${environment.apiUrl}microsite/workspace/phases`, header)
+    return this.http.get<any>(`${this.appService.apiURL}microsite/workspace/phases`, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data; }),

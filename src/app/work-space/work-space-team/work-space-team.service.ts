@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { map } from 'rxjs/operators';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { AppConfigService } from '@app/utils/app-config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,14 @@ export class WorkSpaceTeamService {
   // };
   // micrositeId = JSON.parse(localStorage.getItem('micrositeId'));
   constructor(private http: HttpClient,
-    private ngxService: NgxUiLoaderService) {
+    private ngxService: NgxUiLoaderService,
+    private appService: AppConfigService
+    ) {
   }
 
   getAllResources(microsite: any, header: any) {
     this.ngxService.start();
-    return this.http.get<any>(`${environment.apiUrl}microsite/users?micrositeId=${microsite}`, header)
+    return this.http.get<any>(`${this.appService.apiURL}microsite/users?micrositeId=${microsite}`, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -30,7 +33,7 @@ export class WorkSpaceTeamService {
 
   getAllRole(header: any) {
     this.ngxService.start();
-    return this.http.get<any>(`${environment.apiUrl}roles`,header)
+    return this.http.get<any>(`${this.appService.apiURL}roles`,header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -40,7 +43,7 @@ export class WorkSpaceTeamService {
 
   onMapPocWithResource(params: any, header: any) {
     this.ngxService.start();
-    return this.http.post<any>(`${environment.apiUrl}workspace/team/user`, params, header)
+    return this.http.post<any>(`${this.appService.apiURL}workspace/team/user`, params, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -49,7 +52,7 @@ export class WorkSpaceTeamService {
   }
 
   getTeamDTL(id: any, header: any) {
-    return this.http.get<any>(`${environment.apiUrl}workspace/team/users?micrositeId=${id.micrositeId}&workspaceId=${id.poc}`, header)
+    return this.http.get<any>(`${this.appService.apiURL}workspace/team/users?micrositeId=${id.micrositeId}&workspaceId=${id.poc}`, header)
       .pipe(map(data => {
         return data;
       }),

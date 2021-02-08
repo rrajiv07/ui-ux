@@ -1,3 +1,4 @@
 {
-  "flag":"N"
+  "flag":"N",
+  "apiUrl" : "http://52.29.57.225:8095/hivezen/api/v1/"
 }

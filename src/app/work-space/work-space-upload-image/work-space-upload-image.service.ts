@@ -3,6 +3,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { AppConfigService } from '@app/utils/app-config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,14 @@ export class WorkSpaceUploadImageService {
       .set('Authorization', `Bearer ${this.token}`)
   };
   constructor(private http: HttpClient,
-    private ngxService: NgxUiLoaderService) {
+    private ngxService: NgxUiLoaderService,
+    private appService: AppConfigService) {
     
   }
   onUpload(value: any, isEdit: any) {
     this.ngxService.start();
     if (isEdit) {
-      return this.http.put<any>(`${environment.apiUrl}workspace/doc/upload`, value, this.header)
+      return this.http.put<any>(`${this.appService.apiURL}workspace/doc/upload`, value, this.header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -29,7 +31,7 @@ export class WorkSpaceUploadImageService {
     }
     else
     {
-    return this.http.post<any>(`${environment.apiUrl}workspace/doc/upload`, value, this.header)
+    return this.http.post<any>(`${this.appService.apiURL}workspace/doc/upload`, value, this.header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -39,7 +41,7 @@ export class WorkSpaceUploadImageService {
   }
   getDocuments(id: any) {
     this.ngxService.start();
-    return this.http.get<any>(`${environment.apiUrl}workspace/doc/names?micrositeId=${id.micrositeId}&workspaceId=${id.pocId}&workspaceDtlId=${id.pocBoardMapId}`, this.header)
+    return this.http.get<any>(`${this.appService.apiURL}workspace/doc/names?micrositeId=${id.micrositeId}&workspaceId=${id.pocId}&workspaceDtlId=${id.pocBoardMapId}`, this.header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;

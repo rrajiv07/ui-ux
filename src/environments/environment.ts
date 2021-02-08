@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl : "http://52.29.57.225:8095/hivezen/api/v1/",
+  // apiUrl : "http://52.29.57.225:8095/hivezen/api/v1/",
   envURL: "http://localhost:3200/"
 };
 

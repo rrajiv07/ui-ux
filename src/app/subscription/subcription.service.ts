@@ -3,6 +3,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { map } from 'rxjs/operators';
+import { AppConfigService } from '@app/utils/app-config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,13 @@ import { map } from 'rxjs/operators';
 export class SubcriptionService {
 
   constructor(private http: HttpClient,
-    private ngxService: NgxUiLoaderService) {
+    private ngxService: NgxUiLoaderService,
+    private appService: AppConfigService) {
   }
 
   getAllMem(micrositeId, header) {
     this.ngxService.start();
-    return this.http.get<any>(`${environment.apiUrl}microsite/users?micrositeId=${micrositeId}`, header)
+    return this.http.get<any>(`${this.appService.apiURL}microsite/users?micrositeId=${micrositeId}`, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -26,7 +28,7 @@ export class SubcriptionService {
 
   inviteMember(value: any, header) {
     this.ngxService.start();
-    return this.http.post<any>(`${environment.apiUrl}invite/internal/users`, value, header)
+    return this.http.post<any>(`${this.appService.apiURL}invite/internal/users`, value, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -35,7 +37,7 @@ export class SubcriptionService {
   }
   getPlanDetails(micrositeId, header) {
     this.ngxService.start();
-    return this.http.get<any>(`${environment.apiUrl}microsite/subscription?micrositeId=${micrositeId}`, header)
+    return this.http.get<any>(`${this.appService.apiURL}microsite/subscription?micrositeId=${micrositeId}`, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -44,7 +46,7 @@ export class SubcriptionService {
   }
   getAllPlanDetails(header) {
     this.ngxService.start();
-    return this.http.get<any>(`${environment.apiUrl}subscription/plans`, header)
+    return this.http.get<any>(`${this.appService.apiURL}subscription/plans`, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -53,7 +55,7 @@ export class SubcriptionService {
   }
   makePayment(value,header){
     this.ngxService.start();
-    return this.http.put<any>(`${environment.apiUrl}microsite/subscription`, value, header)
+    return this.http.put<any>(`${this.appService.apiURL}microsite/subscription`, value, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
