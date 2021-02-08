@@ -7272,10 +7272,14 @@ sup {
 
 .custom-chkbox {
   display: inline-block;
-  padding-left: 30px;
+  /* padding-left: 30px; */
   position: relative;
   cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
   user-select: none;
+  right: 30px;
+  top: 122px;
 }
 
 .custom-chkbox .checkmark {
@@ -7290,8 +7294,8 @@ sup {
 }
 
 .custom-chkbox input:checked + .checkmark {
-  background-color: #1390e5;
-  border: 1px solid #1390e5;
+  background-color: #72308b;
+    border: 1px solid #7C4791;
 }
 
 .custom-chkbox input:indeterminate + .checkmark {
@@ -7330,4 +7334,7 @@ sup {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(180deg);
+}
+.align-center {
+  text-align: center;
 }
