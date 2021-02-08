@@ -1,4 +1,4 @@
-<main class="ml-60">
+<main class="ml-80 mr-25">
   <div class="container-fluid">
     <div class="page-heading">Manage your Subscriptions</div>
     <div class="manage-ur-sub mt-50">
@@ -14,7 +14,7 @@
             <div class="row">
               <div class="col-sm-9">
                 <p class="ft-12 ft-light-gray pb-2">Current Plan</p>
-                <h5 class="ft-18 ft-color-green">{{planType}}</h5>
+                <h5 class="ft-22 ft-bold ft-color-green">{{planType}}</h5>
               </div>
               <!--
               <div class="col-sm-3 pr-4 border-left">
@@ -22,12 +22,12 @@
                 <h5 class="ft-16 ft-bold pt-2">{{totalLicense}}</h5>
               </div>
               -->
-              <div class="col-sm-3 pr-4 border-left">
+              <div class="col-sm-3 pr-4 bl-1-gray">
                 <p>Remaining Days</p>
-                <h5 class="ft-16 ft-bold pt-2">{{noOfDaysToSubscriptionElapse}}</h5>
+                <h5 class="ft-22 ft-bold pt-2 color-purple">{{noOfDaysToSubscriptionElapse}}</h5>
               </div>
             </div>
-            <div class="row mt-5">
+            <div class="row mt-20">
               <div class="col-sm-9">
                 <p class="ft-12 ft-light-gray pb-2">You are on the {{planType}} plan with {{totalLicense}} seats. You can buy more seats at
                   any point of time.</p>
@@ -38,7 +38,7 @@
               </div>
             </div>
           </div>
-          <div class="row mt-58">
+          <div class="row mt-22">
             <div class="col-sm-12">
               <h2 class="ft-16 ft-light-gray pb-3">Current Users</h2>
             </div>
@@ -46,13 +46,13 @@
           <div class="plan-box">
             <div class="row">
               <div class="col-sm-4">
-                <p class="ft-18 color-purple">{{totalLicense}} <span class="ft-14 ft-light-gray">Total Seats</span></p>
+                <p class="ft-22 ft-bold color-purple">{{totalLicense}} <span class="ft-14 ft-light-gray">Total Seats</span></p>
               </div>
               <div class="col-sm-4 border-left">
-                <p class="ft-18 color-purple">{{unallocatedLicense}} <span class="ft-14 ft-light-gray">Unassigned Seats</span></p>
+                <p class="ft-22 ft-bold color-purple">{{unallocatedLicense}} <span class="ft-14 ft-light-gray">Unassigned Seats</span></p>
               </div>
               <div class="col-sm-4 border-left">
-                <p class="ft-18 color-purple">{{allocatedLicense}} <span class="ft-14 ft-light-gray">Allocated Seats</span></p>
+                <p class="ft-22 ft-bold color-purple">{{allocatedLicense}} <span class="ft-14 ft-light-gray">Allocated Seats</span></p>
               </div>
             </div>
           </div>
@@ -77,14 +77,14 @@
             </div>
           </div>
 
-          <div class="plan-box mt-20">
+          <div class="plan-box mt-28">
             <div class="row">
-              <div class="col-sm-12 text-center mb-3">
+              <div class="col-sm-12 text-center">
                 <p class="ft-18"><strong>Contact Support</strong></p>
                 <p class="ft-12 pt-3 pb-3">Our Customer success team will get back to you within record time</p>
                 <div class="d-flex justify-content-center">
                   <button class="btn button-blue">Contact Support</button>
-                </div><br>
+                </div>
                 <!--<a class="font-red ft-bold">Close my account</a>-->
               </div>
             </div>
@@ -96,25 +96,67 @@
           <h2 class="ft-16 ft-light-gray">Manager Users</h2>
           <button class="btn btn-outline mr10px" (click)="inviteMember()">Invite Member</button>
         </div>
-        <table id="example1" class="table mt-2 ">
-          <thead>
-            <tr>
-              <th width="300">Email</th>
-              <th width="300">Name</th>
-              <th width="100">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of membersList" class="bg-white">
-                <td><span>{{item.email}}</span></td>
-                <td><span>{{item.userName}}</span></td>
-                <td [ngClass]="{'badge-status badge-done ft-white': (item.statusCode == 'Active'),
-                       'badge-status bg-light-gray' : (item.statusCode == 'Inactive')}"><span>{{item.statusCode}}</span>
-                </td>
-              </tr>
-          </tbody>
-        </table>
+
+
+
+
+
+        <div class="row mb-5">
+          <div class="col-sm-12">
+            <div class=" p-all-10">
+              <div class="row">
+                  <div class="col-sm-5">
+                    <div class="ft-18">Email</div>
+                  </div>
+                  <div class="col-sm-5">
+                    <div class="ft-18">Name</div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="ft-18 text-center">Status</div>
+                  </div>
+    
+                </div>
+              </div>
+              <div>
+    
+    
+                  <div class="bg-white border-gray mt-10 radius-all-3 lh-40" *ngFor="let item of membersList">
+                    <div class="row">
+    
+                      <div class="col-sm-5">
+                        <div class="font-semibold pl-8">{{item.email}}</div>
+                      </div>
+                      <div class="col-sm-5">
+                        <div>{{item.userName}}</div>
+                      </div>
+                      <div class="col-sm-2">
+                        <div [ngClass]="{'badge-status badge-done ft-white': (item.statusCode == 'Active'),
+                        'badge-status bg-light-gray' : (item.statusCode == 'Inactive')}" class="text-center">{{item.statusCode}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+    
+            </div>
+
+
+
+
+
+
+
+
+
       </div>
     </div>
   </div>
 </main>
+
+
+<footer>
+  <div class="container-fluid">
+    <div class="footer">©HiveZen.All rights reserved</div>
+  </div>
+</footer>
