@@ -52,9 +52,10 @@ export class EditCommentsReceivedComponent implements OnInit {
       });
   }
   initForm(){
+    const bol = this.commonService.getRole() =='idea-owner'  && this.actionStatus =='Pending';
     this.formGroup = this.formBuilder.group({
       reviewer: [{value:this.data.enteredByName,disabled: true}, Validators.required],
-      comments: [{value:this.data.reviewComment,disabled: true}, Validators.required],
+      comments: [{value:this.data.reviewComment,disabled: !bol}, Validators.required],
       assignTo: ['', Validators.required],
       status: ['', Validators.required]
     });
@@ -114,12 +115,18 @@ export class EditCommentsReceivedComponent implements OnInit {
   }
   reject()
   {
+    const formValues = this.formGroup.getRawValue();
+    if(!formValues.comments) {
+      this.commonService.failureMessage('Kindly enter comments');
+      return;
+    }
     const reqdata = {
       "id": this.commentId,
       "micrositeId": parseInt(this.micrositeId),
       "workspaceId": parseInt(this.wsPocId), 
       "workspaceDtlId": parseInt(this.boardId),
-      "actionStatus":"Rejected"
+      "actionStatus":"Rejected",
+      'rejectionRemarks': formValues.comments
     }
     this.workspace.accept(reqdata,this.header)
       .pipe(first())
