@@ -55,7 +55,8 @@ export class EditCommentsReceivedComponent implements OnInit {
     const bol = this.commonService.getRole() =='idea-owner'  && this.actionStatus =='Pending';
     this.formGroup = this.formBuilder.group({
       reviewer: [{value:this.data.enteredByName,disabled: true}, Validators.required],
-      comments: [{value:this.data.reviewComment,disabled: !bol}, Validators.required],
+      comments: [{value:this.data.reviewComment,disabled: true}, Validators.required],
+      rejectionRemarks: [],
       assignTo: ['', Validators.required],
       status: ['', Validators.required]
     });
@@ -116,8 +117,8 @@ export class EditCommentsReceivedComponent implements OnInit {
   reject()
   {
     const formValues = this.formGroup.getRawValue();
-    if(!formValues.comments) {
-      this.commonService.failureMessage('Kindly enter comments');
+    if(!formValues.rejectionRemarks) {
+      this.commonService.failureMessage('Kindly enter rejection reason');
       return;
     }
     const reqdata = {
@@ -126,7 +127,7 @@ export class EditCommentsReceivedComponent implements OnInit {
       "workspaceId": parseInt(this.wsPocId), 
       "workspaceDtlId": parseInt(this.boardId),
       "actionStatus":"Rejected",
-      'rejectionRemarks': formValues.comments
+      'rejectionRemarks': formValues.rejectionRemarks
     }
     this.workspace.accept(reqdata,this.header)
       .pipe(first())

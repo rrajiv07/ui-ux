@@ -13,6 +13,9 @@
 						<div class="col-sm-12"><div class="txt-lable">Comments</div></div>
                         <div class="col-sm-12"><textarea formControlName="comments"   class="form-control bg-white" id="comments" ></textarea>    
                         </div>
+                        <div *ngIf="commonService.getRole() =='idea-owner' && actionStatus =='Pending' "  class="col-sm-12"><div class="txt-lable">Rejection Reason</div></div>
+                        <div *ngIf="commonService.getRole() =='idea-owner' && actionStatus =='Pending' "  class="col-sm-12"><textarea formControlName="rejectionRemarks"   class="form-control bg-white" id="rejectionRemarks" ></textarea>    
+                        </div>
                         <div *ngIf="commonService.getRole() =='idea-owner' && actionStatus =='Pending' " class="col-sm-12"><div class="txt-lable">Assign To</div></div>
                         <div *ngIf="commonService.getRole() =='idea-owner' && actionStatus =='Pending' " class="col-sm-12 multiselect-dropdown">
                             <select formControlName="assignTo" class="form-control" [(ngModel)]="assignToModel">

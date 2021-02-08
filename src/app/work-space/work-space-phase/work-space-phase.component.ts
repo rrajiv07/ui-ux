@@ -83,9 +83,6 @@ export class WorkSpacePhaseComponent implements OnInit {
       }
       
     }
-    if (BoardName == 'Development Documents') {
-      flag =false;      
-    } 
     return flag;
 
 
