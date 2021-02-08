@@ -26,6 +26,7 @@ export class ManageSubscriptionComponent implements OnInit {
   totalLicense:any;
   allocatedLicense:any;
   unallocatedLicense:any;
+  noOfDaysToSubscriptionElapse:any;
   constructor(private dialogService: DialogService,
     private service: SubcriptionService,
     private common: CommonService,
@@ -44,6 +45,7 @@ export class ManageSubscriptionComponent implements OnInit {
           if (data.result_status.toUpperCase() === "SUCCESS" && data.result_data !=null) {
             this.planDetails = data.result_data;
             this.planType =this.planDetails['subscriptionPlanType'];
+            this.noOfDaysToSubscriptionElapse=this.planDetails['noOfDaysToSubscriptionElapse'];
             this.totalLicense =this.planDetails['totalLicense'];
             this.allocatedLicense =this.planDetails['allocatedLicense'];
             this.unallocatedLicense =this.planDetails['unallocatedLicense'];
