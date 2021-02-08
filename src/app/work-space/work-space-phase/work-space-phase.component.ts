@@ -76,15 +76,16 @@ export class WorkSpacePhaseComponent implements OnInit {
       }
       if (BoardName == 'Development Documents') {
         flag =true;
-        /*
-        if (userRole == 'reviewer') {
-          flag = false;
-        }*/
+        
       }      
       if (BoardName == 'Publish POC') {
-        flag = false;
+        flag = false; 
       }
+      
     }
+    if (BoardName == 'Development Documents') {
+      flag =false;      
+    } 
     return flag;
 
 
