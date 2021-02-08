@@ -7358,3 +7358,11 @@ sup {
   position: relative; 
   top: -2px;
 }
+.edit-icon {
+  height: 15px;
+  margin-right: 10px;
+}
+.m-all-20 {
+  margin: 20px;
+  margin-top: 20px !important;
+}
