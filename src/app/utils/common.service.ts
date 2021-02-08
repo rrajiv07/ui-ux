@@ -15,6 +15,12 @@ export class CommonService {
       customClass: 'swal-popupmsg'
     });
   }
+  getEmail(){
+    if (localStorage.getItem('tempCurrentUser') != undefined && localStorage.getItem('tempCurrentUser') != null) {
+      var email = JSON.parse(localStorage.getItem('tempCurrentUser')).email;
+    }
+    return email;
+  }
   getUserName() {
     if (localStorage.getItem('tempCurrentUser') != undefined && localStorage.getItem('tempCurrentUser') != null) {
       var userName = JSON.parse(localStorage.getItem('tempCurrentUser')).fullName;

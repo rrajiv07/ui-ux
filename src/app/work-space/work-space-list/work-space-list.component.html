@@ -1,14 +1,15 @@
 <nav class="main-menu">
     <ul>
         <li *ngIf="commonService.getRole() =='idea-owner'" >
-            <a  (click)="createWorkspace()" [class.active]="isCreateWorkSpace == 'create'"> 
-                <img src="assets/images/menu-icons/main-menu1.png">
+            <a  (click)="createWorkspace()"  style="cursor: pointer;" [class.active]="isCreateWorkSpace == 'create'"> 
+                <img src="assets/images/workspace-home.svg">
             </a>
+            
         </li>
         <div *ngFor="let workSpace of workSpacelist;index as i">
             <li>
                 
-                <a (click)="view(workSpace.id,workSpace.wsName)" [class.active]="environmentService.getPOCId()== workSpace.id ">
+                <a (click)="view(workSpace.id,workSpace.wsName)" [class.active]="environmentService.getPOCId()== workSpace.id "  style="cursor: pointer;">
              
                     <div   class="menu-item" [ngClass]="colorObj[i%4]"  [title]="workSpace.wsName">
                         {{workSpace.wsName.charAt(0).toUpperCase()}} 
@@ -42,12 +43,12 @@
                 <img src="assets/images/menu-icons/main-menu5.png">
             </a>
         </li>
-        --> <li>
+        -->
+        <li *ngIf="commonService.getRole() =='idea-owner'">
             <a>
-                <img src="assets/images/Breadcrumb.png" style="padding-left: 9px;">
+                <img src="assets/images/Breadcrumb.png">
             </a>
         </li>
     </ul>
-    <div class="upgrade-account"><img (click)="upgrade()" src="assets/images/upgrade-account.png"></div>
-
+    <div *ngIf="commonService.getRole() =='idea-owner'" style="cursor: pointer;" class="upgrade-account"><img (click)="upgrade()" src="assets/images/upgrade-account.png"></div>
 </nav>

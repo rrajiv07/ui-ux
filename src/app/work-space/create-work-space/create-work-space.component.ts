@@ -49,7 +49,7 @@ export class CreateWorkSpaceComponent implements OnInit {
     }
     
     const formData = this.formGroup.getRawValue();
-    
+    this.pocBoardsList =[];
     
     if (this.formGroup.get("initialRequirement").value != null && this.formGroup.get("initialRequirement").value != "")
     {
@@ -200,5 +200,10 @@ export class CreateWorkSpaceComponent implements OnInit {
     }); 
     return outputObj;
   }
+  deletePhase(phase,control)
+  {
+    const filteredPhase =this.workspaceBoardsData.filter((item) => item.name !== phase);
+    this.workspaceBoardsData =filteredPhase.slice();
+    this.formGroup.get(control).setValue(null);
+  }
 }
-

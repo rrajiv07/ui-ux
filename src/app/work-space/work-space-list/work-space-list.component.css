@@ -1,0 +1,23 @@
+.menu-item {
+    text-transform: uppercase;
+      color: #ffffff;
+      height: 22px;
+      width: 22px;
+      border-radius: 7px;
+      text-align: center;
+      line-height: 22px;
+      font-size: 12px;
+      margin: 7px;
+  }
+  .bg-pink {
+    background-color: #ea5fc4 !important;
+  }
+  .bg-blue {
+    background-color: #5f90ea !important;
+  }
+  .bg-teal {
+    background-color: #15b5bb !important;
+  }
+  .bg-green {
+    background-color: #45b14d !important;
+  }

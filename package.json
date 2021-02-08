@@ -12,6 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.0.3",
+    "@angular/cdk": "^11.1.1",
     "@angular/common": "~9.0.3",
     "@angular/compiler": "~9.0.3",
     "@angular/core": "~9.0.3",
@@ -23,6 +24,7 @@
     "angular2-flash-messages": "^3.0.1",
     "file-saver": "^2.0.5",
     "font-awesome": "^4.7.0",
+    "ng-image-fullscreen-view": "^2.0.0",
     "ngx-spinner": "^10.0.1",
     "ngx-ui-loader": "^10.0.0",
     "primeicons": "^4.1.0",
@@ -30,6 +32,7 @@
     "rxjs": "~6.5.4",
     "sweetalert2": "^8.19.0",
     "tslib": "^1.10.0",
+    "xlsx": "^0.14.2",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

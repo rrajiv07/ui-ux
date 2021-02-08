@@ -15,6 +15,7 @@ import { WorkSpaceUploadImageComponent } from '../work-space-upload-image/work-s
 // import { DomSanitizer } from '@angular/platform-browser';
 // import { saveAs as importedSaveAs } from "file-saver";
 import { EditCommentsReceivedComponent } from '../edit-comments-received/edit-comments-received.component';
+import { ImageModelComponent } from '../work-space-wireframe/image-model/image-model.component';
 
 @Component({
   selector: 'app-work-space-process-flow',
@@ -22,6 +23,9 @@ import { EditCommentsReceivedComponent } from '../edit-comments-received/edit-co
   styleUrls: ['./work-space-process-flow.component.css']
 })
 export class WorkSpaceProcessFlowComponent implements OnInit {
+  imageObject: Array<object> = [];
+  showFlag: boolean = false;
+  selectedImageIndex: number = -1;
   uploadDialogPtr: DynamicDialogRef;
   editCommentsDialogPtr: DynamicDialogRef;
   micrositeId: any;
@@ -55,6 +59,8 @@ export class WorkSpaceProcessFlowComponent implements OnInit {
   boardId: any;
   wsPocId: any;
   currentIndex: any = -1;
+  imageModelDialog: DynamicDialogRef;
+
   constructor(private workspace: WorkSpaceProcessFlowService,
     private sanitizer: DomSanitizer,
     private formBuilder: FormBuilder,
@@ -213,7 +219,7 @@ export class WorkSpaceProcessFlowComponent implements OnInit {
     if (currentIndex == cnt) {
       currentIndex = 0;
     }
-    console.log(currentIndex, this.allUploadedFile[currentIndex], ">>>>>>right");
+    console.log(currentIndex, this.allUploadedFile[currentIndex], this.allFiles, ">>>>>>right");
     this.desc = this.allUploadedFile[currentIndex].description;
     this.heading = this.allUploadedFile[currentIndex].docName ? this.commonService.sliceEXTFromName(this.allUploadedFile[currentIndex].docName) : null;
   }
@@ -235,18 +241,17 @@ export class WorkSpaceProcessFlowComponent implements OnInit {
       this.getAllUploadedFile();
     });
   }
-  getReviewerCombo()
-  {
+  getReviewerCombo() {
     const req_data = {
       'micrositeId': this.micrositeId,
       'workspaceId': this.wsPocId
     }
-    this.workspace.getReviewerCombo(req_data,this.header)
+    this.workspace.getReviewerCombo(req_data, this.header)
       .pipe(first())
       .subscribe(
         (data: any) => {
-          if ( data.result_data !=null && data.result_data.length) {     
-            this.reviewers= data.result_data;
+          if (data.result_data != null && data.result_data.length) {
+            this.reviewers = data.result_data;
             return;
           }
         },
@@ -294,8 +299,8 @@ export class WorkSpaceProcessFlowComponent implements OnInit {
     this.selectedReviewer.splice(index, 1);
   }
   editComments(item) {
-    item["wsPocId"]=this.wsPocId;
-	item["boardId"]=this.boardId;
+    item["wsPocId"] = this.wsPocId;
+    item["boardId"] = this.boardId;
     this.editCommentsDialogPtr = this.dialogService.open(EditCommentsReceivedComponent, {
       //header: 'Setup your account',
       showHeader: false,
@@ -304,37 +309,35 @@ export class WorkSpaceProcessFlowComponent implements OnInit {
       data: item,
       contentStyle: { "max-height": "30%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "10px" },
     });
-	
-	this.editCommentsDialogPtr.onClose.subscribe((data) => {
+
+    this.editCommentsDialogPtr.onClose.subscribe((data) => {
       this.getAllReviewComments();
     });
-	
+
   }
-  saveComments()
-  {
+  saveComments() {
     const formData = this.formGroup.getRawValue();
     this.submitted = true;
     // stop here if form is invalid
     if (this.formGroup.invalid) {
-     return;
+      return;
     }
     const reqdata = {
       "reviewComment": formData.reviewComment,
       //"docName": formData.docName,
       "micrositeId": parseInt(this.micrositeId),
-      "workspaceId": parseInt(this.wsPocId), 
+      "workspaceId": parseInt(this.wsPocId),
       "workspaceDtlId": parseInt(this.boardId)
     }
-    this.workspace.saveComments(reqdata,this.header)
+    this.workspace.saveComments(reqdata, this.header)
       .pipe(first())
       .subscribe(
         (data: any) => {
           if (data.result_status.toUpperCase() === 'SUCCESS') {
             this.commonService.successMessage(data.result_msg);
-			      this.getAllReviewComments();
+            this.getAllReviewComments();
           }
-          else
-          {
+          else {
             this.commonService.failureMessage(data.result_msg);
           }
         },
@@ -342,11 +345,10 @@ export class WorkSpaceProcessFlowComponent implements OnInit {
         });
 
   }
-  getAllReviewComments()
-  {
+  getAllReviewComments() {
     const reqdata = {
       "micrositeId": parseInt(this.micrositeId),
-      "workspaceId": parseInt(this.wsPocId), 
+      "workspaceId": parseInt(this.wsPocId),
       "workspaceDtlId": parseInt(this.boardId)
     }
     this.workspace.getAllReviewComments(reqdata, this.header)
@@ -361,52 +363,49 @@ export class WorkSpaceProcessFlowComponent implements OnInit {
         error => {
         });
   }
-  submitReviewer()
-  {
-    var selectedReviewer=[];
+  submitReviewer() {
+    var selectedReviewer = [];
     this.selectedReviewer.forEach(element => {
-      var selectedReviewerobj={};
-      selectedReviewerobj["id"]=element.userId;
-      selectedReviewerobj["name"]=element.userName;
+      var selectedReviewerobj = {};
+      selectedReviewerobj["id"] = element.userId;
+      selectedReviewerobj["name"] = element.userName;
       selectedReviewer.push(selectedReviewerobj);
     });
     const reqdata = {
       "reviewerIds": selectedReviewer,
       //"docName": formData.docName,
       "micrositeId": parseInt(this.micrositeId),
-      "workspaceId": parseInt(this.wsPocId), 
+      "workspaceId": parseInt(this.wsPocId),
       "workspaceDtlId": parseInt(this.boardId)
     }
-    console.log(reqdata,">>>>>>>>>>>reqdata")
-    this.workspace.submitReviewer(reqdata,this.header)
+    console.log(reqdata, ">>>>>>>>>>>reqdata")
+    this.workspace.submitReviewer(reqdata, this.header)
       .pipe(first())
       .subscribe(
         (data: any) => {
           if (data.result_status.toUpperCase() === 'SUCCESS') {
             this.commonService.successMessage(data.result_msg);
-			this.selectedReviewer=[];
-			this.getAssignedReviewer();
+            this.selectedReviewer = [];
+            this.getAssignedReviewer();
           }
-          else
-          {
+          else {
             this.commonService.failureMessage(data.result_msg);
           }
         },
         error => {
         });
   }
-  getAssignedReviewer()
-  {
+  getAssignedReviewer() {
     const reqdata = {
       "micrositeId": parseInt(this.micrositeId),
-      "workspaceId": parseInt(this.wsPocId), 
+      "workspaceId": parseInt(this.wsPocId),
       "workspaceDtlId": parseInt(this.boardId)
     }
     this.workspace.getAssignedReviewer(reqdata, this.header)
       .pipe(first())
       .subscribe(
         (data: any) => {
-          if (data.result_status.toUpperCase() == "SUCCESS" && data.result_data !=null) {
+          if (data.result_status.toUpperCase() == "SUCCESS" && data.result_data != null) {
             this.existingReviewer = data.result_data;
             return;
           }
@@ -414,4 +413,46 @@ export class WorkSpaceProcessFlowComponent implements OnInit {
         error => {
         });
   }
+  zoomImage(index?: any) {
+    var currentItem = jQuery("#myCarousel .item.active");
+    var currentIndex = jQuery('#myCarousel .item').index(currentItem);
+    this.imageObject = [{
+      image: this.allFiles[currentIndex].imageUrl
+    }
+    ];
+    this.selectedImageIndex = index ? index : this.selectedImageIndex;
+    this.showFlag = true;
+  }
+  closeEventHandler() {
+    this.showFlag = false;
+    this.currentIndex = -1;
+  }
+
+  onViewFullScreen() {
+    this.zoomImage();
+    const item = [];
+    item["wsPocId"] = this.wsPocId;
+    item["boardId"] = this.boardId;
+    item['micrositeId'] = this.micrositeId;
+    item['header'] = this.header;
+    item['isAdobe'] = false;
+    item['link'] = this.imageObject;
+    this.imageModelDialog = this.dialogService.open(ImageModelComponent, {
+      //header: 'Setup your account',
+      showHeader: false,
+      closable: true,
+      width: '80%',
+      contentStyle: { "max-height": "50%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "10px" },
+      data: item
+    });
+    this.imageModelDialog.onClose.subscribe((data) => {
+      this.getAllReviewComments();
+    });
+  }
+
+  findActiveImageURL() {
+    const item = this.allFiles.find(elem => elem.active === true)
+    return item ? item['imageUrl'] : '';
+  }
+
 }

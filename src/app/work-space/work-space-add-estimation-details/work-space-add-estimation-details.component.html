@@ -1,46 +1,46 @@
 <div class="modal-body">
-  <button type="button" class="close dialog-close" data-dismiss="modal" aria-label="Close" (click)="Close()">
-     <img src="assets/images/close-popup.png">
-    </button>
-    <form [formGroup]="formGroup">
-    <div class="row">
-      <div class="col-sm-12">
-          <div class="dialog-left"> 
-                  <div class="heading"><span>Add Estimation</span></div>
-                    <div class="row pt-50">
-                      <div class="col-sm-12"><div class="txt-lable">Phase</div></div>
-                      <div class="col-sm-12">
-                      <input formControlName="devPhase" type="text" class="form-control bg-white" id="Email" 
-                      [ngClass]=" { 'is-invalid' : submitted && f1.devPhase.errors }"
-                      placeholder="Enter phase here">
-                      <div *ngIf="submitted && f1.devPhase.errors" class="invalid-feedback">
-                          <div *ngIf="f1.devPhase.errors.required">Phase is required</div>
+    <button type="button" class="close dialog-close" data-dismiss="modal" aria-label="Close" (click)="Close()">
+       <img src="assets/images/close-popup.png">
+      </button>
+      <form class="form-horizontal" [formGroup]="formGroup">
+      <div class="row">
+        <div class="col-sm-12">
+            <div class="dialog-left"> 
+                    <div class="heading"><span>Add Estimation</span></div>
+                      <div class="row pt-50">
+                        <div class="col-sm-12"><div class="txt-lable">Phase</div></div>
+                        <div class="col-sm-12">
+                        <input formControlName="devPhase" type="text" class="form-control bg-white" id="Email" 
+                        [ngClass]=" { 'is-invalid' : submitted && f1.devPhase.errors }"
+                        placeholder="Enter phase here">
+                        <div *ngIf="submitted && f1.devPhase.errors" class="invalid-feedback">
+                            <div *ngIf="f1.devPhase.errors.required">Phase is required</div>
+                          </div>
                         </div>
-                      </div>
-          <div class="col-sm-12"><div class="txt-lable">Man Month</div></div>
-                      <div class="col-sm-12">
-                      <input formControlName="manMonthsEffort" type="text" class="form-control bg-white" 
-                      [ngClass]=" { 'is-invalid' : submitted && f1.manMonthsEffort.errors }"
-                      id="Email" placeholder="Enter man month here">
-                      <div *ngIf="submitted && f1.manMonthsEffort.errors" class="invalid-feedback">
-                          <div *ngIf="f1.manMonthsEffort.errors.required">Man Months Effort is required</div>
+						<div class="col-sm-12"><div class="txt-lable">Man Month</div></div>
+                        <div class="col-sm-12">
+                        <input formControlName="manMonthsEffort" type="text" class="form-control bg-white" 
+                        [ngClass]=" { 'is-invalid' : submitted && f1.manMonthsEffort.errors }"
+                        id="Email" placeholder="Enter man month here">
+                        <div *ngIf="submitted && f1.manMonthsEffort.errors" class="invalid-feedback">
+                            <div *ngIf="f1.manMonthsEffort.errors.required">Man Months Effort is required</div>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-sm-12"><div class="txt-lable">Cost(USD)</div></div>
-                      <div class="col-sm-12">
-                      <input formControlName="costs" type="text" class="form-control bg-white" id="costs"
-                      [ngClass]=" { 'is-invalid' : submitted && f1.costs.errors }"
-                      placeholder="Enter cost here">
-                      <div *ngIf="submitted && f1.costs.errors" class="invalid-feedback">
-                          <div *ngIf="f1.costs.errors.required">Cost is required</div>
+                        <div class="col-sm-12"><div class="txt-lable">Cost(USD)</div></div>
+                        <div class="col-sm-12">
+                        <input formControlName="costs" type="text" class="form-control bg-white" id="costs"
+                        [ngClass]=" { 'is-invalid' : submitted && f1.costs.errors }"
+                        placeholder="Enter cost here">
+                        <div *ngIf="submitted && f1.costs.errors" class="invalid-feedback">
+                            <div *ngIf="f1.costs.errors.required">Cost is required</div>
+                          </div>
                         </div>
-                      </div>
-                      
-          <div class="col-sm-6 pt-50 pr-0">&nbsp;</div>
-                      <div class="col-sm-6 pt-50 pl-0"><button (click)="save()" class="btn button-save mt-5 w100">Save</button></div>
-                  </div>
-          </div>
-      </div>
-  </div>
+                        
+						<div class="col-sm-6 pt-50 pr-0">&nbsp;</div>
+                        <div class="col-sm-6 pt-50 pl-0"><button (click)="save()" class="btn button-save mt-5 w100">Save</button></div>
+                    </div>
+            </div>
+        </div>
+    </div>
 </form>
 </div>

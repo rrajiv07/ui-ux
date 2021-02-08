@@ -1,4 +1,4 @@
-<main>
+<main class="mr-15">
 <div id="Tab1" class="tabcontent">
     <div class="tab-header">
 
@@ -56,12 +56,74 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row pt-20">        
+                            <div class="col-sm-2">
+                                <label class="control-label" for="cname">Requirements documents<sup>*</sup></label>
+                            </div>                 
+                            <div class="col-sm-5">
+                                <input formcontrolname="uploadFile" id="uploadFile" type="file" name="uploadFile" class="ng-untouched ng-pristine ng-valid" ng-reflect-name="uploadFile" ng-reflect-ng-class="[object Object]">
+                            </div>  
+                        </div>
+                        <div class="row pt-20"> 
+                            <div class="col-sm-2">
+                                <label class="control-label" for="cname">Reference Sites<sup>*</sup></label>
+                            </div>   
+                            <div class="col-sm-3">
+                                <input type="text" class="txt-outline bg-white w-100" placeholder="URL 1">
+                            </div>  
+                            <div class="col-sm-3">
+                                <input type="text" class="txt-outline bg-white w-100" placeholder="URL 2">
+                            </div> 
+                            <div class="col-sm-3">
+                                <input type="text" class="txt-outline bg-white w-100" placeholder="URL 3">
+                            </div> 
+                        </div>
                          <div *ngIf="commonService.getRole() =='idea-owner'" class="row">  
-                            <div class="col-sm-2"></div>                          
+                            <div class="col-sm-2">
+                                <label class="control-label"></label>
+                            </div>   
                             <div class="col-sm-5 pt-20">
                                 <button class="btn button-save">Save</button>
                             </div>                                                       
                         </div>
+
+
+                        <div class="row section-spacing">
+                            <div class="col-sm-9">
+                                <div class="page-sub-heading">Recommended Style Guides</div>
+                            </div>
+                            <div class="col-sm-3 pt-10 align-right">
+                                <button class="btn button-save" (click)="suggestStyleGuide()">Suggested Style Guides</button>
+                            </div> 
+                        </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class=" bg-white border-gray mt-10 radius-all-3 p-all-10 style-guide">
+                                        <img src="assets/images/style-guide.jpg">
+                                    </div>
+                                    <button class="btn button-save mr-7 mt-20">Download Design Guide</button>
+                                    <button class="btn button-save mt-20">Download CSS</button>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class=" bg-white border-gray mt-10 radius-all-3 p-all-10 style-guide">
+                                        <img src="assets/images/style-guide.jpg">
+                                    </div>
+                                    <button class="btn button-save mr-7 mt-20">Download Design Guide</button>
+                                    <button class="btn button-save mt-20">Download CSS</button>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class=" bg-white border-gray mt-10 radius-all-3 p-all-10 style-guide">
+                                        <img src="assets/images/style-guide.jpg">
+                                    </div>
+                                    <button class="btn button-save mr-7 mt-20">Download Design Guide</button>
+                                    <button class="btn button-save mt-20">Download CSS</button>
+                                </div>
+                            </div>
+
+
+
                         <!-- <div class="row pt-4">
                             <div class="col-sm-9 text-right ">
                                 <button class="btn btn-outline mr10px "><i class="fa fa-plus pr-2"></i> Add an
@@ -69,6 +131,7 @@
                             </div>
                         </div> -->
                     </div>
+                    
                 </form>
 
         </div>

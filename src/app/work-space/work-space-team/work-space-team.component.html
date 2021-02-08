@@ -16,7 +16,7 @@
         <div class="col-sm-12">
           <div class=" p-all-10">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                   <label class="ft-18">Resource</label>
                 </div>
                 <div class="col-sm-4">
@@ -28,6 +28,9 @@
                 <div class="col-sm-2">
                   <label class="ft-18">Role</label>
                 </div>
+                <div class="col-sm-1">
+                  <label class="ft-18"></label>
+                </div>
   
               </div>
             </div>
@@ -35,7 +38,7 @@
                 <div class="bg-white border-gray mt-10 radius-all-3 p-all-10">
                   <div class="row">
   
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                       <div class="font-semibold pl-8">{{teamListObj.userName}}</div>
                     </div>
                     <div class="col-sm-4">
@@ -47,78 +50,37 @@
                     <div class="col-sm-2">
                       <div>{{teamListObj.roleCode}}</div>
                     </div>
+                    <div class="col-sm-1">
+                      <div><img src="assets/images/add-small.png"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="bg-white border-gray mt-10 radius-all-3 p-all-10">
+                  <div class="row">
+  
+                    <div class="col-sm-3">
+                      <div class="font-semibold pl-8">name</div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div>name1</div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div>name2</div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div>name3</div>
+                    </div>
+                    <div class="col-sm-1">
+                      <div>name4</div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-
-
-
-
-
-
-
-      <table id="example" class="table">
-        <thead>
-          <tr>
-            <!-- <th *ngIf="commonService.getRole() =='idea-owner'"></th> -->
-            <th>Resource</th>
-            <th>Email</th>
-            <th>Type</th>
-            <th>Role</th>
-            <!-- <th>Status</th> -->
-          </tr>
-        </thead>
-       
-        <tbody *ngFor="let teamListObj of teamList">
-          <tr>
-            <!-- <td *ngIf="commonService.getRole() =='idea-owner'" style="width: 20px;"><a (click)="editTeam(teamListObj)"
-                style="cursor: pointer;">
-                <i class="fa fa-edit" style="font-size: 14px;"></i></a></td> -->
-				<td>{{teamListObj.userName}}</td>
-				<td>{{teamListObj.email}}</td>
-				<td><span>{{teamListObj.usertype}}</span></td>
-				<td>{{teamListObj.roleCode}}</td>
-            <!-- <td class="badge-status" [ngClass]="{'badge-done': teamListObj.Status === 'Active'}">
-              <span>{{teamListObj.Status}}</span></td> -->
-
-          </tr>
-          <!--
-				<tr>
-
-					<td>James</td>
-					<td>james@123.com</td>
-					<td ><span>Internal</span></td>
-					<td>Developer</td>
-					<td class="badge-status badge-done"><span>Active</span></td>
-				</tr>
-				<tr>
-					<td>John</td>
-					<td>john@123.com</td>
-					<td ><span>Internal</span></td>
-					<td>Reviewer</td>
-					<td class="badge-status badge-done"><span>Active</span></td>
-				</tr>
-				<tr>
-					<td>Robert</td>
-					<td>robert@123.com</td>
-					<td ><span>Internal</span></td>
-					<td>Developer</td>
-					<td class="badge-status badge-done"><span>Active</span></td>
-				</tr>
-				<tr>
-					<td>Michael</td>
-					<td>michael@123.com</td>
-					<td ><span>Internal</span></td>
-					<td>Reviewer</td>
-					<td class="badge-status"><span>Inactive</span></td>
-				</tr>
-				-->
-        </tbody>
-      </table>
-
     </div>
 	<div *ngIf="!teamList.length" style="margin-right: 30px;">
 		<img src="assets/images/noData.png">

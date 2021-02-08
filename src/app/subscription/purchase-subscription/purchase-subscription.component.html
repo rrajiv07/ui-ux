@@ -28,14 +28,45 @@
             <div class="col-sm-2">
                
                 <div class="purchase-container">
+                    <p *ngFor="let subscriptionFeaturesObj of subscriptionFeatures;let ix = index;" 
+                    [ngClass]="{'bt-bottom': subscriptionFeatureCnt != ix }"
+                    class="ft-14">{{subscriptionFeaturesObj.features}}</p>
+                    <!--
                     <p class="ft-14 bt-bottom">Number of POCs</p>
                     <p class="ft-14 bt-bottom">File storage size</p>
                     <p class="ft-14 bt-bottom">Activity log</p>
                     <p class="ft-14">Free sms notification</p>
+                    -->
                 </div>
             </div>
+            <ng-container *ngFor="let subscriptionPlanDetailsObj of subscriptionPlanDetails;let i = index;">
 
+            <div class="col-sm-2">
+                <div class="{{subscriptionPlanDetailsObj.style1}}">{{subscriptionPlanDetailsObj.planType}}</div>
+                <div class="purchase-container">
+                    <div class="price-container {{subscriptionPlanDetailsObj.style2}}">
+                        <h1>${{subscriptionPlanDetailsObj.monthlyPrice}}</h1>
+                        <span class="pb-1">per user/month</span>
+                        <span  class="ft-12 {{subscriptionPlanDetailsObj.style3}} pb-3">Total ${{subscriptionPlanDetailsObj.basicAmt}} per month</span>
+                    </div>
 
+                    <button (click)="makePayment(subscriptionPlanDetailsObj.id,subscriptionPlanDetailsObj.basicAmt,subscriptionPlanDetailsObj.planType)"  class="btn ft-white bg-90-black pl-4 pr-4 mt-3">Continue</button>
+                    <ng-container *ngFor="let subscriptionFeature of subscriptionPlanDetailsObj.subscriptionFeatures;let ix = index;" >
+                        <p 
+                        [ngClass]="{'bt-bottom': subscriptionFeatureCnt != ix }"
+                        class="ft-14">
+                        {{subscriptionFeature.offerings}}</p>
+                        </ng-container>
+                    <!--
+                    <p class="ft-14 bt-bottom">10</p>
+                    <p class="ft-14 bt-bottom">100 GB</p>
+                    <p class="ft-14 bt-bottom">1 week</p>
+                    <p class="ft-14">1000 messages</p>
+                    -->
+                </div>
+            </div>
+            </ng-container>
+            <!--
             <div class="col-sm-2">
                 <div class="plan-basic">Basic</div>
                 <div class="purchase-container">
@@ -87,6 +118,7 @@
                     <p class="ft-14">Unlimited messages</p>
                 </div>
             </div>
+        -->
         </div>
         <div class="col-sm-2"></div>
         <div class="row ml-5 mr-5 pb-2 bt-bottom">

@@ -8,6 +8,7 @@ import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { EditCommentsReceivedComponent } from '../edit-comments-received/edit-comments-received.component';
 import { HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ImageModelComponent } from '../work-space-wireframe/image-model/image-model.component';
 @Component({
   selector: 'app-work-space-prototype',
   templateUrl: './work-space-prototype.component.html',
@@ -41,6 +42,7 @@ export class WorkSpacePrototypeComponent implements OnInit {
       .set('Authorization', `Bearer ${this.token}`)
   };
   micrositeId = JSON.parse(localStorage.getItem('micrositeId'));
+  imageModelDialog: DynamicDialogRef;
   
   // canShowIframe: boolean;
   constructor(private workspace: WorkSpacePrototypeService,
@@ -84,7 +86,7 @@ export class WorkSpacePrototypeComponent implements OnInit {
       .subscribe(
         (data: any) => {
           if (data.result_status.toUpperCase() == "SUCCESS" && data.result_data !=null) {
-            this.link = data.result_data[0] ?  data.result_data[0]['doclink'] : '';
+            this.link = data.result_data[0]['doclink'];
             this.variablesSetting(data.result_data[0]);
             return;
           }
@@ -310,4 +312,27 @@ export class WorkSpacePrototypeComponent implements OnInit {
   {
     return this.sanitizer.bypassSecurityTrustResourceUrl(link);
   }
+
+
+  onViewFullScreen() {
+    const item = [];
+    item["wsPocId"] = this.wsPocId;
+    item["boardId"] = this.boardId;
+    item['micrositeId'] = this.micrositeId;
+    item['header'] = this.header;
+    item['link'] = this.link;
+    item['isAdobe'] = true;
+    this.imageModelDialog = this.dialogService.open(ImageModelComponent, {
+      //header: 'Setup your account',
+      showHeader: false,
+      closable: true,
+      width: '80%',
+      contentStyle: { "max-height": "50%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "10px" },
+      data: item
+    });
+    this.imageModelDialog.onClose.subscribe((data) => {
+      this.getAllReviewComments();
+    });
+  }
 }
+

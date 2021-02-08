@@ -1,35 +1,35 @@
 <nav class="main-menu sub-menu">
     <ul>
         <li>
-            <a (click)="menuClick('summary')"  [class.active]="environmentService.getWSSubMenu() =='summary'">
+            <a style="cursor: pointer;" (click)="menuClick('summary')"  [class.active]="environmentService.getWSSubMenu() =='summary'">
                 <img src="assets/images/menu-icons/sub-menu1.png">
             </a>
         </li>
         <li>
-            <a  (click)="menuClick('phase')"  [class.active]="environmentService.getWSSubMenu() =='phase' ">
+            <a style="cursor: pointer;"  (click)="menuClick('phase')"  [class.active]="environmentService.getWSSubMenu() =='phase' ">
                 <img src="assets/images/menu-icons/sub-menu5.png">
             </a>
         </li>
         <li>
-            <a (click)="menuClick('team')"   [class.active]="environmentService.getWSSubMenu() =='team'">
+            <a style="cursor: pointer;" (click)="menuClick('team')"   [class.active]="environmentService.getWSSubMenu() =='team'">
                 <img src="assets/images/menu-icons/sub-menu1.png">
             </a>
         </li>
         
         <li>
-            <a  (click)="menuClick('documents')"  [class.active]="environmentService.getWSSubMenu() =='documents'">
+            <a style="cursor: pointer;"   (click)="menuClick('documents')"  [class.active]="environmentService.getWSSubMenu() =='documents'">
                 <img src="assets/images/menu-icons/sub-menu2.png">
             </a>
         </li>
         <li *ngIf="commonService.getRole() =='idea-owner'" >
-            <a (click)="menuClick('milestones')"  [class.active]="environmentService.getWSSubMenu() =='milestones'">
+            <a style="cursor: pointer;"  (click)="menuClick('milestones')"  [class.active]="environmentService.getWSSubMenu() =='milestones'">
                 <img src="assets/images/menu-icons/sub-menu3.png">
             </a>
         </li>
         
         
         <li *ngIf="commonService.getRole() =='idea-owner'">
-            <a (click)="menuClick('financials')"  [class.active]="environmentService.getWSSubMenu() =='financials'">
+            <a style="cursor: pointer;"  (click)="menuClick('financials')"  [class.active]="environmentService.getWSSubMenu() =='financials'">
                 <img src="assets/images/menu-icons/sub-menu6.png">
             </a>
         </li>

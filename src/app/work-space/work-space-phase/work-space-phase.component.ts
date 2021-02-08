@@ -11,6 +11,7 @@ import { CommonService } from '../../utils/common.service';
   styleUrls: ['./work-space-phase.component.css']
 })
 export class WorkSpacePhaseComponent implements OnInit {
+  collapseFlag:boolean=false;
   wsPocName: any;
   wsPocId: any;
   phaseId:any;
@@ -75,17 +76,26 @@ export class WorkSpacePhaseComponent implements OnInit {
       }
       if (BoardName == 'Development Documents') {
         flag =true;
-        /*
-        if (userRole == 'reviewer') {
-          flag = false;
-        }*/
+        
       }      
       if (BoardName == 'Publish POC') {
-        flag = false;
+        flag = false; 
       }
+      
     }
+    if (BoardName == 'Development Documents') {
+      flag =false;      
+    } 
     return flag;
 
 
+  }
+  setCollapse(flag)
+  {
+    this.collapseFlag =false;
+    if (flag == "true")
+    {
+      this.collapseFlag =true;
+    }
   }
 }

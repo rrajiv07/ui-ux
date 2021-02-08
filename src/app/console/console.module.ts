@@ -9,10 +9,12 @@ import { SignUpInviteTeamComponent } from './sign-up-invite-team/sign-up-invite-
 import { SignUpSucessComponent } from './sign-up-sucess/sign-up-sucess.component';
 import { SignUpEmailComponent } from './sign-up-email/sign-up-email.component';
 import { NoPageAvailableComponent } from './no-page-available/no-page-available.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 @NgModule({
-  declarations: [HeaderPanelComponent, SignUpSetUpAccountComponent, SignUpInviteTeamComponent, SignUpSucessComponent, SignUpEmailComponent, NoPageAvailableComponent],
+  declarations: [HeaderPanelComponent, SignUpSetUpAccountComponent, SignUpInviteTeamComponent, SignUpSucessComponent, SignUpEmailComponent, NoPageAvailableComponent, ForgotPasswordComponent, ChangePasswordComponent],
   imports: [
     CommonModule,
     FormsModule,

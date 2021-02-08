@@ -6,7 +6,7 @@
         <div class="menu-item bg-pink float-left">{{wsPocName.charAt(0).toUpperCase()}}</div>
         <div class="menu-user-name">{{wsPocName}}</div><img class="menu-toggle-icon" src="assets/images/back-icon.png">
       </div>
-      <div class="input-group tab-menu-item" *ngFor="let workSpaceBoardName of workSpaceBoardNames;">
+      <div class="input-group tab-menu-item" [ngStyle]="{'display': workSpaceBoardName.custPhaseName == 'Development Documents' ? 'none':'flex'}" *ngFor="let workSpaceBoardName of workSpaceBoardNames;">
         <ng-container *ngIf="ShowPhase(workSpaceBoardName.custPhaseName)">
           <a (click)="phaseClick(workSpaceBoardName.id,workSpaceBoardName.custPhaseName)">
             <button [class.active]="phaseId== workSpaceBoardName.id" class="tablinks ft-lighter">
@@ -27,7 +27,9 @@
 
             <div aria-labelledby="userDropdown" class="dropdown-menu toggle-menu shadow animated--grow-in mt-10">
               <a class="dropdown-item ptb-5"><img src="assets/images/edit.svg">Rename</a>
+              <div class="dropdown-divider"></div>
               <a class="dropdown-item ptb-5"><img src="assets/images/trash.svg">Delete</a>
+              <div class="dropdown-divider"></div>
               <a class="dropdown-item ptb-5"><img src="assets/images/archive.svg">Close</a>
             </div>
 

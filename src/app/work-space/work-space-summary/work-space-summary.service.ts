@@ -54,4 +54,13 @@ export class WorkSpaceSummaryService {
       }),
       );
   }
+  closePOC(params, header: any) {
+    this.ngxService.start();
+    return this.http.put<any>(`${environment.apiUrl}microsite/workspace/close`, params, header)
+      .pipe(map(data => {
+        this.ngxService.stop();
+        return data;
+      }),
+      );
+  }
 }
