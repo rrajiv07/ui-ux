@@ -17,12 +17,12 @@
                         </div>
                         <div class="col-sm-4">
                       
-                        <div *ngIf="commonService.getRole() =='idea-owner'">
+                        <div *ngIf="commonService.getRole() =='idea-owner' && POCDetails.statusCode != 'Closed'">
                             <div class="btn-box mt-1">
                                 <button class="btn button-save ml-3 mt-8p" (click)="onClosePOC()">Close WorkSpace</button>
                             </div>
                         </div>
-                        <div *ngIf="commonService.getRole() =='idea-owner'">
+                        <div *ngIf="commonService.getRole() =='idea-owner' && POCDetails.statusCode != 'Closed'">
                             <div class="btn-box mt-1">
                                 <button class="btn button-save ml-3 mt-8p" (click)="onManagePOC()">Manage Workspace</button>
 

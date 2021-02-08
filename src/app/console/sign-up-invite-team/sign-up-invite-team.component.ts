@@ -23,7 +23,8 @@ export class SignUpInviteTeamComponent implements OnInit {
   header : any;
   form: FormGroup;
   submitted: boolean = false;
-  
+  totalMemberCnt:any=4;
+  MemberCnt:any=1;
   constructor(private formBuilder: FormBuilder,private appConfig: AppConfigService, public dialog: DynamicDialogRef, private dialogService: DialogService, public config: DynamicDialogConfig,
     private signUpService: SignUpInviteTeamService, private commonService: CommonService, private service: SubcriptionService) { }
 
@@ -55,8 +56,16 @@ export class SignUpInviteTeamComponent implements OnInit {
 		return this.form.get('emailIds') as FormArray;
   }
   addMember() {
+    if (this.MemberCnt <this.totalMemberCnt )
+    {
 		let fg = this.createTeamFormGroup();
-		this.emailIds.push(fg);
+    this.emailIds.push(fg);
+    this.MemberCnt =this.MemberCnt +1;
+    }
+    else{
+      this.commonService.failureMessage("Exceed total licence.");
+      return;
+    }
 	}
   Close() {
     this.dialog.close()

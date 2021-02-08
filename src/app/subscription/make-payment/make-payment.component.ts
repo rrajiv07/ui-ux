@@ -39,10 +39,10 @@ export class MakePaymentComponent implements OnInit {
   }
   pay(){
     const reqdata = {
-      "subscriptionId": this.planId,
-      "totalLicense": this.totalLicense,
+      "subscriptionId": parseInt(this.planId),
+      "totalLicense": parseInt(this.totalLicense),
       "micrositeId": parseInt(this.micrositeId),
-      "id": this.subscriptionId,
+      "id": parseInt(this.subscriptionId),
       "subscriptionPeriod": "Monthly"
     }
     this.service.makePayment(reqdata, this.header)
