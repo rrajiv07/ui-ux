@@ -3,7 +3,6 @@
         <li *ngIf="commonService.getRole() =='idea-owner'" >
             <a  (click)="createWorkspace()"  style="cursor: pointer;" [class.active]="isCreateWorkSpace == 'create'"> 
                 <img src="assets/images/workspace-home.svg">
-                
             </a>
             
         </li>
