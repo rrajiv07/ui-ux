@@ -12,6 +12,11 @@
             </tr>
         </thead>
         <tbody>
+            <tr *ngIf ="reviewerList ==null ">
+                <td>&nbsp;</td>
+                <td></td>
+                <td></td>
+            </tr>
             <tr *ngFor="let reviewerListDtl of reviewerList">
                 <td>{{reviewerListDtl.userName}}</td>
                 <td>{{reviewerListDtl.phaseCode}}</td>
@@ -73,6 +78,7 @@
           </tr>
         </thead>
         <tbody>
+            <tr *ngIf ="commentsReceived ==null"><td style="background: #F5F6F8;">&nbsp;</td></tr>
             <tr *ngFor="let commentsReceiveddtl of commentsReceived">
               <td>
                 <a *ngIf="commentsReceiveddtl.commentStatus !='Closed' && ( commonService.getRole() =='idea-owner' ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='developer' &&  commentsReceiveddtl.commentStatus =='Allocated' ) ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='developer' &&  commentsReceiveddtl.commentStatus =='In-Progress' )  ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='reviewer' &&  commentsReceiveddtl.commentStatus =='Completed' ) ) "  (click)="editComments(commentsReceiveddtl)" style="cursor: pointer;">
