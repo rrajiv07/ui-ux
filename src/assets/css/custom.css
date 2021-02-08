@@ -7338,3 +7338,23 @@ sup {
 .align-center {
   text-align: center;
 }
+
+.send-btn img {
+  height: 15px;
+}
+.send-btn {
+  padding: 5px 0;
+  text-align: right;
+}
+.user-icon {
+  height: 15px;
+  margin-right: 5px;
+  position: relative; 
+  top: -4px;
+}
+.time-icon {
+  height: 15px;
+  margin-right: 5px;
+  position: relative; 
+  top: -2px;
+}
