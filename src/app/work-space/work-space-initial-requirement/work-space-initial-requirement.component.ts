@@ -122,7 +122,7 @@ export class WorkSpaceInitialRequirementComponent implements OnInit {
       .subscribe(params => {
         this.boardMapId = params['params'].boardId;
         this.PocId = params['params'].subNav;
-        this.wsPocName =params['wsPocName'].subNav;
+        this.wsPocName =params['params'].wsPocName;
       });
   }
   suggestStyleGuide(){
