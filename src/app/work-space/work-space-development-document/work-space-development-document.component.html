@@ -12,7 +12,7 @@
                         <div class="txt-lable">Document Name</div>
                     </div>
                     <div class="col-sm-9">
-                        <input [attr.disabled]="commonService.getRole() !='developer' ? '' : null "  type="text" formControlName="documentName" class="form-control txt-lable" id="documentName"
+                        <input type="text" formControlName="documentName" class="form-control txt-lable" id="documentName"
                             placeholder="" [ngClass]=" { 'is-invalid' : submitted &&
                             f1.documentName.errors }">
                         <div *ngIf="submitted && f1.documentName.errors" class="invalid-feedback">
@@ -25,7 +25,7 @@
                         <div class="txt-lable">Document Type</div>
                     </div>
                     <div class="col-sm-9">
-                        <input [attr.disabled]="commonService.getRole() !='developer' ? '' : null "  type="text" formControlName="documentType" class="form-control txt-lable" id="documentType"
+                        <input type="text" formControlName="documentType" class="form-control txt-lable" id="documentType"
                             placeholder="" [ngClass]=" { 'is-invalid' : submitted &&
                             f1.documentType.errors }">
                         <div *ngIf="submitted && f1.documentType.errors" class="invalid-feedback">
@@ -40,7 +40,7 @@
                         <div class="txt-lable">Document Description</div>
                     </div>
                     <div class="col-sm-8">
-                        <textarea [attr.disabled]="commonService.getRole() !='developer' ? '' : null "  placeholder="" formControlName="documentDescription" class="form-control txt-lable"
+                        <textarea placeholder="" formControlName="documentDescription" class="form-control txt-lable"
                             id="documentType" [ngClass]=" { 'is-invalid' : submitted &&
                     f1.documentDescription.errors }"></textarea>
                         <div *ngIf="submitted && f1.documentDescription.errors" class="invalid-feedback">
@@ -56,7 +56,7 @@
                         <input type="text" class="txt-outline w100">
                     </div> -->
                             <div class="col-sm-4">
-                                <input  [attr.disabled]="commonService.getRole() !='developer' ? '' : null "  formControlName="uploadFile" id="uploadFile" type="file"
+                                <input formControlName="uploadFile" id="uploadFile" type="file"
                                     (change)="fileUpload($event.target.files)" class="form-control" name="uploadFile"
                                     [ngClass]=" { 'is-invalid' : submitted &&
                             f1.isFileInput.errors }" />
@@ -67,24 +67,9 @@
                                 <!-- {{f1.isFileInput.Value}} -->
                                 <!-- <input type="file" class="btn btn-outline-purple" /> -->
                             </div>
-                    </div>
-                    <div class="row pb-10">
-    
-                    </div>
-                    <div class="row pb-10">
-                        <div class="col-sm-3">
-    
-                        </div>
-                        <div class="col-sm-2">
-                            <!-- <div class="attachments"><img src="assets/images/pdf_icon.png"><img
-                                    src="assets/images/doc_icon.png"><img src="assets/images/csv_icon.png"></div> -->
-                        </div>
-                        <div class="col-sm-7">
-                            <!-- <button class="btn btn-outline mr-15">Upload File</button> -->
-                            <button  [attr.disabled]="commonService.getRole() !='developer' ? '' : null "  type="submit" class="btn button-save ml-3" >Save</button>
-                            <div style="margin-top: 20px;"><flash-messages></flash-messages></div>
-                            <!-- <button class="btn button-save">Save</button> -->
-                        </div>
+                            <div class="col-sm-4">
+                              <button  type="submit" class="btn button-save ml-3" >Save</button>
+                          </div>
                     </div>
                 </div>
         </form>

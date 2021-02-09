@@ -1,6 +1,6 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { first } from 'rxjs/operators';
@@ -55,6 +55,8 @@ export class WorkSpaceFinancialsComponent implements OnInit {
   };
   wsPocId: string;
   micrositeId: string;
+  submitted: boolean;
+  commentsDtl: any;
   constructor(private dialogService: DialogService,
     private formBuilder: FormBuilder,
     private actRoute: ActivatedRoute,
@@ -65,11 +67,14 @@ export class WorkSpaceFinancialsComponent implements OnInit {
     this.initForm();
     this.getParams();
     this.getEstimationHeaderInfo();
+    this.getComments();
   }
   initForm()
   {
     this.formGroup = this.formBuilder.group({
-      uploadFile: ['']
+      uploadFile: [''],
+      newComments: [null, Validators.required],
+      replyComments: [null, Validators.required],
     });
   }
   getParams() {
@@ -341,4 +346,94 @@ export class WorkSpaceFinancialsComponent implements OnInit {
   transform(value) {
     return (value >= 26 ? this.transform(((value / 26) >> 0) - 1) : '') + 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[value % 26 >> 0];
   }
+  get f1() { return this.formGroup.controls; }
+  NewComments()
+  {
+    const formData = this.formGroup.getRawValue();
+    console.log(formData,">>>>>>>>>>>>>>>>formData")
+    if (formData.newComments ==null)
+    {
+    this.commonService.failureMessage("New Comments is required");
+    return;
+    }
+    const reqdata = {
+      "comments": formData.newComments,
+      "micrositeId": parseInt(this.micrositeId),
+      "workspaceId": parseInt(this.wsPocId),
+      "estimationId":parseInt(this.fileId),
+      "commentType": "Estimation"
+    }
+    this.workspace.NewComments(reqdata,this.header)
+      .pipe(first())
+      .subscribe(
+        (data: any) => {
+          if (data.result_status.toUpperCase() === 'SUCCESS') {
+            this.commonService.successMessage(data.result_msg);            
+            this.getComments();
+            this.resetComments();
+          }
+          else
+          {
+            this.commonService.failureMessage(data.result_msg);
+          }
+        },
+        error => {
+        });
+  }
+  ReplyComments(commentsDtlObj){
+    const formData = this.formGroup.getRawValue();
+    console.log(formData,">>>>>>>>>>>>>>>>formData")
+    if (formData.replyComments ==null)
+    {
+    this.commonService.failureMessage("Reply Comments is required");
+    return;
+    }
+    const reqdata = {
+      "comments": formData.replyComments,
+      "micrositeId": parseInt(this.micrositeId),
+      "workspaceId": parseInt(this.wsPocId),
+      "estimationId":parseInt(this.fileId),
+      "commentId":parseInt(commentsDtlObj.id)
+    }
+    this.workspace.ReplyComments(reqdata,this.header)
+      .pipe(first())
+      .subscribe(
+        (data: any) => {
+          if (data.result_status.toUpperCase() === 'SUCCESS') {
+            this.commonService.successMessage(data.result_msg);
+            this.getComments();
+            this.resetComments();
+          }
+          else
+          {
+            this.commonService.failureMessage(data.result_msg);
+          }
+        },
+        error => {
+        });
+  }
+  getComments()
+  {
+    const reqdata = {
+      "micrositeId": parseInt(this.micrositeId),
+      "workspaceId": parseInt(this.wsPocId)
+    }
+    this.workspace.getComments(reqdata, this.header)
+      .pipe(first())
+      .subscribe(
+        (data: any) => {
+          if (data.result_status.toUpperCase() == "SUCCESS" && data.result_data !=null) {            
+            this.commentsDtl = data.result_data;
+            return;
+          }
+        },
+        error => {
+        });
+  }
+  resetComments()
+  {
+    this.formGroup.get("newComments").setValue(null);
+    this.formGroup.get("replyComments").setValue(null);
+  }
 }
+
