@@ -66,6 +66,13 @@ export class ExpandYourTeamComponent implements OnInit {
         error => {
         });
   }
+  get invoiceparticularsArray(): FormArray{
+	  return this.form.get('emailIds') as FormArray;
+  }
+  onDelete(index) {
+    this.invoiceparticularsArray.removeAt(index);
+  }
+  
   init() {
     this.form = this.formBuilder.group({
       emailIds: this.formBuilder.array(

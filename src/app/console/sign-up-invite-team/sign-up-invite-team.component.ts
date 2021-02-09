@@ -140,4 +140,10 @@ export class SignUpInviteTeamComponent implements OnInit {
   failureMessage(msg) {
     this.commonService.failureMessage(msg);
   }
+  get invoiceparticularsArray(): FormArray{
+	  return this.form.get('emailIds') as FormArray;
+  }
+  onDelete(index) {
+    this.invoiceparticularsArray.removeAt(index);
+  }
 }
