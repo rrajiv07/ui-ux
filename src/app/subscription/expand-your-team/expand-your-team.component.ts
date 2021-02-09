@@ -75,7 +75,7 @@ export class ExpandYourTeamComponent implements OnInit {
   }
   createTeamFormGroup() {
 		return this.formBuilder.group({
-			emailId: ['', [Validators.required]]
+      emailId: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]]
 		})
   }
   get emailIds(): FormArray {

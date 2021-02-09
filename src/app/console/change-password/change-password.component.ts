@@ -27,7 +27,7 @@ export class ChangePasswordComponent implements OnInit {
   }
   initForm() {
     this.form = this.formBuilder.group({
-      email: [this.emailId, [Validators.required]],
+      email: [this.emailId, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       mailedPassword: ['', [Validators.required]],
       newPassword: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]]

@@ -45,6 +45,7 @@
                     [ngClass]="{ 'is-invalid': submitted && emailIds.controls[i].get('emailId').errors }">
                     <div *ngIf="submitted && emailIds.controls[i].get('emailId').errors" class="invalid-feedback">
                       <div *ngIf="emailIds.controls[i].get('emailId').errors.required">Email ID is required</div>
+                      <div *ngIf="emailIds.controls[i].get('emailId').touched">Enter valid Email ID</div>
                     </div>
                   </div>
                 
