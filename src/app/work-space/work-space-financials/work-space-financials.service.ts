@@ -65,4 +65,31 @@ export class WorkSpaceFinancialsService {
       }),
       );
     }
+    getComments(id: any, header: any) {
+      this.ngxService.start();
+      return this.http.get<any>(`${this.appService.apiURL}workspace/estimation/comments?micrositeId=${id.micrositeId}&workspaceId=${id.workspaceId}`, header)
+      .pipe(map(data => {
+        this.ngxService.stop();
+        return data;
+      }),
+      );
+    }
+    NewComments(value: any, header: any) {
+      this.ngxService.start();      
+      return this.http.post<any>(`${this.appService.apiURL}workspace/estimation/comment`, value, header)
+        .pipe(map(data => {
+          this.ngxService.stop();
+          return data;
+        }),
+        );
+    }
+    ReplyComments(value: any, header: any) {
+      this.ngxService.start();      
+      return this.http.post<any>(`${this.appService.apiURL}workspace/estimation/reply`, value, header)
+        .pipe(map(data => {
+          this.ngxService.stop();
+          return data;
+        }),
+        );
+    }
 }
