@@ -95,8 +95,9 @@ export class WorkSpaceMilestonesComponent implements OnInit {
           if (data['result_status'].toUpperCase() == "SUCCESS") {
             this.getMilestones();
             this.commonService.successMessage(data['result_msg']);
+            return;
           }
-
+          this.commonService.failureMessage(data.result_msg);
         },
         error => {
         });
