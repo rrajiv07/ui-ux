@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 // import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
@@ -11,6 +11,7 @@ import { SignUpEmailComponent } from '../sign-up-email/sign-up-email.component';
 import { CommonService } from '../../utils/common.service';
 import { AppConfigService } from '../../utils/app-config.service';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
     selector: 'app-login',
@@ -31,7 +32,8 @@ export class LoginComponent implements OnInit {
         private loginService: LoginService,
         private dialogService: DialogService,
         private commonService: CommonService,
-        private appConfig: AppConfigService) { }
+        private appConfig: AppConfigService,
+        @Inject(DOCUMENT) private document: Document) { }
 
     getLoginDetails(token: any) {
         const formData = {};
@@ -61,7 +63,7 @@ export class LoginComponent implements OnInit {
                                 url = url.replace(subDomain, micrositeName);
                                 var pathname = window.location.pathname;
                                 var urlPath = url + pathname + '#/page-redirect?token=' + token;
-                                window.location.href = urlPath;
+                                document.location.href = urlPath;
                             }
                         }
                         else {
