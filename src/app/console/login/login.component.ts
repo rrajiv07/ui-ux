@@ -86,8 +86,12 @@ export class LoginComponent implements OnInit {
                     data => {
                         if (  data.result_status.toUpperCase() === 'SUCCESS') {
                             //localStorage.setItem('tempCurrentUserToken', data.result_data.id_token);
-                            this.getLoginDetails(data.result_data.id_token);
+                            //this.getLoginDetails(data.result_data.id_token);
                             //this.getWorkSpace(data.result_data.id_token);
+
+                            this.router.navigate(['/page-redirect'], { queryParams: { token: data.result_data.id_token } });
+                            
+
                             return;
                         }
                         else

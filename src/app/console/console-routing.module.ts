@@ -10,6 +10,10 @@ const routes: Routes = [
     children: [
       { path: 'page-redirect', component: PageRedirectComponent}
      ]
+  },
+  {
+    path: 'page-redirect',
+    component: PageRedirectComponent
   }
 ]
 
