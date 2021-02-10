@@ -7,20 +7,20 @@ import { first } from 'rxjs/operators';
 import { LoginService } from './login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
-import { SignUpEmailComponent} from '../sign-up-email/sign-up-email.component';
-import {CommonService} from '../../utils/common.service';
+import { SignUpEmailComponent } from '../sign-up-email/sign-up-email.component';
+import { CommonService } from '../../utils/common.service';
 import { AppConfigService } from '../../utils/app-config.service';
-import {ForgotPasswordComponent} from '../forgot-password/forgot-password.component';
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css'], 
-    encapsulation: ViewEncapsulation.None, 
+    styleUrls: ['./login.component.css'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent implements OnInit {
     signupDialogPtr: DynamicDialogRef;
-    forgotPasswordDialogPtr:DynamicDialogRef;
+    forgotPasswordDialogPtr: DynamicDialogRef;
     loginForm: FormGroup;
     submitted: boolean = false;
     isLoginError: boolean = false;
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private loginService: LoginService,
         private dialogService: DialogService,
-        private commonService:CommonService,
+        private commonService: CommonService,
         private appConfig: AppConfigService) { }
 
     getLoginDetails(token: any) {
@@ -44,20 +44,47 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
 
-                    if (  data['result_status'].toUpperCase() === 'SUCCESS')
-                     {
-                    if (data['result_data'].userTypeCdoe == 'Idea Owner' && data['result_data'] !=null)
-                    {
-                        this.commonService.setIdeaOwner();
-                    }                         
+                    if (data['result_status'].toUpperCase() === 'SUCCESS') {
+                        const baseUrlFlag = this.appConfig.appConfig['flag'];
 
-                    //localStorage.setItem('tempCurrentUser', JSON.stringify(data['result_data']));
-                    //localStorage.setItem('micrositeId',data['result_data'].micrositeId);
-                    this.getWorkSpace(token,JSON.stringify(data['result_data']),data['result_data'].micrositeId);
-                    // data.result_data
-                    return;
+                        if (baseUrlFlag == 'Y') {
+                            var url = window.location.origin;
+                            var subDomain = this.getSubdomain(url);
+                            var micrositeName = data['result_data'].micrositeName;
+                            if (subDomain == micrositeName) {
+                                if (data['result_data'].userTypeCdoe == 'Idea Owner' && data['result_data'] != null) {
+                                    this.commonService.setIdeaOwner();
+                                }
+                                this.getWorkSpace(token, JSON.stringify(data['result_data']), data['result_data'].micrositeId);
+                            }
+                            else {
+                                url = url.replace(subDomain, micrositeName);
+                                var pathname = window.location.pathname;
+                                var urlPath = url + pathname + '#/page-redirect?token=' + token;
+                                window.location.href = urlPath;
+                            }
+                        }
+                        else {
+                            if (data['result_data'].userTypeCdoe == 'Idea Owner' && data['result_data'] != null) {
+                                this.commonService.setIdeaOwner();
+                            }
+                            this.getWorkSpace(token, JSON.stringify(data['result_data']), data['result_data'].micrositeId);
+
+                        }
+
+                        /*
+                        if (data['result_data'].userTypeCdoe == 'Idea Owner' && data['result_data'] != null) {
+                            this.commonService.setIdeaOwner();
+                        }
+
+                        //localStorage.setItem('tempCurrentUser', JSON.stringify(data['result_data']));
+                        //localStorage.setItem('micrositeId',data['result_data'].micrositeId);
+                        this.getWorkSpace(token, JSON.stringify(data['result_data']), data['result_data'].micrositeId);
+                        // data.result_data
+                        */
+                        return;
                     }
-                    else{
+                    else {
                         this.commonService.failureMessage(data['result_msg']);
                         return;
                     }
@@ -84,18 +111,13 @@ export class LoginComponent implements OnInit {
                 .pipe(first())
                 .subscribe(
                     data => {
-                        if (  data.result_status.toUpperCase() === 'SUCCESS') {
+                        if (data.result_status.toUpperCase() === 'SUCCESS') {
                             //localStorage.setItem('tempCurrentUserToken', data.result_data.id_token);
-                            //this.getLoginDetails(data.result_data.id_token);
+                            this.getLoginDetails(data.result_data.id_token);
                             //this.getWorkSpace(data.result_data.id_token);
-
-                            this.router.navigate(['/page-redirect'], { queryParams: { token: data.result_data.id_token } });
-                            
-
                             return;
                         }
-                        else
-                        {
+                        else {
                             this.commonService.failureMessage(data.result_msg);
                         }
                     },
@@ -104,7 +126,7 @@ export class LoginComponent implements OnInit {
         }
     }
 
-    getWorkSpace(token: any,tempCurrentUser:any,micrositeId:any) {
+    getWorkSpace(token: any, tempCurrentUser: any, micrositeId: any) {
         const header = {
             headers: new HttpHeaders()
                 .set('Authorization', `Bearer ${token}`)
@@ -116,7 +138,7 @@ export class LoginComponent implements OnInit {
                     const len = data ? data.result_data.length : [];
                     localStorage.setItem('tempCurrentUserToken', token);
                     localStorage.setItem('tempCurrentUser', tempCurrentUser);
-                    localStorage.setItem('micrositeId',micrositeId);
+                    localStorage.setItem('micrositeId', micrositeId);
                     //len ? this.router.navigate(['/workspace/createworkspace']) : this.router.navigate(['/workspace/createworkspace'])
                     len ? this.router.navigate(['/workspace']) : this.router.navigate(['/workspace'])
                     /*
@@ -125,7 +147,7 @@ export class LoginComponent implements OnInit {
                       //window.location.href = "http://" + this.micrositeName + ".hivezen.com:9797/Hivezen/";
                     }
                     */
-                   
+
                     return;
                 },
                 error => {
@@ -147,31 +169,36 @@ export class LoginComponent implements OnInit {
         this.deleteLocalStorage();
         //console.log(localStorage,"login init")
     }
-    signup()
-    {
+    signup() {
         this.signupDialogPtr = this.dialogService.open(SignUpEmailComponent, {
             //header: 'Setup your account',
-            showHeader:false,
-            closable:false,
+            showHeader: false,
+            closable: false,
             width: '59%',
-            contentStyle: { "max-height": "30%", "overflow": "auto","padding":"0 1.1rem 0rem 1.5rem","border-radius":"10px"},
-          });
+            contentStyle: { "max-height": "30%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "10px" },
+        });
     }
-    deleteLocalStorage()
-    {
-        Object.keys(localStorage).forEach(function(key){
+    deleteLocalStorage() {
+        Object.keys(localStorage).forEach(function (key) {
             localStorage.removeItem(key);
-         });
+        });
     }
-    forgotPassword(){
+    forgotPassword() {
         this.forgotPasswordDialogPtr = this.dialogService.open(ForgotPasswordComponent, {
             //header: 'Setup your account',
-            showHeader:false,
-            closable:false,
+            showHeader: false,
+            closable: false,
             width: '59%',
-            contentStyle: { "max-height": "30%", "overflow": "auto","padding":"0 1.1rem 0rem 1.5rem","border-radius":"10px"},
-          });
-        
+            contentStyle: { "max-height": "30%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "10px" },
+        });
+
     }
-    
+    getSubdomain(url) {
+        var urlSplit = url.split('.')[1] ? url.split('.')[0] : '';
+        var lastIndex = urlSplit.lastIndexOf("//");
+        var s2 = urlSplit.substring(lastIndex + 1);
+        var subdomain = s2.replace('/', '');
+        return subdomain;
+    }
+
 }
