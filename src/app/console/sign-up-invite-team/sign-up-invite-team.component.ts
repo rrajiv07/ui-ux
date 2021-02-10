@@ -67,6 +67,14 @@ export class SignUpInviteTeamComponent implements OnInit {
       return;
     }
 	}
+
+   get invoiceparticularsArray(): FormArray{
+	  return this.form.get('emailIds') as FormArray;
+  }
+  onDelete(index) {
+    this.invoiceparticularsArray.removeAt(index);
+  }
+  
   Close() {
     this.dialog.close()
   }
@@ -78,6 +86,7 @@ export class SignUpInviteTeamComponent implements OnInit {
       showHeader: false,
       closable: false,
       width: '50%',
+      data:this.config.data,
       contentStyle: { "max-height": "30%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "10px" },
     });
 
@@ -125,6 +134,7 @@ export class SignUpInviteTeamComponent implements OnInit {
       showHeader: false,
       closable: false,
       width: '50%',
+      data:this.config.data,
       contentStyle: { "max-height": "30%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "10px" },
     });
     /*
@@ -139,11 +149,5 @@ export class SignUpInviteTeamComponent implements OnInit {
   }
   failureMessage(msg) {
     this.commonService.failureMessage(msg);
-  }
-  get invoiceparticularsArray(): FormArray{
-	  return this.form.get('emailIds') as FormArray;
-  }
-  onDelete(index) {
-    this.invoiceparticularsArray.removeAt(index);
   }
 }

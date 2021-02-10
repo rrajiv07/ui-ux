@@ -7,6 +7,7 @@ import { first } from 'rxjs/operators';
 import { CommonService } from '../../utils/common.service';
 import { HttpHeaders } from '@angular/common/http';
 import { LoginService } from '../login/login.service';
+import { AppConfigService } from '../../utils/app-config.service';
 @Component({
   selector: 'app-sign-up-set-up-account',
   templateUrl: './sign-up-set-up-account.component.html',
@@ -23,7 +24,8 @@ export class SignUpSetUpAccountComponent implements OnInit {
   constructor(public dialog: DynamicDialogRef, private dialogService: DialogService,
     public config: DynamicDialogConfig, private formBuilder: FormBuilder,
     private loginService: LoginService,
-    private service: SignUpSetUpAccountService, private commonService: CommonService) { }
+    private service: SignUpSetUpAccountService, private commonService: CommonService,
+    private appConfig: AppConfigService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -91,12 +93,25 @@ export class SignUpSetUpAccountComponent implements OnInit {
         data => {
 
           if (data['result_status'].toUpperCase() === 'SUCCESS') {
+            const baseUrlFlag = this.appConfig.appConfig['flag'];
+            if (baseUrlFlag == 'N') {
+              if (data['result_data'] && data['result_data'].userTypeCdoe == 'Idea Owner') {
+                this.commonService.setIdeaOwner();
+              }
+              localStorage.setItem('tempCurrentUserToken', this.token);
+              this.microSiteId = data['result_data'].micrositeId;
+              localStorage.setItem('tempCurrentUser', JSON.stringify(data['result_data']));
+              localStorage.setItem('micrositeId', data['result_data'].micrositeId);
+            }
+            /*
             if (data['result_data'] && data['result_data'].userTypeCdoe == 'Idea Owner') {
               this.commonService.setIdeaOwner();
             }
             this.microSiteId = data['result_data'].micrositeId;
             localStorage.setItem('tempCurrentUser', JSON.stringify(data['result_data']));
             localStorage.setItem('micrositeId', data['result_data'].micrositeId);
+            *Rajiv*/
+            this.microSiteId = data['result_data'].micrositeId;
             this.Success();
             return;
           }
@@ -120,9 +135,11 @@ export class SignUpSetUpAccountComponent implements OnInit {
         data => {
           if (data.result_status.toUpperCase() === 'SUCCESS') {
             this.token = data.result_data.id_token;
-            localStorage.setItem('tempCurrentUserToken', data.result_data.id_token);
+            /*
+            localStorage.setItem('tempCurrentUserToken', data.result_data.id_token);--Rajiv
+            */
             this.getLoginDetails(data.result_data.id_token);
-            //this.getWorkSpace(data.result_data.id_token);
+            
             return;
           }
           else {
