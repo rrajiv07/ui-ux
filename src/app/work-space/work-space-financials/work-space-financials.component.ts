@@ -435,5 +435,30 @@ export class WorkSpaceFinancialsComponent implements OnInit {
     this.formGroup.get("newComments").setValue(null);
     this.formGroup.get("replyComments").setValue(null);
   }
+  deleteEstimation(hivezenPhaseDtlobj)
+  {
+    var reqdata = {
+      "micrositeId": this.micrositeId,
+      "workspaceId": this.wsPocId,
+      "estimationDtlId": hivezenPhaseDtlobj.id,
+      "estimationId":hivezenPhaseDtlobj.estimationId
+    };
+    this.workspace.deleteEstimation(reqdata, this.header)
+      .pipe(first())
+      .subscribe(
+        (data: any) => {
+          if (data.result_status.toUpperCase() == "SUCCESS") {
+            this.commonService.successMessage(data.result_msg);    
+            this.getEstimationDetailInfo();                   
+            return;
+          }
+          else
+          {
+            this.commonService.failureMessage(data.result_msg); 
+          }
+        },
+        error => {
+        });
+  }
 }
 

@@ -92,4 +92,13 @@ export class WorkSpaceFinancialsService {
         }),
         );
     }
+    deleteEstimation(id: any, header: any){
+      this.ngxService.start();
+      return this.http.delete<any>(`${this.appService.apiURL}workspace/estimation/detail?workspaceId=${id.workspaceId}&micrositeId=${id.micrositeId}&estimationDtlId=${id.estimationDtlId}&estimationId=${id.estimationId}`, header)
+        .pipe(map(data => {
+          this.ngxService.stop();
+          return data;
+        }),
+        );
+    }
 }
