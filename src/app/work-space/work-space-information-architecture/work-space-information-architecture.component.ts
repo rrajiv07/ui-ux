@@ -302,6 +302,7 @@ export class WorkSpaceInformationArchitectureComponent implements OnInit {
   }
   getReviewerCombo()
   {
+    this.reviewers =[];
     const req_data = {
       'micrositeId': this.micrositeId,
       'workspaceId': this.wsPocId,
@@ -464,5 +465,45 @@ deleteExistingReviewer(item)
         error => {
         });
 
+  }
+  mapReviewer()
+  {
+    console.log(this.selectedReviewerObj)
+    var selectedReviewer = [];
+    var selectedReviewerObj ={};
+
+    if(this.selectedReviewerObj['userName']== undefined)
+    {
+      this.commonService.failureMessage("Select reviewer");
+      return;
+    }
+    selectedReviewerObj['name']=this.selectedReviewerObj['userName'];
+    selectedReviewerObj['id']=this.selectedReviewerObj['userId'];
+
+    selectedReviewer.push(selectedReviewerObj);
+    const reqdata = {
+      "reviewerIds": selectedReviewer,
+      //"docName": formData.docName,
+      "micrositeId": parseInt(this.micrositeId),
+      "workspaceId": parseInt(this.wsPocId),
+      "workspaceDtlId": parseInt(this.boardId)
+    }
+    console.log(reqdata, ">>>>>>>>>>>reqdata")
+    this.workspace.submitReviewer(reqdata, this.header)
+      .pipe(first())
+      .subscribe(
+        (data: any) => {
+          if (data.result_status.toUpperCase() === 'SUCCESS') {
+            this.commonService.successMessage(data.result_msg);
+            this.selectedReviewer = [];
+            this.getAssignedReviewer();
+            this.getReviewerCombo();
+          }
+          else {
+            this.commonService.failureMessage(data.result_msg);
+          }
+        },
+        error => {
+        });
   }
 }
