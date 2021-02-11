@@ -5713,13 +5713,13 @@ div#vmap {
     font-size: 30px
   }
   .carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
-    margin-left: -10px;
-    background-image: url(../images/left-nav.png);
+    margin-left: -35px;
+    background-image: url(../images/left-nav.svg);
     background-repeat: no-repeat;
   }
   .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
-    margin-right: -10px;
-    background-image: url(../images/right-nav.png);
+    margin-right: -35px;
+    background-image: url(../images/right-nav.svg);
     background-repeat: no-repeat;
   }
   .carousel-caption {
@@ -5735,7 +5735,7 @@ div#vmap {
   display: block;
   max-width: 100%;
   height: auto;
-  padding: 20px;
+  padding: 50px 70px;
 }
 .navbar-fixed-top .navbar-collapse, .navbar-static-top .navbar-collapse {
   padding-right: 0;
@@ -5768,13 +5768,10 @@ div#vmap {
   z-index: 99;
 }
 .slider-container {
-  float: right;
-  width: 30%;
-  padding: 30px;
+  padding: 30px 0;
 }
 .carousel-container {
-  float: left;
-  width: 70%;
+  box-shadow: 3px 3px 25px #ececec;
 }
 .slider-roll {
   color: #898a8a;
@@ -5791,20 +5788,26 @@ div#vmap {
   padding-bottom: 10px;
 }
 .slider-thumb img {
-  width: 90px;
-    height: 60px;
+  width: 70px;
+    height: 50px;
     overflow: hidden;
     float: left;
     margin: 15px 15px 0 0;
-    border: 3px solid #c8cad3;
-    border-radius: 5px;
+    border: 2px solid #c8cad3;
+    border-radius: 3px;
 }
+
 .zoom-icon {
   position: relative;
   right: 25px;
   float: right;
   top: -50px;
   cursor: pointer;
+}
+.carousel-zoom-icon {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
 }
 .heading {
   font-size: 16px;
@@ -6034,7 +6037,7 @@ hr {
     font-size: 14px;
     border-radius: 3px;
     vertical-align: middle;
-    padding: 3px 15px;
+    padding: 5px 15px;
     /*display: inline-block;*/
     color: #707070;
 }
@@ -6820,7 +6823,7 @@ button:focus {
   border-left: 12px solid #01C875;
   position: absolute;
   left: 0;
-  margin-top: -40px;
+  margin-top: -34px;
 }
 
 
@@ -7378,4 +7381,8 @@ sup {
 .m-all-20 {
   margin: 20px;
   margin-top: 20px !important;
+}
+
+.mt--3 {
+  margin-top: -3px;
 }

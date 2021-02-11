@@ -1,17 +1,19 @@
-<main>
+<main class="mr-15">
   <div class="container-fluid">
     <div id="Tab3" class="tabcontent">
       <div class="tab-header">
         <div class="tab-header">
-          <div class="tab-heading">Process Flow</div>
+          <div class="page-heading mt-0">Process Flow</div>
         </div>
 
-
+       
         <button *ngIf="commonService.getRole() !='reviewer'" class="btn btn-outline mr10px"
-          (click)="upload()">Add/Replace Image</button>
+          (click)="upload()"><img src="assets/images/add-button.svg" class="mt--3"> Add/Replace Image</button>
         <!-- <button class="btn button-save" data-toggle="modal" data-target="#myModal">Upload</button> -->
-        <hr>
-        <div *ngIf="allUploadedFile.length>0" class="carousel-container">
+        <div class="clear-float"></div>
+        <div class="row">
+          <div class="col-sm-10">
+        <div *ngIf="allUploadedFile.length>0" class="carousel-container mt-40">
           <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="false" id="myCarousel">
 
             <!-- Wrapper for slides -->
@@ -20,7 +22,7 @@
                 <img [src]="getSantizeUrl(allFile.imageUrl) " width="100%" height="100%" alt="Image" />
 
               </div>
-              <img *ngIf="allUploadedFileIndex.length>0" src="assets/images/zoom-icon.png">
+              <img *ngIf="allUploadedFileIndex.length>0" src="assets/images/zoom.svg" class="carousel-zoom-icon">
             </div>
 
             <!-- Left and right controls -->
@@ -40,6 +42,9 @@
           <img src="assets/images/noData.png " width="100%" height="100%" alt="Image" />
 
         </div>
+      </div>
+
+        <div class="col-sm-2">
         <div class="slider-container" *ngIf="allUploadedFile.length>0">
           <div class="slider-heading">{{heading}}</div>
           <div class="slider-content">{{desc}}</div>
@@ -50,12 +55,14 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
       <div class="clear-float"></div>
       <form class="form-horizontal" [formGroup]="formGroup">
         <div class="row" *ngIf="commonService.getRole() !='developer'">
 
-          <div class="col-sm-9 pr-0 processflow_pt_20">
+          <div class="col-sm-10 pr-0 processflow_pt_20">
             <div class="form-group">
               <label class="control-label width-125 " for="cname">Review Comments</label>
               <textarea formControlName="reviewComment" class="form-control rounded-0 bg-white" id="reviewComment"
@@ -68,16 +75,17 @@
         </div>
       </form>
       <div *ngIf="commonService.getRole() !='developer'" class="row pt-4">
-        <div class="col-sm-9 text-right ">
-          <button class="btn button-save ml-3" (click)="saveComments()">Save</button>
+        <div class="col-sm-10">
+          <button class="btn button-save" (click)="saveComments()">Save</button>
         </div>
       </div>
       <div *ngIf="commonService.getRole() =='idea-owner'" class="review-container">
-        <div class="heading processflow_css processflow_pt0_css">Request Review</div>
+        <div class="page-sub-heading section-spacing">Request Review</div>
         <div class="row">
           <div class="col-sm-3 pr-0">
             <div class="form-group">
-              <select class="form-control" [(ngModel)]="selectedRole" (change)="onChangeReview($event)">
+              <select class="txt-outline w-100" [(ngModel)]="selectedRole" (change)="onChangeReview($event)">
+              
                 <option *ngFor="let item of reviewers" value={{item.userId}} id={{item.userId}}>{{item.userName}}
                 </option>
               </select>
@@ -133,7 +141,7 @@
 
 
       <div [ngClass]="{'processflow_pt_20': commonService.getRole() !='idea-owner'}"
-        class="ft-16 processflow_css processflow_pt1_css">Comments Received</div>
+        class="page-sub-heading section-spacing processflow_css processflow_pt1_css">Comments Received</div>
       <table id="example" class="table table-custom">
         <thead>
           <tr>
