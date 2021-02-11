@@ -117,6 +117,7 @@ export class ManageSubscriptionComponent implements OnInit {
         (data: any) => {
           if (data['result_status'].toUpperCase() == "SUCCESS") {
             this.getAllMem(this.micrositeId);
+            this.getPlanDetails(this.micrositeId);
             this.common.successMessage(data['result_msg']);
             return
           }
