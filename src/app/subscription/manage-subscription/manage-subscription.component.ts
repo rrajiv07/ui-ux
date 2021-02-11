@@ -6,6 +6,7 @@ import { SubcriptionService } from '../subcription.service';
 import { CommonService } from '@app/utils/common.service';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-manage-subscription',
@@ -87,5 +88,41 @@ export class ManageSubscriptionComponent implements OnInit {
   }
   buyMoreSeats(){
     this.route.navigate(['/subscription/purchase-subcription'], { queryParams: { subscriptionId: this.planDetails['id'] ,totalLicense:this.totalLicense} });
+  }
+  
+  changeTeamStatus(record, status) {
+    swal.fire({
+      showCancelButton: true,
+      title: 'Are you sure want to change status?',
+      confirmButtonText: 'Yes, change it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value) {
+        this.statusChange(record, status);
+      } else if (result.dismiss === swal.DismissReason.cancel) {
+        return;
+      }
+    })
+    return;
+
+  }
+  statusChange(record, status) {
+    const param = {
+      "micrositeId": this.micrositeId,
+      "userId": record.userId,
+      "statusCode": status
+    };
+    this.service.changeTeamStatus(param, this.header).pipe(first())
+      .subscribe(
+        (data: any) => {
+          if (data['result_status'].toUpperCase() == "SUCCESS") {
+            this.getAllMem(this.micrositeId);
+            this.common.successMessage(data['result_msg']);
+            return
+          }
+          this.common.failureMessage(data.result_msg);
+        },
+        error => {
+        });
   }
 }
