@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="row mb-5">
-                    <div class="col-sm-10 mt-5">
+                    <div class="col-sm-9 mt-5">
                         <div class="page-sub-heading">Team</div>
                         <div class="row">
                             <div class="col-sm-5">
@@ -96,16 +96,17 @@
                      
                     </div>
 
-                    <div class="col-sm-2 milestons-list pl-0 mt-5">
+                    <div class="col-sm-3 milestons-list pl-0 mt-5">
                         
-                        <div class="page-sub-heading">Milestone</div>
+                        <div class="page-sub-heading">Milestone
+                            <span><div (click)="viewMilestone('milestones')" class="btn button-save ml-10">View</div></span></div>
                         <ul class="mt-10">
                             <ng-container *ngFor="let milestone of milestoneDtl;index as i">
-                             <li *ngIf="i < 5" [class.active]="milestone.statusCode != 'In-Progress' ">
+                             <li *ngIf="i < 5" [class.active]="milestone.statusCode != 'In-Progress' && milestone.statusCode != 'Not Started' ">
                               <p class="ft-gray ft-14 pb-2 txt-caps">Milestone {{i+1}}</p>
                               <div class="ft-18 ft-normal lh-14">{{milestone.custPhaseName}}</div>
-                              <p *ngIf="milestone.statusCode != 'In-Progress' " class="ft-gray ft-12">Completed on {{milestone.plannedEndDate | date}}</p>
-                              <p *ngIf="milestone.statusCode == 'In-Progress' " class="ft-gray ft-12">{{milestone.statusCode}}</p>
+                              <p *ngIf="milestone.statusCode != 'In-Progress' && milestone.statusCode != 'Not Started'" class="ft-gray ft-12">Completed on {{milestone.plannedEndDate | date}}</p>
+                              <p *ngIf="milestone.statusCode == 'In-Progress' ||  milestone.statusCode == 'Not Started'" class="ft-gray ft-12">{{milestone.statusCode}}</p>
                           
                             </li>
                         </ng-container>
