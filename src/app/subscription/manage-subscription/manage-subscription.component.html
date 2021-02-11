@@ -137,8 +137,8 @@
                           >{{item.statusCode}}</span></div>
                       </div>
                       <div class="col-sm-2" style="text-align: center;">
-                        <div style="width: 100px;" *ngIf="item.statusCode != 'Active' && item.userType !='Idea Owner'"   (click)="changeTeamStatus(teamListObj,'Active')" class="btn button-save ml-10">Active</div>
-                        <div  style="width: 100px;" *ngIf="item.statusCode == 'Active' && item.userType !='Idea Owner'"  (click)="changeTeamStatus(teamListObj,'Inactive')" class="btn button-save ml-10">InActive</div>
+                        <div style="width: 100px;" *ngIf="item.statusCode != 'Active' && item.userType !='Idea Owner'"   (click)="changeTeamStatus(item,'Active')" class="btn button-save ml-10">Active</div>
+                        <div  style="width: 100px;" *ngIf="item.statusCode == 'Active' && item.userType !='Idea Owner'"  (click)="changeTeamStatus(item,'Inactive')" class="btn button-save ml-10">InActive</div>
           
                       </div>
                     </div>
