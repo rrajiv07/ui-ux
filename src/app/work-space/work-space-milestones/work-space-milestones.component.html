@@ -9,7 +9,11 @@
                 <li *ngIf="i < 5" [class.active]="milestone.statusCode != 'In-Progress' && milestone.statusCode != 'Not Started' ">
                   <div class="row">
                       <div class="col-sm-2">
-                          <p class="ft-gray ft-14 pb-2 txt-caps">Milestone {{i+1}}</p>
+                          <p class="ft-gray ft-14 pb-2 txt-caps">Milestone {{i+1}}
+                            <span>
+                                <div (click)="viewDetails(milestone)" class="btn button-save">View</div>
+                            </span>    
+                          </p>
                           <div class="ft-18 ft-normal lh-14">{{milestone.custPhaseName}}</div>
                           <p *ngIf="milestone.statusCode != 'In-Progress' && milestone.statusCode != 'Not Started' " class="ft-gray ft-12">Completed on {{milestone.plannedEndDate | date}}</p>
                           <p *ngIf="milestone.statusCode == 'In-Progress' ||  milestone.statusCode == 'Not Started'   " class="ft-gray ft-12">{{milestone.statusCode}}</p>
@@ -19,18 +23,32 @@
                       <div class="col-sm-2">
                           <p class="pb-25"></p>
                           <p class="ft-10">Planned Start Date</p>
-                          <input (change)="onChangePlanStartDate($event,milestone)" type="date" [(ngModel)]="milestone.plannedStartDate" class="txt-outline w-100">
+                          <input [disabled]="milestone.statusCode == 'Completed'" (change)="onChangePlanStartDate($event,milestone)" type="date" [(ngModel)]="milestone.plannedStartDate" class="txt-outline w-100">
                       </div>
                       <div class="col-sm-2">
                           <p class="pb-25"></p>
                           <p class="ft-10">Planned End Date</p>
-                          <input (change)="onChangePlanEndDate($event,milestone)" type="date" [(ngModel)]="milestone.plannedEndDate" class="txt-outline w-100">
+                          <input [disabled]="milestone.statusCode == 'Completed'" (change)="onChangePlanEndDate($event,milestone)" type="date" [(ngModel)]="milestone.plannedEndDate" class="txt-outline w-100">
                       </div>
+                      <div *ngIf="milestone.statusCode != 'Completed'"  class="col-sm-2">
+                        <p class="pb-25"></p>
+                        <p class="ft-10">Status</p>
+                        <select  [disabled]="milestone.statusCode == 'Completed'" class="txt-outline" id="selectOptionid" (change)="onChangeMilestoneStatus(milestone,$event)">
+                            <option value="null" id="null"></option>
+                            <option value="In-Progress" id="In-Progress">In-Progress </option>
+                            <option value="Completed" id="Completed">Completed </option>
+                        </select>
+                    </div>
+                    <div *ngIf="milestone.statusCode != 'Completed'"  class="col-sm-1">
+                        <div (click)="complete(milestone)" class="btn button-save mt-47 pull-left">Save</div>
+                    </div>
+                    <!--
                       <div class="col-sm-3">
                           <div (click)="viewDetails(milestone)" class="btn button-save mt-47 pull-left mr-3">View</div>
                           <div (click)="complete(milestone, 'In-Progress')" class="btn button-save mt-47 pull-left mr-3">Save</div>
                           <div (click)="complete(milestone, 'Completed')" class="btn button-save mt-47 pull-left">Complete</div>
                       </div>
+                      -->
                   </div>
                  
               </li>

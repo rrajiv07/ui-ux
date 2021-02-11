@@ -16,6 +16,7 @@ export class WorkSpaceMilestonesComponent implements OnInit {
     headers: new HttpHeaders()
       .set('Authorization', `Bearer ${this.token}`)
   };
+  milestoneStatus:any=null;
   workSpaceBoardRouterLink =
     {
       "Initial Requirement": "initial-requirment",
@@ -78,7 +79,7 @@ export class WorkSpaceMilestonesComponent implements OnInit {
     this.route.navigateByUrl('/workspace/view/' + this.wsPocId + '/' + this.wsPocName + '/' + this.workspaceDtlId + '/phase/' + this.workSpaceBoardRouterLink[record.custPhaseName]);
   }
   
-  complete(record, status) {
+  complete(record) {
 
     if (record.plannedStartDate == null || record.plannedStartDate == "") {
       this.commonService.failureMessage("Enter planned start date.");
@@ -88,18 +89,27 @@ export class WorkSpaceMilestonesComponent implements OnInit {
       this.commonService.failureMessage("Enter planned end date.");
       return;
     }
-    record["statusCode"] = status;
+    if (record["status"] ==null || record["status"]  =="")
+    {
+      this.commonService.failureMessage("Select status.");
+      return;
+    }
+    record["statusCode"]=record["status"];
     this.workspace.complete(record, this.header).pipe(first())
       .subscribe(
         (data: any) => {
           if (data['result_status'].toUpperCase() == "SUCCESS") {
             this.getMilestones();
             this.commonService.successMessage(data['result_msg']);
-            return;
+            return
           }
           this.commonService.failureMessage(data.result_msg);
         },
         error => {
         });
+  }
+  onChangeMilestoneStatus(record,event){
+    record["status"]=event.target.value;
+    this.milestoneStatus = event.target.value;
   }
 }
