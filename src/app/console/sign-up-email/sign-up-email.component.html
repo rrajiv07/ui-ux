@@ -8,7 +8,7 @@
                 <div class="dialog-left"> 
                         <div class="heading"><span>Welcome to HiveZen</span></div>
                         <div class="sub-heading" style="font-weight: inherit;">Let's get started with a few simple steps</div>
-                        <form [formGroup]="signupForm" (ngSubmit)="signup()" id="Signup">
+                        <form autocomplete="off" [formGroup]="signupForm" (ngSubmit)="signup()" id="Signup">
                         <div class="row pt-50">                        
                             <div class="col-sm-12"><div class="txt-lable">Email*</div></div>
                             <div class="col-sm-12"><input type="text" class="form-control bg-white" formControlName="email" id="email" placeholder="Enter email"
