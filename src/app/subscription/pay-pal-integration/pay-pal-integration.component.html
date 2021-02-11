@@ -1,4 +1,13 @@
-<div style="margin:10px">
-<ngx-paypal [config]="payPalConfig"></ngx-paypal>
-</div>
+<div class="modal-body">
+    <button type="button" class="close dialog-close" (click)="Close('failed')" data-dismiss="modal" aria-label="Close">
+        <img src="assets/images/close-popup.png">
+    </button>
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="dialog-left">
+                <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+            </div>
+        </div>
+    </div>
 
+</div>

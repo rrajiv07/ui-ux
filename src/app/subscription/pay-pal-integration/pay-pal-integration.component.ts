@@ -63,21 +63,25 @@ export class PayPalIntegrationComponent implements OnInit {
       },
       onClientAuthorization: (data) => {
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-        this.Close();
+        this.Close('Success');
         // this.showSuccess = true;
       },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);
+        this.Close('failed');
       },
       onError: err => {
         console.log('OnError', err);
+        this.Close('failed');
       },
       onClick: (data, actions) => {
         console.log('onClick', data, actions);
       },
     };
     }
-    Close() {
-      this.dialog.close()
+    Close(flag) {
+      var tmprecords = [{"flag":flag}];
+      this.dialog.close(tmprecords)
     }
+    
   }

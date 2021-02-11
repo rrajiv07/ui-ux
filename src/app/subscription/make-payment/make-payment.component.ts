@@ -76,6 +76,12 @@ export class MakePaymentComponent implements OnInit {
       contentStyle: { "max-height": "30%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "10px" },
     });
     this.paypalDialogPtr.onClose.subscribe((data) => {
+      console.log(data[0].flag,">>>>>>>>>>>>data")
+      if (data[0].flag =='failed')
+      {
+        this.common.failureMessage("Payment Failed");
+      }
+      else
       this.common.successMessage("Payment Successful");
     });
   }
