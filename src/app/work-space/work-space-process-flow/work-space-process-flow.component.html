@@ -84,13 +84,8 @@
         <div class="row">
           <div class="col-sm-3 pr-0">
             <div class="form-group">
-<<<<<<< HEAD
               <select class="txt-outline w-100" [(ngModel)]="selectedRole" (change)="onChangeReview($event)">
               
-=======
-              <select class="form-control" [(ngModel)]="selectedRole" (change)="onChangeReview($event)">
-               
->>>>>>> 048a652bf5962c265393ae6d45b2e29135e0d33d
                 <option *ngFor="let item of reviewers" value={{item.userId}} id={{item.userId}}>{{item.userName}}
                 </option>
               </select>
