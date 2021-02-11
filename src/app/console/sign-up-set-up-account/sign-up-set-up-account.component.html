@@ -7,17 +7,17 @@
             <div class="dialog-left"> 
                     <div class="heading"><span>Setup your account</span></div>
                     <div class="sub-heading" style="font-weight: inherit;">Let's get started with a few simple steps</div>
-                    <form [formGroup]="signupForm"  (ngSubmit)="signup()" id="Signup">
+                    <form autocomplete="off" [formGroup]="signupForm"  (ngSubmit)="signup()" id="Signup">
                     <div class="row pt-50">
                         <div class="col-sm-12"><div class="txt-lable">Full Name*</div></div>
-                        <div class="col-sm-12"><input type="text" class="form-control bg-white" id="FullName" placeholder="Enter full name"
+                        <div class="col-sm-12"><input autocomplete="off" type="text" class="form-control bg-white" id="FullName" placeholder="Enter full name"
                         formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f1.firstName.errors }">
                         <div *ngIf="submitted && f1.firstName.errors" class="invalid-feedback">
                             <div *ngIf="f1.firstName.errors.required">Full Name is required</div>
                           </div>
                     </div>
                         <div class="col-sm-12"><div class="txt-lable">Password*</div></div>
-                        <div class="col-sm-12"><input type="password" class="form-control bg-white" id="Password" placeholder="Password"
+                        <div class="col-sm-12"><input name="password" autocomplete="off" type="text" class="form-control password bg-white" id="Password" placeholder="Password"
                         formControlName="password" [ngClass]="{ 'is-invalid': submitted && f1.password.errors }">
                         <div *ngIf="submitted && f1.password.errors" class="invalid-feedback">
                             <div *ngIf="f1.password.errors.required">Password is required</div>
@@ -25,7 +25,7 @@
                     </div>
                         <div class="col-sm-12"><div class="txt-lable">Account Name*</div></div>
                         <div class="input-group col-sm-12">
-                            <input type="text" class="form-control bg-white" id="AccountName" placeholder="Enter your Account Name"
+                            <input autocomplete="off" type="text" class="form-control bg-white" id="AccountName" placeholder="Enter your Account Name"
                         formControlName="micrositeName" [ngClass]="{ 'is-invalid': submitted && f1.micrositeName.errors }">
                         <span class="input-group-text" id="basic-addon2">.hivezen.com</span>
                         <div *ngIf="submitted && f1.micrositeName.errors" class="invalid-feedback">
