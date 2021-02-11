@@ -95,5 +95,25 @@ export class WorkSpaceTeamComponent implements OnInit {
       this.getTeamList();
     });
   }
+  changeTeamStatus(record,status){
+    const param = { 
+      "micrositeId": this.micrositeId, 
+      "workspaceId": this.wsPocId,
+      "userId": record.userId,
+      "statusCode":status
+     };
+     this.workspace.changeTeamStatus(param, this.header).pipe(first())
+      .subscribe(
+        (data: any) => {
+          if (data['result_status'].toUpperCase() == "SUCCESS") {
+            this.getTeamList();
+            this.commonService.successMessage(data['result_msg']);
+            return
+          }
+          this.commonService.failureMessage(data.result_msg);
+        },
+        error => {
+        });
+  }
 
 }
