@@ -1,72 +1,99 @@
+
+<main class="mr-15">
 <div class="container-fluid">
 <div id="Tab3" class="tabcontent">
     <div class="tab-header">
-        <div class="tab-heading">POC Review</div>
+        <div class="page-heading mt-0">POC Review</div>
     </div>
-    <table id="example" class="table">
-        <thead>
-            <tr>
-                <th>Reviewer Name</th>
-                <th>Phase</th>
-                <th width="200">Review Initiated on</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngIf ="reviewerList ==null ">
-                <td>&nbsp;</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr *ngFor="let reviewerListDtl of reviewerList">
-                <td>{{reviewerListDtl.userName}}</td>
-                <td>{{reviewerListDtl.phaseCode}}</td>
-                <td>{{commonService.convertDateTimeFormat(reviewerListDtl.createdDate, 'true')}}</td>
-            </tr>
-            <!-- <tr>
-                <td>Lorem ipsum dolor sit amet,</td>
-                <td>Process Flow</td>
-                <td>Nov 10, 2020</td>
-            </tr>
-            <tr>
-                <td>um dolor sit amet, adipiscing elit ...</td>
-                <td>Application Flow</td>
-                <td>Apr 05 2020</td>
-            </tr>
-            <tr>
-                <td>Lorem  adipiscing elit ...</td>
-                <td>Wireframe</td>
-                <td>Nov 01, 2020</td>
-            </tr> -->
-        </tbody>
-    </table>
+
+
+    <div class="row mb-5">
+        <div class="col-sm-12">
+          <div class=" p-all-10">
+            <div class="row">
+                <div class="col-sm-5">
+                  <label class="ft-18">Reviewer Name</label>
+                </div>
+                <div class="col-sm-4">
+                  <label class="ft-18">Phase</label>
+                </div>
+                <div class="col-sm-3">
+                  <label class="ft-18">Review Initiated on</label>
+                </div>
+  
+              </div>
+            </div>
+            <div>
+  
+                <div class="bg-white border-gray mt-10 radius-all-3 p-all-10" *ngIf ="reviewerList ==null ">
+                  <div class="row">
+  
+                    <div class="col-sm-5">
+                      <div class="font-semibold pl-8"></div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div></div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-white border-gray mt-10 radius-all-3 p-all-10" *ngFor="let reviewerListDtl of reviewerList">
+                    <div class="row">
+    
+                      <div class="col-sm-5">
+                        <div class="font-semibold pl-8">{{reviewerListDtl.userName}}</div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div>{{reviewerListDtl.phaseCode}}</div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div>{{commonService.convertDateTimeFormat(reviewerListDtl.createdDate, 'true')}}</div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+  
+  
+          </div>
+  
+
+
+
+
+
+
+
+
         <!--
         <button class="btn btn-outline-purple pull-right mr-5">Initate POC Review Process</button>
         <div class="clear-float"></div>
         -->
-    <hr>
-    <div class="container">
+    <div class="container section-spacing">
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-4 align-center">
+                <div class="heading-lg">{{totalCount}}</div>
                 <div>Total Review Comments</div>
-                <div class="heading-lg pl-5 ml-4">{{totalCount}}</div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4 align-center">
+                <div class="heading-lg">{{openCount}}</div>
                 <div>Open Comments</div>
-                <div class="heading-lg pl-5 ml-2">{{openCount}}</div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4 align-center">
+                <div class="heading-lg">{{closedCount}}</div>
                 <div>Closed Comments</div>
-                <div class="heading-lg pl-5 ml-2">{{closedCount}}</div>
             </div>
 
         </div>
     </div>
-    <hr>
-    <div class="ft-16 pb-10 processflow_css processflow_pt1_css">Comments Received</div>
+
+    <div class="page-sub-heading section-spacing">Comments Received</div>
     <table id="example" class="table table-custom">
         <thead>
           <tr>
-            <th></th>
+            <th>Edit</th>
             <th>Date</th>
             <th>Phase</th>
             <th>Reviewer</th>
@@ -74,7 +101,7 @@
             <th>Accept</th>
             <th>Reject</th>
             <th>Assigned to</th>
-            <th>Status</th>
+            <th class="align-center">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -82,7 +109,7 @@
             <tr *ngFor="let commentsReceiveddtl of commentsReceived">
               <td>
                 <a *ngIf="commentsReceiveddtl.commentStatus !='Closed' && ( commonService.getRole() =='idea-owner' ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='developer' &&  commentsReceiveddtl.commentStatus =='Allocated' ) ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='developer' &&  commentsReceiveddtl.commentStatus =='In-Progress' )  ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='reviewer' &&  commentsReceiveddtl.commentStatus =='Completed' ) ) "  (click)="editComments(commentsReceiveddtl)" style="cursor: pointer;">
-                  <i class="fa fa-edit" style="font-size: 14px;"></i>
+                    <img _ngcontent-oih-c96="" src="assets/images/edit-icon.svg" class="edit-icon">
                 </a>
               </td>
               <td>{{commonService.convertDateTimeFormat(commentsReceiveddtl.enteredDate, 'true')}}</td>
@@ -109,3 +136,10 @@
 
   </div>
 </div>
+
+</main>
+<footer>
+  <div class="container-fluid">
+      <div class="footer">©HiveZen.All rights reserved</div>
+  </div>
+</footer>
