@@ -114,16 +114,21 @@ export class CreateWorkSpaceComponent implements OnInit {
       publishpoc: ['PP_V1']
     });
   }
-
-  save() {
-
+  save(){
     this.submitted = true;
     // stop here if form is invalid
     if (this.formGroup.invalid) {
       return;
     }
     this.saveWorkSpace();
-    return;
+  }
+  save1() {
+
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.formGroup.invalid) {
+      return;
+    }
     const formData = this.formGroup.getRawValue();
     this.pocBoardsList = [];
 
