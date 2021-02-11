@@ -4,13 +4,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { SubcriptionService } from '../subcription.service';
 import { CommonService } from '@app/utils/common.service';
-
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import {PayPalIntegrationComponent} from '../pay-pal-integration/pay-pal-integration.component';
 @Component({
   selector: 'app-make-payment',
   templateUrl: './make-payment.component.html',
   styleUrls: ['./make-payment.component.css']
 })
 export class MakePaymentComponent implements OnInit {
+  paypalDialogPtr: DynamicDialogRef;
   subscriptionId:any;
   totalLicense:any;
   basicAmount:any;
@@ -23,7 +25,7 @@ export class MakePaymentComponent implements OnInit {
       .set('Authorization', `Bearer ${this.token}`)
   };
   constructor(private route: Router,private actRoute:ActivatedRoute,private service: SubcriptionService,
-    private common: CommonService) { }
+    private common: CommonService,private dialogService: DialogService) { }
 
   ngOnInit(): void {
     this.actRoute.queryParams.subscribe(params => {
@@ -64,5 +66,17 @@ export class MakePaymentComponent implements OnInit {
   back()
   {
     this.route.navigate(['/subscription/purchase-subcription'], { queryParams: { subscriptionId: this.subscriptionId,totalLicense:this.totalLicense} });
+  }
+  paypal()
+  {
+    this.paypalDialogPtr = this.dialogService.open(PayPalIntegrationComponent, {
+      showHeader: false,
+      closable: false,
+      width: '25%',
+      contentStyle: { "max-height": "30%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "10px" },
+    });
+    this.paypalDialogPtr.onClose.subscribe((data) => {
+      this.common.successMessage("Payment Successful");
+    });
   }
 }
