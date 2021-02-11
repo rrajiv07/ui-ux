@@ -1,18 +1,20 @@
-<div class="container-fluid">
+
+<main class="mr-15">
+  <div class="container-fluid">
 <div id="Tab3" class="tabcontent">
     <div class="tab-header">
-        <div class="tab-heading">Development Documentation</div>
+        <div class="page-heading mt-0">Development Documentation</div>
     </div>
     <!-- <form [formGroup]="formGroup" class="form-horizontal"> -->
         <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
 
-            <div class="pt-50 pb-20 mr-30">
+          
                 <div class="row pb-10">
                     <div class="col-sm-3">
                         <div class="txt-lable">Document Name</div>
                     </div>
-                    <div class="col-sm-9">
-                        <input type="text" formControlName="documentName" class="form-control txt-lable" id="documentName"
+                    <div class="col-sm-4">
+                        <input type="text" formControlName="documentName" class="txt-outline w-100" id="documentName"
                             placeholder="" [ngClass]=" { 'is-invalid' : submitted &&
                             f1.documentName.errors }">
                         <div *ngIf="submitted && f1.documentName.errors" class="invalid-feedback">
@@ -24,8 +26,8 @@
                     <div class="col-sm-3">
                         <div class="txt-lable">Document Type</div>
                     </div>
-                    <div class="col-sm-9">
-                        <input type="text" formControlName="documentType" class="form-control txt-lable" id="documentType"
+                    <div class="col-sm-4">
+                        <input type="text" formControlName="documentType" class="txt-outline w-100" id="documentType"
                             placeholder="" [ngClass]=" { 'is-invalid' : submitted &&
                             f1.documentType.errors }">
                         <div *ngIf="submitted && f1.documentType.errors" class="invalid-feedback">
@@ -39,8 +41,8 @@
                     <div class="col-sm-3">
                         <div class="txt-lable">Document Description</div>
                     </div>
-                    <div class="col-sm-8">
-                        <textarea placeholder="" formControlName="documentDescription" class="form-control txt-lable"
+                    <div class="col-sm-9">
+                        <textarea placeholder="" formControlName="documentDescription" class="txt-outline w-100"
                             id="documentType" [ngClass]=" { 'is-invalid' : submitted &&
                     f1.documentDescription.errors }"></textarea>
                         <div *ngIf="submitted && f1.documentDescription.errors" class="invalid-feedback">
@@ -49,15 +51,15 @@
                     </div>
                 </div>
     
-                <div class="row pb-10">
+                <div class="row pb-10 mt-15">
                     <div class="col-sm-3">
                         </div>
                             <!-- <div class="col-sm-5">
                         <input type="text" class="txt-outline w100">
                     </div> -->
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <input formControlName="uploadFile" id="uploadFile" type="file"
-                                    (change)="fileUpload($event.target.files)" class="form-control" name="uploadFile"
+                                    (change)="fileUpload($event.target.files)" name="uploadFile"
                                     [ngClass]=" { 'is-invalid' : submitted &&
                             f1.isFileInput.errors }" />
                                 <input type="hidden" name="isFileInput" formControlName="isFileInput" />
@@ -67,14 +69,16 @@
                                 <!-- {{f1.isFileInput.Value}} -->
                                 <!-- <input type="file" class="btn btn-outline-purple" /> -->
                             </div>
-                            <div class="col-sm-4">
-                              <button  type="submit" class="btn button-save ml-3" >Save</button>
+                          </div>
+
+                          <div class="row pb-10">
+                            <div class="col-sm-3">
+                                </div>                          
+                                <div class="col-sm-1">
+                              <button  type="submit" class="btn button-save" >Save</button>
                           </div>
                     </div>
-                </div>
         </form>
-
-    <hr>
     <table *ngIf="!!workSpaceDDLists.length" id="example" class="table">
         <thead>
             <tr>
@@ -105,9 +109,9 @@
     <form class="form-horizontal" [formGroup]="formGroup">
     <div class="row" *ngIf="commonService.getRole() !='developer'">
       
-      <div class="col-sm-9 pr-0 processflow_pt_20">
+      <div class="col-sm-12 pr-0 processflow_pt_20">
         <div class="form-group">
-          <label class="control-label width-125 " for="cname">Review Comments</label>
+          <label class="control-label" for="cname">Review Comments</label>
           <textarea formControlName="reviewComment" class="form-control rounded-0 bg-white" id="reviewComment" rows="3"
           [ngClass]=" { 'is-invalid' : submitted && f1.reviewComment.errors }"
           ></textarea>
@@ -119,17 +123,17 @@
     </div>
   </form>
   <div *ngIf="commonService.getRole() !='developer'" class="row pt-4">
-      <div class="col-sm-9 text-right ">
-        <button class="btn button-save ml-3" (click)="saveComments()" >Save</button>
+      <div class="col-sm-12">
+        <button class="btn button-save" (click)="saveComments()" >Save</button>
       </div>
     </div>
   
     <div *ngIf="commonService.getRole() =='idea-owner'" class="review-container">
-      <div class="heading processflow_css processflow_pt0_css">Request Review</div>
+      <div class="page-sub-heading section-spacing">Request Review</div>
       <div class="row">
         <div class="col-sm-3 pr-0">
           <div class="form-group">
-            <select class="form-control" [(ngModel)]="selectedRole" (change)="onChangeReview($event)">
+            <select class="txt-outline w-100" [(ngModel)]="selectedRole" (change)="onChangeReview($event)">
               
               <option *ngFor="let item of reviewers" value={{item.userId}} id={{item.userId}}>{{item.userName}}
               </option>
@@ -139,7 +143,7 @@
         <div class="col-sm-2 pl-10 pb-20">
           <!--<button (click)="selectReviewer()" class="btn button-save">Select</button>
         --> 
-        <button (click)="mapReviewer()" class="btn button-save">Request Review</button>
+        <button (click)="mapReviewer()" class="btn btn-outline-purple">Request Review</button>
         </div>
       </div>
       <!--
@@ -159,8 +163,8 @@
         </div>
       </div>
       -->
-      <div class="row pl-3 pt-3">
-        <div class="heading processflow_pt1_css processflow_pt_20">Reviewers Assigned</div>
+      <div class="row pl-3">
+        <div class="control-label">Reviewers Assigned</div>
       </div>
       <div class="row" *ngIf="existingReviewer.length ==0">
         <div class="col-sm-12">
@@ -184,25 +188,25 @@
     </div>
   
     <div [ngClass]="{'processflow_pt_20': commonService.getRole() !='idea-owner'}"
-      class="heading processflow_css processflow_pt1_css">Comments Received</div>
+      class="page-sub-heading section-spacing">Comments Received</div>
     <table id="example" class="table">
       <thead>
         <tr>
-          <th></th>
+          <th>Edit</th>
           <th>Date</th>
           <th>Reviewer</th>
           <th>Comments</th>
           <th>Accept</th>
           <th>Reject</th>
           <th>Assigned to</th>
-          <th>Status</th>
+          <th class="align-center">Status</th>
         </tr>
       </thead>
        <tbody>
         <tr *ngFor="let commentsReceiveddtl of commentsReceived">
           <td>
             <a *ngIf="commentsReceiveddtl.commentStatus !='Closed' && ( commonService.getRole() =='idea-owner' ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='developer' &&  commentsReceiveddtl.commentStatus =='Allocated' ) ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='developer' &&  commentsReceiveddtl.commentStatus =='In-Progress' )  ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='reviewer' &&  commentsReceiveddtl.commentStatus =='Completed' ) ) "  (click)="editComments(commentsReceiveddtl)" style="cursor: pointer;">
-              <i class="fa fa-edit" style="font-size: 14px;"></i>
+              <img _ngcontent-oih-c96="" src="assets/images/edit-icon.svg" class="edit-icon">
             </a>
           </td>
           <td>{{commonService.convertDateTimeFormat(commentsReceiveddtl.enteredDate, 'true')}}</td>
@@ -226,4 +230,11 @@
     </table>
   
   </div>
+</div>
 
+</main>
+<footer>
+  <div class="container-fluid">
+      <div class="footer">©HiveZen.All rights reserved</div>
+  </div>
+</footer>
