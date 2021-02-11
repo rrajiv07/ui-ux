@@ -37,9 +37,13 @@ export class WorkSpaceListComponent implements OnInit {
             if (this.workSpacelist == null) {
               this.workSpacelist=[];
             }
-            if (localStorage.getItem("alreadyLogin") == null) {
+            console.log(localStorage.getItem("alreadyLogin"),this.commonService.getRole(),this.workSpacelist.length,">>>>>>>>>>alreadyLogin")
+            if (localStorage.getItem("alreadyLogin") == null || localStorage.getItem("alreadyLogin") == "" 
+            || localStorage.getItem("alreadyLogin") == "null") {
               localStorage.setItem("alreadyLogin", "Yes");
               if (this.workSpacelist.length == 0 ) {
+                console.log(">>>>>>>>>>>>Inside1")
+                console.log(this.commonService.getRole(),">>>>>>>>>>>>>>>GetRole")
                 if (this.commonService.getRole() == 'idea-owner') {
                   this.createWorkspace();
                 }

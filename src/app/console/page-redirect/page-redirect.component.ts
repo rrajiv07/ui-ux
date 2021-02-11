@@ -19,6 +19,7 @@ export class PageRedirectComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    localStorage.setItem("alreadyLogin",null);
     localStorage.setItem('tempCurrentUserToken', this.token);
     this.getLoginDetails(this.token);
   }
