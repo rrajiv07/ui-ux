@@ -5818,12 +5818,7 @@ div#vmap {
   clear: both;
   float: none;
 }
-.review-container {
-  margin-bottom: 40px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid #70707026;
 
-}
 .form-control {
   display: block;
   width: 100%;
@@ -7159,7 +7154,7 @@ nav.sub-menu ul li{
 }
 .page-sub-heading {
   color: #363636;
-  font-size: 31px;
+  font-size: 22px;
   margin-bottom: 10px;
 }
 

@@ -91,10 +91,10 @@
               </select>
             </div>
           </div>
-          <div class="col-sm-2 pl-10 pb-20">
+          <div class="col-sm-2 pl-10 pb-10">
             <!--<button (click)="selectReviewer()" class="btn button-save">Select</button>
         --> 
-        <button (click)="mapReviewer()" class="btn button-save">Request Review</button>
+        <button (click)="mapReviewer()" class="btn btn-outline-purple">Request Review</button>
           </div>
         </div>
         <!--
@@ -114,8 +114,8 @@
           </div>
         </div>
         -->
-        <div class="row pl-3 pt-3">
-          <div class="heading processflow_pt1_css processflow_pt_20">Reviewers Assigned</div>
+        <div class="row pl-3">
+          <div class="control-label">Reviewers Assigned</div>
         </div>
         <div class="row" *ngIf="existingReviewer.length ==0">
           <div class="col-sm-12">
@@ -144,14 +144,14 @@
       <table id="example" class="table table-custom">
         <thead>
           <tr>
-            <th></th>
+            <th>Edit</th>
             <th>Date</th>
             <th>Reviewer</th>
             <th>Comments</th>
             <th *ngIf="commonService.getRole() =='idea-owner'">Accept</th>
         <th *ngIf="commonService.getRole() =='idea-owner'">Reject</th>
         <th *ngIf="commonService.getRole() =='idea-owner'">Assigned to</th>
-            <th>Status</th>
+            <th class="align-center">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -159,7 +159,7 @@
             <td>
               <a *ngIf="commentsReceiveddtl.commentStatus !='Closed' && ( commonService.getRole() =='idea-owner' ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='developer' &&  commentsReceiveddtl.commentStatus =='Allocated' ) ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='developer' &&  commentsReceiveddtl.commentStatus =='In-Progress' )  ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='reviewer' &&  commentsReceiveddtl.commentStatus =='Completed' ) ) "
                 (click)="editComments(commentsReceiveddtl)" style="cursor: pointer;">
-                <i class="fa fa-edit" style="font-size: 14px;"></i>
+                <img src="assets/images/edit-icon.svg" class="edit-icon">
               </a>
             </td>
             <td>{{commonService.convertDateTimeFormat(commentsReceiveddtl.enteredDate, 'true')}}</td>
@@ -187,3 +187,8 @@
     </div>
   </div>
 </main>
+<footer>
+  <div class="container-fluid">
+      <div class="footer">©HiveZen.All rights reserved</div>
+  </div>
+</footer>
