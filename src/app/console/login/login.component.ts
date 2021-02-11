@@ -12,7 +12,6 @@ import { CommonService } from '../../utils/common.service';
 import { AppConfigService } from '../../utils/app-config.service';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { DOCUMENT } from '@angular/common';
-
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -47,6 +46,7 @@ export class LoginComponent implements OnInit {
                 data => {
 
                     if (data['result_status'].toUpperCase() === 'SUCCESS') {
+
                         const baseUrlFlag = this.appConfig.appConfig['flag'];
 
                         if (baseUrlFlag == 'Y') {
@@ -115,8 +115,10 @@ export class LoginComponent implements OnInit {
                     data => {
                         if (data.result_status.toUpperCase() === 'SUCCESS') {
                             //localStorage.setItem('tempCurrentUserToken', data.result_data.id_token);
+
                             this.getLoginDetails(data.result_data.id_token);
                             //this.getWorkSpace(data.result_data.id_token);
+                            //this.router.navigate(['/page-redirect'], { queryParams: { token: data.result_data.id_token } });
                             return;
                         }
                         else {
@@ -127,7 +129,6 @@ export class LoginComponent implements OnInit {
                     });
         }
     }
-
     getWorkSpace(token: any, tempCurrentUser: any, micrositeId: any) {
         const header = {
             headers: new HttpHeaders()
@@ -176,7 +177,8 @@ export class LoginComponent implements OnInit {
             //header: 'Setup your account',
             showHeader: false,
             closable: false,
-            width: '59%',
+            //width: '59%',
+            width: '35%',
             contentStyle: { "max-height": "30%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "10px" },
         });
     }
@@ -202,5 +204,4 @@ export class LoginComponent implements OnInit {
         var subdomain = s2.replace('/', '');
         return subdomain;
     }
-
 }
