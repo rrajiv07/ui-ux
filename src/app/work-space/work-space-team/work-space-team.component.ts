@@ -7,6 +7,7 @@ import { first } from 'rxjs/operators';
 import { WorkSpaceTeamService } from './work-space-team.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-work-space-team',
   templateUrl: './work-space-team.component.html',
@@ -24,7 +25,7 @@ export class WorkSpaceTeamComponent implements OnInit {
       .set('Authorization', `Bearer ${this.token}`)
   };
   micrositeId = JSON.parse(localStorage.getItem('micrositeId'));
-  
+
   constructor(private dialogService: DialogService, private commonService: CommonService,
     private workspace: WorkSpaceTeamService,
     private actRoute: ActivatedRoute) { }
@@ -75,8 +76,8 @@ export class WorkSpaceTeamComponent implements OnInit {
       showHeader: false,
       closable: false,
       width: '30%',
-      data: {boardId: this.boardId,'wsPocId': this.wsPocId},
-      contentStyle: { "max-height": "30%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "10px"},
+      data: { boardId: this.boardId, 'wsPocId': this.wsPocId },
+      contentStyle: { "max-height": "30%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "10px" },
     });
     this.resourceDialogPtr.onClose.subscribe(events => {
       this.getTeamList();
@@ -95,14 +96,30 @@ export class WorkSpaceTeamComponent implements OnInit {
       this.getTeamList();
     });
   }
-  changeTeamStatus(record,status){
-    const param = { 
-      "micrositeId": this.micrositeId, 
+  changeTeamStatus(record, status) {
+    swal.fire({
+      showCancelButton: true,
+      title: 'Are you sure want to change status?',
+      confirmButtonText: 'Yes, change it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value) {
+        this.statusChange(record, status);
+      } else if (result.dismiss === swal.DismissReason.cancel) {
+        return;
+      }
+    })
+    return;
+
+  }
+  statusChange(record, status) {
+    const param = {
+      "micrositeId": this.micrositeId,
       "workspaceId": this.wsPocId,
       "userId": record.userId,
-      "statusCode":status
-     };
-     this.workspace.changeTeamStatus(param, this.header).pipe(first())
+      "statusCode": status
+    };
+    this.workspace.changeTeamStatus(param, this.header).pipe(first())
       .subscribe(
         (data: any) => {
           if (data['result_status'].toUpperCase() == "SUCCESS") {
@@ -115,5 +132,4 @@ export class WorkSpaceTeamComponent implements OnInit {
         error => {
         });
   }
-
 }
