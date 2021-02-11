@@ -7383,6 +7383,15 @@ sup {
   margin-top: 20px !important;
 }
 
+<<<<<<< HEAD
 .mt--3 {
   margin-top: -3px;
+=======
+.swal2-styled.swal2-confirm{
+  background-color:#72308b !important;
+  border: 0px solid none !important;
+}
+.swal2-actions:not(.swal2-loading) .swal2-styled:hover{
+  background-image: none !important;
+>>>>>>> 048a652bf5962c265393ae6d45b2e29135e0d33d
 }

@@ -1,5 +1,35 @@
-.card-img-top {
-  padding-left: 350px;
+div#headingOne{
+  background-color: rgb(80, 23, 80);
+  border-radius: 6px;
+}
+div#headingtwo{
+  background-color: rgb(80, 23, 80);
+  /*
+  height: 71px;
+  padding: 23px;
+  */
+  border-radius: 6px;
+  
+}
+div#headingthree{
+  background-color: rgb(80, 23, 80);  
+  border-radius: 6px;
+}
+div#headingfour{
+  background-color: rgb(80, 23, 80);
+  border-radius: 6px;
+}
+div#headingfive{
+  background-color: rgb(80, 23, 80);
+  border-radius: 6px;
+}
+div#headingsix{
+  background-color: rgb(80, 23, 80);
+  border-radius: 6px;
+}
+.user_profile{
+  text-align: center;
+  margin: 5rem 0rem;
 }
 
 p {
@@ -14,11 +44,50 @@ p {
   background-repeat: no-repeat;
   background-size: contain;
 }
+.videoimg{
+  width: 35%;
+  height: 20%;
+
+}
+.mb-10{
+  margin: 1.3rem 0px;
+}
+.card-body6{
+  text-align: right;
+  background-color: white;
+}
+.bg {
+  /* The image used */
+  background-image: url("../../../assets/images/publish-poc/background.jpg");
+
+  /* Full height */
+  height: 100%; 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.videobg{
+  text-align: center;
+}
+.card-body4{
+  text-align: center;
+  background-color: #F4F7F9;
+}
+.card-body5{
+  text-align: center;
+  background-color: white;
+}
 
 .bs-example {
   margin: 20;
 }
-
+.txt-gray{
+  padding-left: 2px !important;
+}
 
 [data-toggle="collapse"]:before {
   display: inline-block;
@@ -38,13 +107,10 @@ p {
   transform: rotate(0deg);
 }
 
-
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  grid-gap: 10px;
-
-  padding: 10px;
+  grid-gap: 15px;
 }
 
 .grid-container>div {
@@ -52,4 +118,13 @@ p {
   text-align: center;
   padding: 20px 0;
   font-size: 50px;
+}
+.section-spacing {
+  margin-top: 50px;
+}
+.checkbox-inline{
+  padding-left: 20px;
+}
+.width-150 {
+  width: 150px;
 }

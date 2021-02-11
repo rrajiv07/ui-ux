@@ -45,13 +45,16 @@
                     [ngClass]="{ 'is-invalid': submitted && emailIds.controls[i].get('emailId').errors }">
                     <div *ngIf="submitted && emailIds.controls[i].get('emailId').errors" class="invalid-feedback">
                       <div *ngIf="emailIds.controls[i].get('emailId').errors.required">Email ID is required</div>
+                      <div *ngIf="emailIds.controls[i].get('emailId').touched">Enter valid Email ID</div>
                     </div>
                   </div>
                 
                 </div>
             </div>
-            <div class="col-sm-12 pt-20"><div class="font-12"><img (click)="addMember()" src="assets/images/add-icon.png"><span (click)="addMember()"  class="add-txt">Add another</span></div></div>  
-            
+            <div class="col-sm-6 pt-20"><div class="font-12"><img (click)="addMember()" src="assets/images/add-icon.png"><span (click)="addMember()"  class="add-txt">Add another</span></div></div>  
+            <div *ngIf="emailIds.controls.length!= 1" class="col-sm-6 pt-20"><div class="font-12"><img style="transform: scale(0.7);
+              margin-top: 1px"(click)="onDelete()" 
+              src="assets/images/close-popup.png"><span (click)="onDelete()" class="add-txt">Delete</span></div></div>
             <div class="col-sm-6 pt-50 pr-0">&nbsp;</div>
             
             <div class="col-sm-12 text-right"><button class="btn button-save mt-5" type="submit">Invite team

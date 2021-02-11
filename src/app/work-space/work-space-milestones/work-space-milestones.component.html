@@ -6,13 +6,13 @@
           <div class="col-sm-12 milestons-list">
               <ul>
                 <ng-container *ngFor="let milestone of milestoneDtl;index as i">
-                <li *ngIf="i < 5" [class.active]="milestone.statusCode != 'In-Progress' ">
+                <li *ngIf="i < 5" [class.active]="milestone.statusCode != 'In-Progress' && milestone.statusCode != 'Not Started' ">
                   <div class="row">
                       <div class="col-sm-2">
                           <p class="ft-gray ft-14 pb-2 txt-caps">Milestone {{i+1}}</p>
                           <div class="ft-18 ft-normal lh-14">{{milestone.custPhaseName}}</div>
-                          <p *ngIf="milestone.statusCode != 'In-Progress' " class="ft-gray ft-12">Completed on {{milestone.plannedEndDate | date}}</p>
-                          <p *ngIf="milestone.statusCode == 'In-Progress' " class="ft-gray ft-12">{{milestone.statusCode}}</p>
+                          <p *ngIf="milestone.statusCode != 'In-Progress' && milestone.statusCode != 'Not Started' " class="ft-gray ft-12">Completed on {{milestone.plannedEndDate | date}}</p>
+                          <p *ngIf="milestone.statusCode == 'In-Progress' ||  milestone.statusCode == 'Not Started'   " class="ft-gray ft-12">{{milestone.statusCode}}</p>
 
                       </div>
                       <div class="bl-1-green pl-25"></div>

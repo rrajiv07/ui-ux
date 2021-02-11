@@ -62,4 +62,11 @@ export class SubcriptionService {
       }),
       );
   }
+  changeTeamStatus(reqdata: any, header: any) {
+    this.ngxService.start();
+    return this.http.put(`${this.appService.apiURL}microsite/user/status`, reqdata, header)
+        .pipe(map(data => { 
+          this.ngxService.stop();
+          return data; }));
+  }
 } 

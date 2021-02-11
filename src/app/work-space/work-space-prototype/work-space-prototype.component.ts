@@ -129,9 +129,11 @@ export class WorkSpacePrototypeComponent implements OnInit {
   }
   getReviewerCombo()
   {
+    this.reviewers=[];
     const req_data = {
       'micrositeId': this.micrositeId,
-      'workspaceId': this.wsPocId
+      'workspaceId': this.wsPocId,
+      'workspaceDtlId':parseInt(this.boardId)
     }
     this.workspace.getReviewerCombo(req_data,this.header)
       .pipe(first())
@@ -139,7 +141,49 @@ export class WorkSpacePrototypeComponent implements OnInit {
         (data: any) => {
           if ( data.result_data !=null && data.result_data.length) {     
             this.reviewers= data.result_data;
+            this.selectedRole = null;
+            this.reviewers.slice();
             return;
+          }
+        },
+        error => {
+        });
+  }
+  mapReviewer()
+  {
+    console.log(this.selectedReviewerObj)
+    var selectedReviewer = [];
+    var selectedReviewerObj ={};
+
+    if(this.selectedReviewerObj['userName']== undefined)
+    {
+      this.commonService.failureMessage("Select reviewer");
+      return;
+    }
+    selectedReviewerObj['name']=this.selectedReviewerObj['userName'];
+    selectedReviewerObj['id']=this.selectedReviewerObj['userId'];
+
+    selectedReviewer.push(selectedReviewerObj);
+    const reqdata = {
+      "reviewerIds": selectedReviewer,
+      //"docName": formData.docName,
+      "micrositeId": parseInt(this.micrositeId),
+      "workspaceId": parseInt(this.wsPocId),
+      "workspaceDtlId": parseInt(this.boardId)
+    }
+    console.log(reqdata, ">>>>>>>>>>>reqdata")
+    this.workspace.submitReviewer(reqdata, this.header)
+      .pipe(first())
+      .subscribe(
+        (data: any) => {
+          if (data.result_status.toUpperCase() === 'SUCCESS') {
+            this.commonService.successMessage(data.result_msg);
+            this.selectedReviewer = [];
+            this.getAssignedReviewer();
+            this.getReviewerCombo();
+          }
+          else {
+            this.commonService.failureMessage(data.result_msg);
           }
         },
         error => {
@@ -333,6 +377,31 @@ export class WorkSpacePrototypeComponent implements OnInit {
     this.imageModelDialog.onClose.subscribe((data) => {
       this.getAllReviewComments();
     });
+  }
+  deleteExistingReviewer(item)
+  {
+    console.log(item,">>>>>>>>>>>>>>>>>>item");
+    const reqdata = {
+      "micrositeId": parseInt(this.micrositeId),
+      "workspaceId": parseInt(this.wsPocId),
+      "workspaceDtlId": parseInt(this.boardId),
+      "reviewerId": parseInt(item.id)
+    }
+    this.workspace.deleteExistingReviewer(reqdata, this.header)
+      .pipe(first())
+      .subscribe(
+        (data: any) => {
+          if (data.result_status.toUpperCase() == "SUCCESS") {
+            this.commonService.successMessage(data.result_msg);
+            this.getReviewerCombo();
+            this.existingReviewer=[];
+            this.getAssignedReviewer();            
+            return;
+          }
+        },
+        error => {
+        });
+
   }
 }
 

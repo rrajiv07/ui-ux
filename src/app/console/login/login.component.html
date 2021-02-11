@@ -17,6 +17,7 @@
                 formControlName="emailId" [ngClass]="{ 'is-invalid': submitted && f1.emailId.errors }">
               <div *ngIf="submitted && f1.emailId.errors" class="invalid-feedback">
                 <div *ngIf="f1.emailId.errors.required">Email ID is required</div>
+                <div *ngIf="f1.emailId.touched">Enter valid Email ID</div>
               </div>
             </div>
           </div>

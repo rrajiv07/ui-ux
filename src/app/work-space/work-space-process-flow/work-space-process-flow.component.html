@@ -84,18 +84,25 @@
         <div class="row">
           <div class="col-sm-3 pr-0">
             <div class="form-group">
+<<<<<<< HEAD
               <select class="txt-outline w-100" [(ngModel)]="selectedRole" (change)="onChangeReview($event)">
               
+=======
+              <select class="form-control" [(ngModel)]="selectedRole" (change)="onChangeReview($event)">
+               
+>>>>>>> 048a652bf5962c265393ae6d45b2e29135e0d33d
                 <option *ngFor="let item of reviewers" value={{item.userId}} id={{item.userId}}>{{item.userName}}
                 </option>
               </select>
             </div>
           </div>
           <div class="col-sm-2 pl-10 pb-20">
-            <button (click)="selectReviewer()" class="btn button-save">Select</button>
+            <!--<button (click)="selectReviewer()" class="btn button-save">Select</button>
+        --> 
+        <button (click)="mapReviewer()" class="btn button-save">Request Review</button>
           </div>
         </div>
-
+        <!--
         <div class="row" *ngIf="selectedReviewer.length ==0">
           <div class="col-sm-12">
             <div>No reviewer available</div>
@@ -107,17 +114,13 @@
             <button *ngFor="let item of selectedReviewer;let i = index;"
               class="btn btn-outline btn-close">{{item['userName']}}<img (click)="deleteSelectedReviewer(item,i)"
                 src="assets/images/btn-close.png"></button>
-            <!--
-        <button class="btn btn-outline btn-close">Reviewer 1<img src="assets/images/btn-close.png"></button>
-        <button class="btn btn-outline btn-close">Reviewer 2<img src="assets/images/btn-close.png"></button>
-        <button class="btn btn-outline btn-close">Reviewer 3<img src="assets/images/btn-close.png"></button>
-        <button class="btn btn-outline btn-close">Reviewer 4<img src="assets/images/btn-close.png"></button>
-        -->
+           
             <button class="btn btn-outline-purple" (click)="submitReviewer()">Request Review</button>
           </div>
         </div>
+        -->
         <div class="row pl-3 pt-3">
-          <div class="ft-16 pb-10 processflow_pt1_css processflow_pt_20">Existing Reviewer</div>
+          <div class="heading processflow_pt1_css processflow_pt_20">Reviewers Assigned</div>
         </div>
         <div class="row" *ngIf="existingReviewer.length ==0">
           <div class="col-sm-12">
@@ -127,7 +130,8 @@
         <div class="row" *ngIf="existingReviewer.length >0">
           <div class="col-sm-12">
             <button *ngFor="let item of existingReviewer;let i = index;" class="btn btn-outline btn-close"
-              disabled><span class="ft-black">{{item['name']}}</span></button>
+              ><span class="ft-black">{{item['name']}}<img (click)="deleteExistingReviewer(item,i)"
+                src="assets/images/btn-close.png"></span></button>
 
             <!--
         <button class="btn btn-outline btn-close" disabled><span class="ft-black">Reviewer 1</span></button>

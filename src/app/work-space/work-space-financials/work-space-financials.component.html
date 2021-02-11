@@ -1,323 +1,322 @@
 <main class="ml-140 mr-25">
-    <div class="container-fluid">
-        <div class="page-heading">Estimation</div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="radio">
-                            <input (click)="radioClick('Upload')" type="radio" id="tab1" name="optionsRadios" [checked]="myEstimationFlag">
-                            <label for="tab1">Upload my estimation document</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="radio">
-                            <input (click)="radioClick('HiveZen')" type="radio" id="tab2" name="optionsRadios" [checked]="hivezenEstimation" >
-                            <label for="tab2">Use the HiveZen Estimation</label>
-                        </div>
-                    </div>
-                </div>
+  <div class="container-fluid">
+      <div class="page-heading">Estimation</div>
+              <div class="row">
+                  <div class="col-sm-3">
+                      <div class="radio">
+                          <input (click)="radioClick('Upload')" type="radio" id="tab1" name="optionsRadios" [checked]="myEstimationFlag">
+                          <label for="tab1">Upload my estimation document</label>
+                      </div>
+                  </div>
+                  <div class="col-sm-3">
+                      <div class="radio">
+                          <input (click)="radioClick('HiveZen')" type="radio" id="tab2" name="optionsRadios" [checked]="hivezenEstimation" >
+                          <label for="tab2">Use the HiveZen Estimation</label>
+                      </div>
+                  </div>
+              </div>
 
 
 
 
 
-                <div *ngIf="!isUploadFlag" class="row mb-5 section-spacing">
-                    <div class="col-sm-12">
-                      <div class="lh-45 pr-15">
-                        <div class="row">
-                            <div class="col-sm-7">
-                              <label class="ft-18">Phases</label>
-                            </div>
-                            <div class="col-sm-2">
-                              <label class="ft-18">Man Months</label>
-                            </div>
-                            <div class="col-sm-2">
-                              <label class="ft-18">Cost (USD)</label>
-                            </div>
-                            <div class="col-sm-1">
-                              <label class="ft-18"></label>
-                            </div>
+              <div *ngIf="!isUploadFlag" class="row mb-5 section-spacing">
+                  <div class="col-sm-12">
+                    <div class="lh-45 pr-15">
+                      <div class="row">
+                          <div class="col-sm-6">
+                            <label class="ft-18">Phases</label>
                           </div>
-                        </div>
-                        <div>
-                            
-                            <div *ngFor="let hivezenPhaseDtlobj of hivezenPhaseDtl" class="bg-white border-gray mt-10 radius-all-3 lh-45 pr-15">
-                                <div class="row">
-                
-                                  <div class="col-sm-7">
-                                    <div class="font-semibold pl-8">{{hivezenPhaseDtlobj.devPhase}}</div>
-                                  </div>
-                                  <div class="col-sm-2 bg-purple">
-                                    <div>{{hivezenPhaseDtlobj.manMonthsEffort}}</div>
-                                  </div> 
-                                  <div class="col-sm-2 bg-dark-gray">
-                                    <div>${{hivezenPhaseDtlobj.costs}}</div>
-                                  </div>
-                                  <div (click)="editEstimation(hivezenPhaseDtlobj)" class="col-sm-1">
-                                    <div style="text-align: center;cursor: pointer;"><i class="fa fa-edit" style="font-size: 16px;text-align: center;"></i></div>
-                                  </div>
-                                </div>
-                              </div>
-
-                           <!--
-                            <div class="bg-white border-gray mt-10 radius-all-3 lh-45 pr-15">
-                                <div class="row">
-                
-                                  <div class="col-sm-8">
-                                    <div class="font-semibold pl-8">Requirement</div>
-                                  </div>
-                                  <div class="col-sm-2 bg-purple">
-                                    <div>20 Months</div>
-                                  </div>
-                                  <div class="col-sm-2 bg-dark-gray">
-                                    <div>$70.00</div>
-                                  </div>
-                                </div>
-                              </div>
-
-
-                              <div class="bg-white border-gray mt-10 radius-all-3 lh-45 pr-15">
-                                <div class="row">
-                
-                                  <div class="col-sm-8">
-                                    <div class="font-semibold pl-8">Requirement</div>
-                                  </div>
-                                  <div class="col-sm-2 bg-purple">
-                                    <div>20 Months</div>
-                                  </div>
-                                  <div class="col-sm-2 bg-dark-gray">
-                                    <div>$70.00</div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="bg-white border-gray mt-10 radius-all-3 lh-45 pr-15">
-                                <div class="row">
-                
-                                  <div class="col-sm-8">
-                                    <div class="font-semibold pl-8">Requirement</div>
-                                  </div>
-                                  <div class="col-sm-2 bg-purple">
-                                    <div>20 Months</div>
-                                  </div>
-                                  <div class="col-sm-2 bg-dark-gray">
-                                    <div>$70.00</div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="bg-white border-gray mt-10 radius-all-3 lh-45 pr-15">
-                                <div class="row">
-                
-                                  <div class="col-sm-8">
-                                    <div class="font-semibold pl-8">Requirement</div>
-                                  </div>
-                                  <div class="col-sm-2 bg-purple">
-                                    <div>20 Months</div>
-                                  </div>
-                                  <div class="col-sm-2 bg-dark-gray">
-                                    <div>$70.00</div>
-                                  </div>
-                                </div>
-                              </div>
-                              -->
-
+                          <div class="col-sm-2">
+                            <label class="ft-18">Man Months</label>
+                          </div>
+                          <div class="col-sm-2">
+                            <label class="ft-18">Cost (USD)</label>
+                          </div>
+                          <div class="col-sm-1">
+                            <label class="ft-18"></label>
+                          </div>
+                          <div class="col-sm-1">
+                            <label class="ft-18"></label>
                           </div>
                         </div>
                       </div>
-
-                      
-
-                      <div class="row mt-10" *ngIf="!isUploadFlag">
-                          <div class="col-sm-12">
-                            <img (click)="addEstimation()" src="assets/images/add-large.png">
-                            <input disabled type="text" class="txt-outline w-95 txt-transparent ml-10 lh-45" placeholder="Add another row">
-
-                          </div>
-                          <!--
-                          <div class="col-sm-12">
-                            <button class="btn button-save mt-30">Save</button>
-                          </div>
-                          -->
-                    </div>
-
-                    <form class="form-horizontal" [formGroup]="formGroup">
-                        <div class="row mt-40" style="padding-bottom: 10px;"  *ngIf="isUploadFlag">
-                            <div class="col-sm-8">
-                                <input formControlName="uploadFile" class="txt-lable" id="uploadFile" type="file"
-                                name="uploadFile" (change)="fileUpload($event.target.files,$event)"  />
-                                <button class="btn button-save" (click)="upload()" style="cursor: pointer;">Upload File</button>
-                                
-                            </div>
-                        </div>
-                        
-                    </form>
-                    <div class="row" *ngIf="isUploadFlag">
-                        <div class="col-sm-3">
-                            <div class="excel-box">
-                                <img src="assets/images/excel.PNG" width="50" class="mb-2">
-                                <p class="mb-3 ft-12">{{fileName}}</p>
-                                <button (click)="download()" class="btn button-save mr-15 bt-3-purple">View</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row section-spacing">
-                        <div class="col-sm-12">
-                            <div _ngcontent-cjp-c64="" class="page-sub-heading">Comments</div>
-                        </div>
-                    </div>
-                    <div class="txt-outline p-all-30 w-100">
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <div class="font-purple font-bold br-1-gray lh-14"><img src="assets/images/profile-pic.svg" class="user-icon">Michale</div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="br-1-gray lh-14"><img src="assets/images/time.svg" class="time-icon">Dec 31, 2020   4:40PM IST</div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="font-purple lh-14">Comments 32</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="lh-20 mt-20">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
-                                    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 mt-20">
-                        <a href="#reply" class="" data-toggle="collapse"> <img src="assets/images/collapse.png" class="pr-10"><span class="font-purple">collapse all</span></a>
-                        <div id="reply" class="collapse mt-20 ml-30">
-                            <div class="reply mb-30">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="font-purple font-bold br-1-gray lh-14"><img src="assets/images/profile-pic.svg" class="user-icon">Michale</div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="br-1-gray lh-14"><img src="assets/images/time.svg" class="time-icon">Dec 31, 2020   4:40PM IST</div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <div class="font-purple lh-14">Comments 32</div>
-                                </div>
-                            </div>
-                            <div class="row">
+                      <div>
+                          
+                          <div *ngFor="let hivezenPhaseDtlobj of hivezenPhaseDtl" class="bg-white border-gray mt-10 radius-all-3 lh-45 pr-15">
+                              <div class="row">
+              
                                 <div class="col-sm-6">
-                                    <div class="lh-20 mt-10">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
-                                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</div>
+                                  <div class="font-semibold pl-8">{{hivezenPhaseDtlobj.devPhase}}</div>
                                 </div>
+                                <div class="col-sm-2 bg-purple">
+                                  <div>{{hivezenPhaseDtlobj.manMonthsEffort}}</div>
+                                </div> 
+                                <div class="col-sm-2 bg-dark-gray">
+                                  <div>${{hivezenPhaseDtlobj.costs}}</div>
+                                </div>
+                                <div (click)="editEstimation(hivezenPhaseDtlobj)" class="col-sm-1">
+                                  <div style="text-align: center;cursor: pointer;"><i class="fa fa-edit" style="font-size: 16px;text-align: center;"></i></div>
+                                </div>
+                                <div (click)="deleteEstimation(hivezenPhaseDtlobj)" class="col-sm-1">
+                                  <div style="text-align: center;cursor: pointer;"><i class="fa fa-trash" style="font-size: 16px;text-align: center;"></i></div>
+                                </div>
+                              </div>
                             </div>
+
+                         <!--
+                          <div class="bg-white border-gray mt-10 radius-all-3 lh-45 pr-15">
+                              <div class="row">
+              
+                                <div class="col-sm-8">
+                                  <div class="font-semibold pl-8">Requirement</div>
+                                </div>
+                                <div class="col-sm-2 bg-purple">
+                                  <div>20 Months</div>
+                                </div>
+                                <div class="col-sm-2 bg-dark-gray">
+                                  <div>$70.00</div>
+                                </div>
+                              </div>
                             </div>
-                            <div class="reply">
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                        <div class="font-purple font-bold br-1-gray lh-14"><img src="assets/images/profile-pic.svg" class="user-icon">Michale</div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="br-1-gray lh-14"><img src="assets/images/time.svg" class="time-icon">Dec 31, 2020   4:40PM IST</div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="font-purple lh-14">Comments 32</div>
-                                    </div>
+
+
+                            <div class="bg-white border-gray mt-10 radius-all-3 lh-45 pr-15">
+                              <div class="row">
+              
+                                <div class="col-sm-8">
+                                  <div class="font-semibold pl-8">Requirement</div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="lh-20 mt-10">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
-                                            totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</div>
-                                    </div>
+                                <div class="col-sm-2 bg-purple">
+                                  <div>20 Months</div>
                                 </div>
+                                <div class="col-sm-2 bg-dark-gray">
+                                  <div>$70.00</div>
                                 </div>
+                              </div>
+                            </div>
+
+                            <div class="bg-white border-gray mt-10 radius-all-3 lh-45 pr-15">
+                              <div class="row">
+              
+                                <div class="col-sm-8">
+                                  <div class="font-semibold pl-8">Requirement</div>
+                                </div>
+                                <div class="col-sm-2 bg-purple">
+                                  <div>20 Months</div>
+                                </div>
+                                <div class="col-sm-2 bg-dark-gray">
+                                  <div>$70.00</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="bg-white border-gray mt-10 radius-all-3 lh-45 pr-15">
+                              <div class="row">
+              
+                                <div class="col-sm-8">
+                                  <div class="font-semibold pl-8">Requirement</div>
+                                </div>
+                                <div class="col-sm-2 bg-purple">
+                                  <div>20 Months</div>
+                                </div>
+                                <div class="col-sm-2 bg-dark-gray">
+                                  <div>$70.00</div>
+                                </div>
+                              </div>
+                            </div>
+                            -->
+
                         </div>
-                    </div>
-                </div>
-
-
-                    </div>
-                    <div class="txt-outline w-100 p-all-10 bb-2-purple">
-                        <input type="text" placeholder="Reply" class="txt-no-border bl-1-gray w-95 pl-10 ml-30">
+                      </div>
                     </div>
 
-                    <div class="txt-outline w-100 p-all-10 bb-2-purple mt-20">
-                        <input type="text" placeholder="Start new comments" class="txt-no-border bl-1-gray w-95 pl-10 ml-30">
-                    </div>
-                    <div class="send-btn"><img src="assets/images/send.svg"> </div>
-            <!--
-            <div class="mb-5">
-                <div class="estimate-table" *ngIf="!isUploadFlag">
-                    <table id="example" class="table mt-2 ">
-                        <thead>
-                            <tr>
-                                
-                                <th width="76%">Phase</th>
-                                <th width="10%">Man Month</th>
-                                <th width="10%">Cost(USD)</th>
-                                <th width="4%"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="bg-white" *ngFor="let hivezenPhaseDtlobj of hivezenPhaseDtl" >
-                                <td>{{hivezenPhaseDtlobj.devPhase}}</td>
-                                <td class="badge-status bg-purple ft-white"><span>{{hivezenPhaseDtlobj.manMonthsEffort}}</span></td>
-                                <td class="badge-status bg-light-gray"><span>${{hivezenPhaseDtlobj.costs}}</span></td>
-                                <td style="width: 20px;"><a (click)="editEstimation(hivezenPhaseDtlobj)" style="cursor: pointer;">
-                                    <i class="fa fa-edit" style="font-size: 14px;"></i></a></td>
-                            </tr>
-                           </tbody>
-                    </table>
-                </div>
-                <div class="row mt-3" *ngIf="!isUploadFlag">
-                    <div class="col-sm-12">
-                    <a style="cursor: pointer;" (click)="addEstimation()"><img src="assets/images/add-large.png"></a>
-                    <input type="text" class="txt-outline txt-transparent ml-10 w-95 p-all-10" placeholder="Add another row">
-                </div>
-                </div>
-                <form [formGroup]="formGroup">
-                    <div class="row" *ngIf="isUploadFlag">
-                        <div class="mt-40">
-                            <div class="col-sm-8">
-                                <input formControlName="uploadFile" class="txt-lable" id="uploadFile" type="file"
-                                name="uploadFile" (change)="fileUpload($event.target.files)"  />
-                                <button class="btn1" (click)="upload()">Upload File</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
                     
-                    <div class="row" *ngIf="isUploadFlag">
-                        <div class="col-sm-3">
-                            <div class="excel-box">
-                                <img src="assets/images/excel.PNG" width="50" class="mb-2">
-                                <p class="mb-3 ft-12">{{fileName}}</p>
-                                <button (click)="download()" class="btn button-save mr-15 bt-3-purple">View</button>
-                            </div>
+
+                    <div class="row mt-10" *ngIf="!isUploadFlag">
+                        <div class="col-sm-12">
+                          <img (click)="addEstimation()" src="assets/images/add-large.png">
+                          <input disabled type="text" class="txt-outline w-95 txt-transparent ml-10 lh-45" placeholder="Add another row">
+
                         </div>
-                    </div>
-                <div class="row">
-                    <div class="mt-5 pl-3 pb-1">Comments</div>
-                </div>
-                <div class="text-comment">
-                    <i class="fa fa-close cls-btn" onclick="javascript:eraseText();"> </i>
-                    <textarea id='output' cols="80" rows=5 readonly>
-                            Michal | Dec 31, 2020 4.40 PM IST
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been  
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been                     
-                            Reply
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been  
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been                                    
-                        </textarea>
-                </div>
-                <div class="text-comment mt-3 mb-5">
-                    <i class="fa fa-close cls-btn" onclick="javascript:eraseText1();"> </i>
-                    <textarea id='output1' cols="80" rows=3 readonly>
-                            Michal | Dec 31, 2020 4.40 PM IST
-                            Lorem Ipsum is simply dummy text of the printing                   
-                        </textarea>
-                </div>
-            </div>
-            -->
-        </div>
+                        <!--
+                        <div class="col-sm-12">
+                          <button class="btn button-save mt-30">Save</button>
+                        </div>
+                        -->
+                  </div>
+
+                  <form class="form-horizontal" [formGroup]="formGroup">
+                      <div class="row mt-40" style="padding-bottom: 10px;"  *ngIf="isUploadFlag">
+                          <div class="col-sm-8">
+                              <input formControlName="uploadFile" class="txt-lable" id="uploadFile" type="file"
+                              name="uploadFile" (change)="fileUpload($event.target.files,$event)"  />
+                              <button class="btn button-save" (click)="upload()" style="cursor: pointer;">Upload File</button>
+                              
+                          </div>
+                      </div>
+                      
+                  </form>
+                  <div class="row" *ngIf="isUploadFlag">
+                      <div class="col-sm-3">
+                          <div class="excel-box">
+                              <img src="assets/images/excel.PNG" width="50" class="mb-2">
+                              <p class="mb-3 ft-12">{{fileName}}</p>
+                              <button (click)="download()" class="btn button-save mr-15 bt-3-purple">View</button>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="row section-spacing">
+                      <div class="col-sm-12">
+                          <div _ngcontent-cjp-c64="" class="page-sub-heading">Comments</div>
+                      </div>
+                  </div>
+                  <ng-container *ngFor="let commentsDtlObj of commentsDtl">
+                  <div class="txt-outline p-all-30 w-100">
+                      <div class="row">
+                          <div class="col-sm-2">
+                              <div class="font-purple font-bold br-1-gray lh-14"><img src="assets/images/profile-pic.svg" class="user-icon"> {{commentsDtlObj.createdBy}}</div>
+                          </div>
+                          <div class="col-sm-3">
+                              <div class="br-1-gray lh-14"><img src="assets/images/time.svg" class="time-icon">{{commonService.convertDateTimeFormat(commentsDtlObj.commentCreatedDate, 'false')}}</div>
+                          </div>
+                          <div class="col-sm-2">
+                            <div class="font-purple lh-14" *ngIf="commentsDtlObj.replyList ==null">Comments 0</div>
+                            <div class="font-purple lh-14" *ngIf="commentsDtlObj.replyList !=null">Comments {{commentsDtlObj.replyList.length}}</div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-12">
+                              <div class="lh-20 mt-20">
+                                {{commentsDtlObj.comments}}
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row" *ngIf="commentsDtlObj.replyList !=null">
+                          <div class="col-sm-12 mt-20">
+                      <a href="#reply{{commentsDtlObj.id}}" class="" data-toggle="collapse"> <img src="assets/images/collapse.png" class="pr-10"><span class="font-purple">collapse all</span></a>
+                     
+                      <div  id="reply{{commentsDtlObj.id}}" class="collapse mt-20 ml-30">
+                          <div *ngFor="let replyListObj of commentsDtlObj.replyList"  class="reply mb-30">
+                          <div class="row">
+                              <div class="col-sm-2">
+                                  <div class="font-purple font-bold br-1-gray lh-14"><img src="assets/images/profile-pic.svg" class="user-icon">{{replyListObj.createdBy}}</div>
+                              </div>
+                              <div class="col-sm-3">
+                                  <div class="lh-14"><img src="assets/images/time.svg" class="time-icon">{{commonService.convertDateTimeFormat(replyListObj.createdDate, 'false')}}</div>
+                              </div>
+                              <!--
+                              <div class="col-sm-2">
+                                  <div class="font-purple lh-14">Comments 32</div>
+                              </div>
+                              -->
+                          </div>
+                          <div class="row">
+                              <div class="col-sm-6">
+                                  <div class="lh-20 mt-10">{{replyListObj.comments}}</div>
+                              </div>
+                          </div>
+                          </div>
+                          
+                      </div>
+                  </div>
+              </div>
+
+
+                  </div>
+                  <form [formGroup]="formGroup" class="form-horizontal">
+                  <div class="txt-outline w-100 p-all-10 bb-2-purple">
+                      <input type="text" placeholder="Reply" class="txt-no-border bl-1-gray w-95 pl-10 ml-30"
+                      formControlName="replyComments" (keyup.enter)="ReplyComments(commentsDtlObj)"
+                      >
+                  </div>
+                </form>
+                </ng-container>
+                <form [formGroup]="formGroup" class="form-horizontal">
+                  <div class="txt-outline w-100 p-all-10 bb-2-purple mt-20">
+                      <input formControlName="newComments" (keyup.enter)="NewComments()" type="text" placeholder="Start new comments" class="txt-no-border bl-1-gray w-95 pl-10 ml-30">
+                  </div>
+                </form>
+                  <div class="send-btn" (click)="NewComments()"><img (click)="NewComments()" src="assets/images/send.svg"> </div>
+          <!--
+          <div class="mb-5">
+              <div class="estimate-table" *ngIf="!isUploadFlag">
+                  <table id="example" class="table mt-2 ">
+                      <thead>
+                          <tr>
+                              
+                              <th width="76%">Phase</th>
+                              <th width="10%">Man Month</th>
+                              <th width="10%">Cost(USD)</th>
+                              <th width="4%"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr class="bg-white" *ngFor="let hivezenPhaseDtlobj of hivezenPhaseDtl" >
+                              <td>{{hivezenPhaseDtlobj.devPhase}}</td>
+                              <td class="badge-status bg-purple ft-white"><span>{{hivezenPhaseDtlobj.manMonthsEffort}}</span></td>
+                              <td class="badge-status bg-light-gray"><span>${{hivezenPhaseDtlobj.costs}}</span></td>
+                              <td style="width: 20px;"><a (click)="editEstimation(hivezenPhaseDtlobj)" style="cursor: pointer;">
+                                  <i class="fa fa-edit" style="font-size: 14px;"></i></a></td>
+                          </tr>
+                         </tbody>
+                  </table>
+              </div>
+              <div class="row mt-3" *ngIf="!isUploadFlag">
+                  <div class="col-sm-12">
+                  <a style="cursor: pointer;" (click)="addEstimation()"><img src="assets/images/add-large.png"></a>
+                  <input type="text" class="txt-outline txt-transparent ml-10 w-95 p-all-10" placeholder="Add another row">
+              </div>
+              </div>
+              <form [formGroup]="formGroup">
+                  <div class="row" *ngIf="isUploadFlag">
+                      <div class="mt-40">
+                          <div class="col-sm-8">
+                              <input formControlName="uploadFile" class="txt-lable" id="uploadFile" type="file"
+                              name="uploadFile" (change)="fileUpload($event.target.files)"  />
+                              <button class="btn1" (click)="upload()">Upload File</button>
+                          </div>
+                      </div>
+                  </div>
+              </form>
+                  
+                  <div class="row" *ngIf="isUploadFlag">
+                      <div class="col-sm-3">
+                          <div class="excel-box">
+                              <img src="assets/images/excel.PNG" width="50" class="mb-2">
+                              <p class="mb-3 ft-12">{{fileName}}</p>
+                              <button (click)="download()" class="btn button-save mr-15 bt-3-purple">View</button>
+                          </div>
+                      </div>
+                  </div>
+              <div class="row">
+                  <div class="mt-5 pl-3 pb-1">Comments</div>
+              </div>
+              <div class="text-comment">
+                  <i class="fa fa-close cls-btn" onclick="javascript:eraseText();"> </i>
+                  <textarea id='output' cols="80" rows=5 readonly>
+                          Michal | Dec 31, 2020 4.40 PM IST
+                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been  
+                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been                     
+                          Reply
+                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been  
+                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been                                    
+                      </textarea>
+              </div>
+              <div class="text-comment mt-3 mb-5">
+                  <i class="fa fa-close cls-btn" onclick="javascript:eraseText1();"> </i>
+                  <textarea id='output1' cols="80" rows=3 readonly>
+                          Michal | Dec 31, 2020 4.40 PM IST
+                          Lorem Ipsum is simply dummy text of the printing                   
+                      </textarea>
+              </div>
+          </div>
+          -->
+      </div>
 </main>
 <footer>
-  <div class="container-fluid">
-      <div class="footer">©HiveZen.All rights reserved</div>
-  </div>
+<div class="container-fluid">
+    <div class="footer">©HiveZen.All rights reserved</div>
+</div>
 </footer>

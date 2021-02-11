@@ -145,4 +145,7 @@ export class WorkSpaceSummaryComponent implements OnInit {
         error => {
         });
   }
+  viewMilestone(SubMenu){
+    this.route.navigateByUrl('/workspace/view/' + this.wsPocId +'/' + this.wsPocName + '/' + SubMenu);
+  }
 }

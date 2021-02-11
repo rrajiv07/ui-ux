@@ -19,16 +19,19 @@
                 <div class="col-sm-3">
                   <label class="ft-18">Resource</label>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                   <label class="ft-18">Email</label>
                 </div>
                 <div class="col-sm-2">
                   <label class="ft-18">Type</label>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-1">
                   <label class="ft-18">Role</label>
                 </div>
                 <div class="col-sm-1">
+                  <label class="ft-18">Status</label>
+                </div>
+                <div class="col-sm-2">
                   <label class="ft-18"></label>
                 </div>
   
@@ -41,42 +44,27 @@
                     <div class="col-sm-3">
                       <div class="font-semibold pl-8">{{teamListObj.userName}}</div>
                     </div>
-                    <div class="col-sm-4">
-                      <div>{{teamListObj.email}}</div>
+                    <div class="col-sm-3">
+                      <div><img src="assets/images/edit-icon.svg" class="edit-icon">{{teamListObj.email}}</div>
                     </div>
                     <div class="col-sm-2">
                       <div>{{teamListObj.usertype}}</div>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-1">
                       <div>{{teamListObj.roleCode}}</div>
                     </div>
-                    <div class="col-sm-1 align-right">
-                      <div><img src="assets/images/edit-icon.svg" class="edit-icon"></div>
+                    <div class="col-sm-1">
+                      <div><span class="badge badge-accepted"
+                        [ngClass]="{'badge-rejected action_status_rejected': teamListObj.statusCode == 'Inactive'}"
+                        >{{teamListObj.statusCode}}</span></div>
                     </div>
-                  </div>
-                  <div class="bg-white border-gray mt-10 radius-all-3 p-all-10 m-all-20">
-                    <div class="row">
-                      <div class="col-sm-10">
-                        <div>content</div>
-                      </div>
-                      <div class="col-sm-2">
-                        <div class="dropdown align-right">
-                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown button
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Developer</a>
-                            <a class="dropdown-item" href="#">Developer</a>
-                            <a class="dropdown-item" href="#">Developer</a>
-                          </div>
-                        </div>
-                      </div>
+                    <div class="col-sm-2" style="text-align: right;">
+                      <div style="width: 100px;" *ngIf="teamListObj.statusCode != 'Active' && teamListObj.usertype !='Idea Owner'"   (click)="changeTeamStatus(teamListObj,'Active')" class="btn button-save ml-10">Active</div>
+					            <div  style="width: 100px;" *ngIf="teamListObj.statusCode == 'Active' && teamListObj.usertype !='Idea Owner'"  (click)="changeTeamStatus(teamListObj,'Inactive')" class="btn button-save ml-10">InActive</div>
+				
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <div>
               </div>
             </div>
           </div>

@@ -31,9 +31,26 @@ export class WorkSpaceWireframeService {
       }),
       );
   }
+  deleteExistingReviewer(id: any, header: any){
+    this.ngxService.start();
+    return this.http.delete<any>(`${this.appService.apiURL}phase/reviewer/mapping?workspaceId=${id.workspaceId}&micrositeId=${id.micrositeId}&reviewerId=${id.reviewerId}&workspaceDtlId=${id.workspaceDtlId}`, header)
+      .pipe(map(data => {
+        this.ngxService.stop();
+        return data;
+      }),
+      );
+  }
   getReviewerCombo(id: any, header: any) {
     this.ngxService.start();
+    /*
     return this.http.get<any>(`${this.appService.apiURL}workspace/team/user-byrole?workspaceId=${id.workspaceId}&micrositeId=${id.micrositeId}&roleId=${this.role_id}`, header)
+      .pipe(map(data => {
+        this.ngxService.stop();
+        return data;
+      }),
+      );
+    */
+   return this.http.get<any>(`${this.appService.apiURL}workspace/team/unassigned/reviewers?workspaceId=${id.workspaceId}&micrositeId=${id.micrositeId}&roleId=${this.role_id}&workspaceDtlId=${id.workspaceDtlId}`, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;

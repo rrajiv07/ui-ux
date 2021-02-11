@@ -1,0 +1,501 @@
+<main class="ml-80 mr-25">
+    <div class="container-fluid">
+        <div class="page-heading mb-0">Welcome to your HiveZen account!</div>
+        <div class="sub-heading">Let’s get you started with your first Workspace</div>
+        <form [formGroup]="formGroup" class="form-horizontal">
+        <div class="row pt-50">
+            <div class="col-sm-4">
+                <div class="w-30 pull-left">
+                    <div class="txt-lable">Workspace Name</div>
+                </div>
+                
+                <div class="w-70 pull-left">
+                <input type="text" formControlName="wsName" class="form-control bg-white" id="wsName" placeholder="Workspace Name"
+                [ngClass]="{ 'is-invalid': submitted && f1.wsName.errors }"
+                >
+                <div *ngIf="submitted && f1.wsName.errors" class="invalid-feedback">
+                    <div *ngIf="f1.wsName.errors.required">Workspace Name is required</div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="w-20 pull-left">
+                    <div class="txt-lable">Description</div>
+                </div>
+            <div class="w-80 pull-left">
+                <textarea type="text" formControlName="wsDesc" class="form-control bg-white" id="description"
+                    placeholder="Description"
+                    [ngClass]="{ 'is-invalid': submitted && f1.wsDesc.errors }"
+                    ></textarea>
+                    <div *ngIf="submitted && f1.wsDesc.errors" class="invalid-feedback">
+                        <div *ngIf="f1.wsDesc.errors.required">Workspace Description is required</div>
+                      </div>
+                </div>
+                
+            </div>
+        </div>
+
+
+        <div div class="collapse-container" *ngIf="getWorkSpaceBoardAvailablity('Initial Requirement')">
+            <div data-target="#InitialRequirment" class="w100">
+                <div class="row">
+                    <div class="col-sm-8">
+                            <div _ngcontent-vwq-c52="" class="nav-item dropdown no-arrow">
+                                <a _ngcontent-vwq-c52="" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle toggle-icon">
+                                    <img src="assets/images/down-arrow-purple.png">
+                                </a> 
+                                <span class="collapse-heading txt-purple toggle-heading">Initial Requirement</span>
+                                <div aria-labelledby="userDropdown" class="dropdown-menu toggle-menu shadow animated--grow-in">
+                                <a class="dropdown-item"><img  src="assets/images/edit.svg">Rename Phase</a>
+                                <div class="dropdown-divider"></div>
+                                <a (click)="deletePhase('Initial Requirement','initialRequirement')"  class="dropdown-item"><img src="assets/images/trash.svg">Delete Phase</a>
+                                    <!--
+                                    <a class="dropdown-item"><img src="assets/images/collapse.svg">Collapse this Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/collapse.svg">Collapse all Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/select.svg">Select All Items</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/add.svg">Add Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/duplicate.svg">Duplicate this Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/move.svg">Move Group to Board</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/edit.svg">Rename Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/theme.svg">Change Group Color</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/excel.svg">Export to Excel</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/trash.svg">Delete</a>
+                                    <a class="dropdown-item"><img src="assets/images/archive.svg">Archive</a>
+                                    -->
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="collapse-status">Status</div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="collapse-date">Date <!--<img src="assets/images/add-small.png" class="pull-right">--></div>
+                    </div>
+                </div>
+            </div>
+            <div id="InitialRequirment">
+                <div class="collapse-head">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="desc bl-5-purple">
+                                <input type="text" formControlName="initialRequirement" class="form-control bg-white noborder" placeholder="Desc"
+                                [ngClass]="{ 'is-invalid': submitted && f1.initialRequirement.errors }"
+                                >
+                                <div *ngIf="!submitted && f1.initialRequirement.errors" class="invalid-feedback">
+                                    <div *ngIf="f1.initialRequirement.errors.required">Initial Requirement is required</div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="status">Active</div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="date">{{currentDate | date:'yyyy-MM-dd'}}</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div div class="collapse-container" *ngIf="getWorkSpaceBoardAvailablity('Process Flow')">
+            <div data-target="#ProcessFlow" class="w100">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div _ngcontent-vwq-c52="" class="nav-item dropdown no-arrow">
+                            <a _ngcontent-vwq-c52="" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle toggle-icon">
+                                <img src="assets/images/down-arrow-green.png">
+                            </a> 
+                            <span class="collapse-heading txt-green toggle-heading">Process Flow</span>
+                            <div aria-labelledby="userDropdown" class="dropdown-menu toggle-menu shadow animated--grow-in">
+                                <a class="dropdown-item"><img  src="assets/images/edit.svg">Rename Phase</a>
+                                <div class="dropdown-divider"></div>
+                                <a (click)="deletePhase('Process Flow','processFlow')"  class="dropdown-item"><img src="assets/images/trash.svg">Delete Phase</a>
+                                    <!--
+                                    <a class="dropdown-item"><img src="assets/images/collapse.svg">Collapse this Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/collapse.svg">Collapse all Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/select.svg">Select All Items</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/add.svg">Add Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/duplicate.svg">Duplicate this Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/move.svg">Move Group to Board</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/edit.svg">Rename Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/theme.svg">Change Group Color</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/excel.svg">Export to Excel</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/trash.svg">Delete</a>
+                                    <a class="dropdown-item"><img src="assets/images/archive.svg">Archive</a>
+                                    -->    
+                            </div>
+                        </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="collapse-status">Status</div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="collapse-date">Date<!-- <img src="assets/images/add-small.png" class="pull-right">--></div>
+                </div>
+                </div>
+            </div>
+            <div id="ProcessFlow">
+                <div class="collapse-head">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="desc bl-5-green">
+                                <input type="text" class="form-control bg-white noborder" placeholder="Desc"
+                                [ngClass]="{ 'is-invalid': submitted && f1.processFlow.errors }"
+                                formControlName="processFlow"
+                                >
+                                <div *ngIf="submitted && f1.processFlow.errors" class="invalid-feedback">
+                                    <div *ngIf="f1.processFlow.errors.required">Process Flow is required</div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="status">Active</div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="date">{{currentDate | date:'yyyy-MM-dd'}}</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div div class="collapse-container" *ngIf="getWorkSpaceBoardAvailablity('Application Flow')">
+            <div data-target="#ApplicationFlow" class="w100">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div _ngcontent-vwq-c52="" class="nav-item dropdown no-arrow">
+                            <a _ngcontent-vwq-c52="" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle toggle-icon">
+                                <img src="assets/images/down-arrow-red.png">
+                            </a> 
+                            <span class="collapse-heading txt-red toggle-heading">Application Flow</span>
+                            <div aria-labelledby="userDropdown" class="dropdown-menu toggle-menu shadow animated--grow-in">
+                                <a class="dropdown-item"><img  src="assets/images/edit.svg">Rename Phase</a>
+                                <div class="dropdown-divider"></div>
+                                <a (click)="deletePhase('Application Flow','applicationFlow')"  class="dropdown-item"><img src="assets/images/trash.svg">Delete Phase</a>
+                                    <!--
+                                    <a class="dropdown-item"><img src="assets/images/collapse.svg">Collapse this Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/collapse.svg">Collapse all Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/select.svg">Select All Items</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/add.svg">Add Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/duplicate.svg">Duplicate this Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/move.svg">Move Group to Board</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/edit.svg">Rename Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/theme.svg">Change Group Color</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/excel.svg">Export to Excel</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/trash.svg">Delete</a>
+                                    <a class="dropdown-item"><img src="assets/images/archive.svg">Archive</a>
+                                    --></div>
+                        </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="collapse-status">Status</div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="collapse-date">Date <!--<img src="assets/images/add-small.png" class="pull-right">--></div>
+                </div>
+                </div>
+            </div>
+            <div id="ApplicationFlow">
+                <div class="collapse-head">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="desc bl-5-red">
+                                <input type="text" formControlName="applicationFlow" class="form-control bg-white noborder" placeholder="Desc"
+                                [ngClass]="{ 'is-invalid': submitted && f1.applicationFlow.errors }">
+                                <div *ngIf="submitted && f1.applicationFlow.errors" class="invalid-feedback">
+                                    <div *ngIf="f1.applicationFlow.errors.required">Application Flow is required</div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="status">Active</div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="date">{{currentDate | date:'yyyy-MM-dd'}}</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div div class="collapse-container" *ngIf="getWorkSpaceBoardAvailablity('Wireframe')">
+            <div data-target="#Wireframe" class="w100">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div _ngcontent-vwq-c52="" class="nav-item dropdown no-arrow">
+                            <a _ngcontent-vwq-c52="" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle toggle-icon">
+                                <img src="assets/images/down-arrow-purple.png">
+                            </a> 
+                            <span class="collapse-heading txt-purple toggle-heading">Wireframe</span>
+                            <div aria-labelledby="userDropdown" class="dropdown-menu toggle-menu shadow animated--grow-in">
+                                <a class="dropdown-item"><img  src="assets/images/edit.svg">Rename Phase</a>
+                                <div class="dropdown-divider"></div>
+                                <a (click)="deletePhase('Wireframe','wireframe')"  class="dropdown-item"><img src="assets/images/trash.svg">Delete Phase</a>
+                                    <!--
+                                    <a class="dropdown-item"><img src="assets/images/collapse.svg">Collapse this Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/collapse.svg">Collapse all Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/select.svg">Select All Items</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/add.svg">Add Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/duplicate.svg">Duplicate this Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/move.svg">Move Group to Board</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/edit.svg">Rename Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/theme.svg">Change Group Color</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/excel.svg">Export to Excel</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/trash.svg">Delete</a>
+                                    <a class="dropdown-item"><img src="assets/images/archive.svg">Archive</a>
+                                    --></div>
+                        </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="collapse-status">Status</div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="collapse-date">Date <!--<img src="assets/images/add-small.png" class="pull-right">--></div>
+                </div>
+                </div>
+            </div>
+            <div id="Wireframe">
+                <div class="collapse-head">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="desc bl-5-purple">
+                                <input type="text" class="form-control bg-white noborder" placeholder="Desc"
+                                formControlName="wireframe" [ngClass]="{ 'is-invalid': submitted && f1.wireframe.errors }"
+                                >
+                                <div *ngIf="submitted && f1.wireframe.errors" class="invalid-feedback">
+                                    <div *ngIf="f1.wireframe.errors.required">Wireframe is required</div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="status">Active</div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="date">{{currentDate | date:'yyyy-MM-dd'}}</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div div class="collapse-container" *ngIf="getWorkSpaceBoardAvailablity('Prototype')">
+            <div data-target="#Prototype" class="w100">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div _ngcontent-vwq-c52="" class="nav-item dropdown no-arrow">
+                            <a _ngcontent-vwq-c52="" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle toggle-icon">
+                                <img src="assets/images/down-arrow-green.png">
+                            </a> 
+                            <span class="collapse-heading txt-green toggle-heading">Prototype</span>
+                            <div aria-labelledby="userDropdown" class="dropdown-menu toggle-menu shadow animated--grow-in">
+                                <a class="dropdown-item"><img  src="assets/images/edit.svg">Rename Phase</a>
+                                <div class="dropdown-divider"></div>
+                                <a (click)="deletePhase('Prototype','prototype')"  class="dropdown-item"><img src="assets/images/trash.svg">Delete Phase</a>
+                                     <!--
+                                    <a class="dropdown-item"><img src="assets/images/collapse.svg">Collapse this Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/collapse.svg">Collapse all Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/select.svg">Select All Items</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/add.svg">Add Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/duplicate.svg">Duplicate this Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/move.svg">Move Group to Board</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/edit.svg">Rename Group</a>
+                                    <a class="dropdown-item"><img src="assets/images/theme.svg">Change Group Color</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/excel.svg">Export to Excel</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"><img src="assets/images/trash.svg">Delete</a>
+                                    <a class="dropdown-item"><img src="assets/images/archive.svg">Archive</a>
+                                    --> </div>
+                        </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="collapse-status">Status</div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="collapse-date">Date <!--<img src="assets/images/add-small.png" class="pull-right">--></div>
+                </div>
+                </div>
+            </div>
+            <div id="Prototype">
+                <div class="collapse-head">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="desc bl-5-green">
+                                <input type="text" class="form-control bg-white noborder" placeholder="Desc"
+                                formControlName="prototype" [ngClass]="{ 'is-invalid': submitted && f1.prototype.errors }">
+                                <div *ngIf="submitted && f1.prototype.errors" class="invalid-feedback">
+                                    <div *ngIf="f1.prototype.errors.required">Prototype is required</div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="status">Active</div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="date">{{currentDate | date:'yyyy-MM-dd'}}</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <!--
+        <div div class="collapse-container" *ngIf="getWorkSpaceBoardAvailablity('POC Review')">
+            <div data-toggle="collapse" data-target="#POCReview" class="w100">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <img src="assets/images/down-arrow-red.png"><span class="collapse-heading txt-red">POC
+                            Review</span>
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="collapse-status">Status</div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="collapse-date">Date <img src="assets/images/add-small.png" class="pull-right"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="POCReview" class="collapse">
+                <div class="collapse-head">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="desc bl-5-red">
+                                <input type="text" class="form-control bg-white" placeholder="Desc"
+                                formControlName="pocreview" [ngClass]="{ 'is-invalid': submitted && f1.pocreview.errors }">
+                                <div *ngIf="submitted && f1.pocreview.errors" class="invalid-feedback">
+                                    <div *ngIf="f1.pocreview.errors.required">POC Review is required</div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="status">Status</div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="date">Date</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div div class="collapse-container" *ngIf="getWorkSpaceBoardAvailablity('Development Documents')">
+            <div data-toggle="collapse" data-target="#DevDocuments" class="w100">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <img src="assets/images/down-arrow-purple.png"><span
+                            class="collapse-heading txt-purple">Development Documents</span>
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="collapse-status">Status</div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="collapse-date">Date <img src="assets/images/add-small.png" class="pull-right"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="DevDocuments" class="collapse">
+                <div class="collapse-head">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="desc bl-5-purple">
+                                <input type="text" class="form-control bg-white" placeholder="Desc"
+                                formControlName="developmentDocuments" [ngClass]="{ 'is-invalid': submitted && f1.developmentDocuments.errors }">
+                                <div *ngIf="submitted && f1.developmentDocuments.errors" class="invalid-feedback">
+                                    <div *ngIf="f1.developmentDocuments.errors.required">Development Documents is required</div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="status">Status</div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="date">Date</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div div class="collapse-container" *ngIf="getWorkSpaceBoardAvailablity('Publish POC')">
+            <div data-toggle="collapse" data-target="#PublishPOC" class="w100">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <img src="assets/images/down-arrow-green.png"><span class="collapse-heading txt-purple">Publish
+                            POC</span>
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="collapse-status">Status</div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="collapse-date">Date <img src="assets/images/add-small.png" class="pull-right"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="PublishPOC" class="collapse">
+                <div class="collapse-head">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="desc bl-5-green">
+                                <input type="text" class="form-control bg-white" placeholder="Desc"
+                                formControlName="publishpoc" [ngClass]="{ 'is-invalid': submitted && f1.publishpoc.errors }">
+                                <div *ngIf="submitted && f1.publishpoc.errors" class="invalid-feedback">
+                                    <div *ngIf="f1.publishpoc.errors.required">Publish POC is required</div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="status">Status</div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="date">Date</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        -->
+        <div class="row">
+            <div class="col-sm-12 ml-30">
+                <div (click)="save()" class="btn button-save">Create Workspace</div>
+            </div>
+        </div>
+    </form>
+    </div>
+   
+</main>
+<footer>
+    <div class="container-fluid">
+        <div class="footer">©HiveZen.All rights reserved</div>
+    </div>
+</footer>

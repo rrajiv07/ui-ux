@@ -21,9 +21,9 @@ export class WorkSpaceTeamService {
     ) {
   }
 
-  getAllResources(microsite: any, header: any) {
+  getAllResources(microsite: any,workspaceId :any, header: any) {
     this.ngxService.start();
-    return this.http.get<any>(`${this.appService.apiURL}microsite/users?micrositeId=${microsite}`, header)
+    return this.http.get<any>(`${this.appService.apiURL}microsite/active/unassigned/users?micrositeId=${microsite}&workspaceId=${workspaceId}`, header)
       .pipe(map(data => {
         this.ngxService.stop();
         return data;
@@ -58,5 +58,11 @@ export class WorkSpaceTeamService {
       }),
       );
   }
-
+  changeTeamStatus(reqdata: any, header: any) {
+    this.ngxService.start();
+    return this.http.put(`${this.appService.apiURL}workspace/team/user/status`, reqdata, header)
+        .pipe(map(data => { 
+          this.ngxService.stop();
+          return data; }));
+  }
 }

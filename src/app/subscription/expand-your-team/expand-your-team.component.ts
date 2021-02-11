@@ -66,6 +66,13 @@ export class ExpandYourTeamComponent implements OnInit {
         error => {
         });
   }
+  get invoiceparticularsArray(): FormArray{
+	  return this.form.get('emailIds') as FormArray;
+  }
+  onDelete(index) {
+    this.invoiceparticularsArray.removeAt(index);
+  }
+  
   init() {
     this.form = this.formBuilder.group({
       emailIds: this.formBuilder.array(
@@ -75,7 +82,7 @@ export class ExpandYourTeamComponent implements OnInit {
   }
   createTeamFormGroup() {
 		return this.formBuilder.group({
-			emailId: ['', [Validators.required]]
+      emailId: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]]
 		})
   }
   get emailIds(): FormArray {
