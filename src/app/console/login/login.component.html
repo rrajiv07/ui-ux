@@ -4,7 +4,7 @@
 <main>
   <div class="container-fluid">
     <div class="heading"><span>Log In </span>to your account</div>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="Login">
+    <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="Login">
       <div class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
@@ -13,7 +13,7 @@
               <div class="txt-lable text-right">Email</div>
             </div>
             <div class="col-sm-7">
-              <input type="text" class="form-control bg-white" id="emailId" placeholder="Enter email"
+              <input autocomplete="off" type="text" class="form-control bg-white" id="emailId" placeholder="Enter email"
                 formControlName="emailId" [ngClass]="{ 'is-invalid': submitted && f1.emailId.errors }">
               <div *ngIf="submitted && f1.emailId.errors" class="invalid-feedback">
                 <div *ngIf="f1.emailId.errors.required">Email ID is required</div>
@@ -26,7 +26,7 @@
               <div class="txt-lable text-right">Password</div>
             </div>
             <div class="col-sm-7">
-              <input type="password" class="form-control bg-white" id="password" placeholder="Enter password"
+              <input name="password" autocomplete="off" type="text" class="form-control password bg-white" id="password" placeholder="Enter password"
                 formControlName="password" [ngClass]="{ 'is-invalid': submitted && f1.password.errors }">
               <div *ngIf="submitted && f1.password.errors" class="invalid-feedback">
                 <div *ngIf="f1.password.errors.required">Password is required</div>

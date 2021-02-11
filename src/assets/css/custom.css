@@ -7408,3 +7408,11 @@ sup {
 .swal2-actions:not(.swal2-loading) .swal2-styled:hover{
     background-image: none !important;
 }
+@font-face {
+    font-family: 'text-security-disc';
+    src: url('fonts/text-security-disc.eot');
+    src: url('fonts/text-security-disc.eot?#iefix') format('embedded-opentype'),
+        url('fonts/text-security-disc.woff') format('woff'),
+        url('fonts/text-security-disc.ttf') format('truetype'),
+        url('images/text-security-disc.svg#text-security') format('svg');
+}
