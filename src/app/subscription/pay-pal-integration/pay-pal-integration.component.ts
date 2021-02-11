@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal'; 
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-pay-pal-integration',
@@ -8,11 +8,14 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
   styleUrls: ['./pay-pal-integration.component.css']
 })
 export class PayPalIntegrationComponent implements OnInit {
-
+  payAmount:any;
   public payPalConfig?: IPayPalConfig;
-  constructor(public dialog: DynamicDialogRef) { }
-
-    ngOnInit(): void {
+  constructor(public dialog: DynamicDialogRef,public config: DynamicDialogConfig) {
+    var reqdata = this.config.data;
+    this.payAmount =reqdata.amount;
+   }
+   
+    ngOnInit(): void {      
       this.initConfig();
     }
 
@@ -26,11 +29,11 @@ export class PayPalIntegrationComponent implements OnInit {
           {
             amount: {
               currency_code: 'INR',
-              value: '1',
+              value: this.payAmount,
               breakdown: {
                 item_total: {
                   currency_code: 'INR',
-                  value: '1'
+                  value: this.payAmount
                 }
               }
             },
@@ -41,7 +44,7 @@ export class PayPalIntegrationComponent implements OnInit {
                 category: 'DIGITAL_GOODS',
                 unit_amount: {
                   currency_code: 'INR',
-                  value: '1',
+                  value: this.payAmount,
                 },
               }
             ]

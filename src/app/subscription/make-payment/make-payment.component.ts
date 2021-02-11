@@ -69,10 +69,13 @@ export class MakePaymentComponent implements OnInit {
   }
   paypal()
   {
+    var objPubSub = {};
+    objPubSub["amount"] = this.basicAmount;
     this.paypalDialogPtr = this.dialogService.open(PayPalIntegrationComponent, {
       showHeader: false,
       closable: false,
       width: '25%',
+      data:objPubSub,
       contentStyle: { "max-height": "30%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "10px" },
     });
     this.paypalDialogPtr.onClose.subscribe((data) => {
@@ -82,7 +85,10 @@ export class MakePaymentComponent implements OnInit {
         this.common.failureMessage("Payment Failed");
       }
       else
+      {
       this.common.successMessage("Payment Successful");
+      this.pay();
+      }
     });
   }
 }
