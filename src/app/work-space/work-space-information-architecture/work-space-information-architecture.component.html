@@ -62,7 +62,7 @@
         <div *ngIf="commonService.getRole() !='developer'" class="row">
           <div class="col-sm-10 pr-0 processflow_pt_20">
             <div class="form-group">
-              <label class="control-label width-125 " for="cname">Review Comments</label>
+              <label class="control-label width-125" for="cname">Review Comments</label>
               <textarea formControlName="reviewComment" class="form-control rounded-0 bg-white" id="reviewComment" rows="3"
                 [ngClass]=" { 'is-invalid' : submitted && f1.reviewComment.errors }"></textarea>
               <div *ngIf="submitted && f1.reviewComment.errors" class="invalid-feedback">
@@ -113,7 +113,7 @@
         </div>
         -->
         <div class="row pl-3">
-          <div class="page-sub-heading section-spacing">Reviewers Assigned</div>
+          <div class="ft-14">Reviewers Assigned</div>
         </div>
         <div class="row" *ngIf="existingReviewer.length ==0">
           <div class="col-sm-12">

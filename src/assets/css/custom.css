@@ -2280,6 +2280,7 @@ code {
   -ms-user-select: none;
   user-select: none;
   font-size: 14px;
+  border-radius: 3px !important;
 }
 .btn-block {
   display: block;
@@ -5518,7 +5519,7 @@ div#vmap {
   background-color: transparent;
   border: 1px solid #7C4791;
   font-size: 14px;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 .mr10px {
   margin-right: 10px;
@@ -5835,6 +5836,7 @@ div#vmap {
   padding: 5px 15px !important;
   height: auto !important;
   min-height: auto !important;
+  border-radius: 3px !important;
 }
 .pr-0 {
   padding-right: 0 !important;
@@ -7380,4 +7382,15 @@ sup {
 
 .mt--3 {
   margin-top: -3px;
+}
+.iframe-container {
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #ffffff;
+  padding: 15px 30px;
+}
+.control-label{
+  margin-bottom: 5px;
+  padding-top: 6px;
+  font-weight: 100;
 }
