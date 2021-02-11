@@ -111,7 +111,7 @@ export class AddInternalResourceComponent implements OnInit {
   }
 
   getTeamList() {
-    this.workspace.getAllResources(this.micrositeId, this.header)
+    this.workspace.getAllResources(this.micrositeId, this.wsPocId,this.header)
       .pipe(first())
       .subscribe(
         (data: any) => {
