@@ -7077,6 +7077,7 @@ input[type=checkbox], input[type=radio] {
   margin-right: 10px;
   font-size: 14px;
 }
+
 .btn-outline{
   border: 1px solid #C9C9C9;
 }
@@ -7113,11 +7114,12 @@ input[type=checkbox], input[type=radio] {
 }
 .plan-basic {
   background-color: #01C875;
-  color: #ffffff;
-  text-align: center;
-  border-radius: 5px;
-  padding: 10px 0;
-  font-size: 18px;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px 0;
+    font-size: 20px;
+    font-weight: bold;
 }
 .plan-standard {
   background-color: #16ACFF;
@@ -7125,7 +7127,8 @@ input[type=checkbox], input[type=radio] {
   text-align: center;
   border-radius: 5px;
   padding: 10px 0;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: bold;
 }
 .plan-pro {
   background-color: #E2445B;
@@ -7133,19 +7136,20 @@ input[type=checkbox], input[type=radio] {
   text-align: center;
   border-radius: 5px;
   padding: 10px 0;
-  font-size: 18px;
+  font-size: 20px;
+    font-weight: bold;
 }
 .purchase-container {
   background-color: #ffffff;
   margin-top: 20px;
   border: 1px solid #CDCDCD;
-  border-radius: 3px;
+  border-radius: 8px;
   padding: 20px;
 }
 .price-container {
   padding: 10px;
   text-align: center;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 .b-all-green {
   border: 1px solid #01C875;
@@ -7434,4 +7438,32 @@ hr {
   color: #6d6d6d !important;
   font-size: 14px;
   font-weight: lighter;
+}
+.list-item {
+  border-bottom: 1px solid #d9d9d9;
+  padding: 20px 0;
+  font-size: 14px;
+  font-weight: lighter;
+  color: #363636;
+}
+.list-item:last-child {
+  border-bottom: none;
+}
+.purchase-lable {
+  margin-top: 295px;
+    line-height: 62px;
+}
+.subscription .btn {
+  margin: 0 5px !important;
+}
+.subscription-price {
+  font-size: 50px;
+  font-weight: lighter;
+  color: #363636;
+}
+.subscription-user
+{
+  font-size: 12px;
+  font-weight: lighter;
+  color: #ababab;
 }
