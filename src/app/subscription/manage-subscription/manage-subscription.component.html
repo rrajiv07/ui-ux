@@ -126,7 +126,7 @@
                     <div class="row">
     
                       <div class="col-sm-4">
-                        <div class="font-semibold pl-8"><img src="assets/images/edit-icon.svg" class="edit-icon">{{item.email}}</div>
+                        <div class="font-semibold pl-8"><!--<img src="assets/images/edit-icon.svg" class="edit-icon">-->{{item.email}}</div>
                       </div>
                       <div class="col-sm-5">
                         <div>{{item.userName}}</div>
@@ -139,6 +139,7 @@
                       <div class="col-sm-2" style="text-align: center;">
                         <div style="width: 100px;" *ngIf="item.statusCode != 'Active' && item.userType !='Idea Owner'"   (click)="changeTeamStatus(item,'Active')" class="btn button-save ml-10">Active</div>
                         <div  style="width: 100px;" *ngIf="item.statusCode == 'Active' && item.userType !='Idea Owner'"  (click)="changeTeamStatus(item,'Inactive')" class="btn button-save ml-10">InActive</div>
+                        <div  style="width: 100px;" *ngIf="item.userType =='Idea Owner'" disabled class="btn btn-secondary ml-10">InActive</div>
           
                       </div>
                     </div>

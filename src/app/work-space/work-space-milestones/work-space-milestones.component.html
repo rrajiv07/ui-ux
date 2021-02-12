@@ -1,212 +1,214 @@
 <main class="ml-140 mr-25">
-  <div class="container-fluid">
-    <div class="page-heading">Milestones</div>
-
-      <div class="row mb-5">
-          <div class="col-sm-12 milestons-list">
-              <ul>
-                <ng-container *ngFor="let milestone of milestoneDtl;index as i">
-                <li *ngIf="i < 5" [class.active]="milestone.statusCode != 'In-Progress' && milestone.statusCode != 'Not Started' ">
-                  <div class="row">
-                      <div class="col-sm-2">
-                          <p class="ft-gray ft-14 pb-2 txt-caps">Milestone {{i+1}}
-                            <span>
-                                <div (click)="viewDetails(milestone)" class="btn button-save">View</div>
-                            </span>    
-                          </p>
-                          <div class="ft-18 ft-normal lh-14">{{milestone.custPhaseName}}</div>
-                          <p *ngIf="milestone.statusCode != 'In-Progress' && milestone.statusCode != 'Not Started' " class="ft-gray ft-12">Completed on {{milestone.plannedEndDate | date}}</p>
-                          <p *ngIf="milestone.statusCode == 'In-Progress' ||  milestone.statusCode == 'Not Started'   " class="ft-gray ft-12">{{milestone.statusCode}}</p>
-
-                      </div>
-                      <div class="bl-1-green pl-25"></div>
-                      <div class="col-sm-2">
-                          <p class="pb-25"></p>
-                          <p class="ft-10">Planned Start Date</p>
-                          <input [disabled]="milestone.statusCode == 'Completed'" (change)="onChangePlanStartDate($event,milestone)" type="date" [(ngModel)]="milestone.plannedStartDate" class="txt-outline w-100">
-                      </div>
-                      <div class="col-sm-2">
-                          <p class="pb-25"></p>
-                          <p class="ft-10">Planned End Date</p>
-                          <input [disabled]="milestone.statusCode == 'Completed'" (change)="onChangePlanEndDate($event,milestone)" type="date" [(ngModel)]="milestone.plannedEndDate" class="txt-outline w-100">
-                      </div>
-                      <div *ngIf="milestone.statusCode != 'Completed'"  class="col-sm-2">
-                        <p class="pb-25"></p>
-                        <p class="ft-10">Status</p>
-                        <select  [disabled]="milestone.statusCode == 'Completed'" class="txt-outline" id="selectOptionid" (change)="onChangeMilestoneStatus(milestone,$event)">
-                            <option value="null" id="null"></option>
-                            <option value="In-Progress" id="In-Progress">In-Progress </option>
-                            <option value="Completed" id="Completed">Completed </option>
-                        </select>
-                    </div>
-                    <div *ngIf="milestone.statusCode != 'Completed'"  class="col-sm-1">
-                        <div (click)="complete(milestone)" class="btn button-save mt-47 pull-left">Save</div>
-                    </div>
-                    <!--
-                      <div class="col-sm-3">
-                          <div (click)="viewDetails(milestone)" class="btn button-save mt-47 pull-left mr-3">View</div>
-                          <div (click)="complete(milestone, 'In-Progress')" class="btn button-save mt-47 pull-left mr-3">Save</div>
-                          <div (click)="complete(milestone, 'Completed')" class="btn button-save mt-47 pull-left">Complete</div>
-                      </div>
-                      -->
-                  </div>
-                 
-              </li>
-          </ng-container>
-          <!--
-                  <li class="active">
-                      <div class="row">
-                          <div class="col-sm-3">
-                              <p class="ft-gray ft-12 pb-4">Milestone 1</p>
-                              <h4>Initial Requirement</h4>
-                              <p class="ft-gray ft-12">Completed on 31st Dec 2020</p>
-                          </div>
-                          <div class="col-sm-2 bl-2-green">
-                              <p class="pb-25"></p>
-                              <p class="ft-10">Planned Start Date</p>
-                              <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
-                                  class="mt-10 ml-5">
-                          </div>
-                          <div class="col-sm-2">
-                              <p class="pb-25"></p>
-                              <p class="ft-10">Planned End Date</p>
-                              <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
-                                  class="mt-10 ml-5">
-                          </div>
-                          <div class="col-sm-2">
-                              <div class="btn button-save mt-47">View Details</div>
-                          </div>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="row">
-                          <div class="col-sm-3">
-                              <p class="ft-gray ft-12 pb-4">Milestone 2</p>
-                              <h4>Process Flow</h4>
-                              <p class="ft-gray ft-12">Inprogress</p>
-                          </div>
-                          <div class="col-sm-2 bl-2-gray">
-                              <p class="pb-25"></p>
-                              <p class="ft-10">Planned Start Date</p>
-                              <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
-                                  class="mt-10 ml-5">
-                          </div>
-                          <div class="col-sm-2">
-                              <p class="pb-25"></p>
-                              <p class="ft-10">Planned End Date</p>
-                              <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
-                                  class="mt-10 ml-5">
-                          </div>
-                          <div class="col-sm-2">
-                              <div class="btn button-save mt-47">View Details</div>
-                          </div>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="row">
-                          <div class="col-sm-3">
-                              <p class="ft-gray ft-12 pb-4">Milestone 3</p>
-                              <h4>Application Flow</h4>
-                              <p class="ft-gray ft-12">Inprogress</p>
-                          </div>
-                          <div class="col-sm-2 bl-2-gray">
-                              <p class="pb-25"></p>
-                              <p class="ft-10">Planned Start Date</p>
-                              <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
-                                  class="mt-10 ml-5">
-                          </div>
-                          <div class="col-sm-2">
-                              <p class="pb-25"></p>
-                              <p class="ft-10">Planned End Date</p>
-                              <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
-                                  class="mt-10 ml-5">
-                          </div>
-                          <div class="col-sm-2">
-                              <div class="btn button-save mt-47">View Details</div>
-                          </div>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="row">
-                          <div class="col-sm-3">
-                              <p class="ft-gray ft-12 pb-4">Milestone 4</p>
-                              <h4>Wireframe</h4>
-                              <p class="ft-gray ft-12">Inprogress</p>
-                          </div>
-                          <div class="col-sm-2 bl-2-gray">
-                              <p class="pb-25"></p>
-                              <p class="ft-10">Planned Start Date</p>
-                              <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
-                                  class="mt-10 ml-5">
-                          </div>
-                          <div class="col-sm-2">
-                              <p class="pb-25"></p>
-                              <p class="ft-10">Planned End Date</p>
-                              <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
-                                  class="mt-10 ml-5">
-                          </div>
-                          <div class="col-sm-2">
-                              <div class="btn button-save mt-47">View Details</div>
-                          </div>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="row">
-                          <div class="col-sm-3">
-                              <p class="ft-gray ft-12 pb-4">Milestone 5</p>
-                              <h4>Prototype</h4>
-                              <p class="ft-gray ft-12">Not Started</p>
-                          </div>
-                          <div class="col-sm-2 bl-2-gray">
-                              <p class="pb-25"></p>
-                              <p class="ft-10">Planned Start Date</p>
-                              <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
-                                  class="mt-10 ml-5">
-                          </div>
-                          <div class="col-sm-2">
-                              <p class="pb-25"></p>
-                              <p class="ft-10">Planned End Date</p>
-                              <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
-                                  class="mt-10 ml-5">
-                          </div>
-                          <div class="col-sm-2">
-                              <div class="btn button-save mt-47">View Details</div>
-                          </div>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="row">
-                          <div class="col-sm-3">
-                              <p class="ft-gray ft-12 pb-4">Milestone 6</p>
-                              <h4>Review</h4>
-                              <p class="ft-gray ft-12">Not Started</p>
-                          </div>
-                          <div class="col-sm-2 bl-2-gray">
-                              <p class="pb-25"></p>
-                              <p class="ft-10">Planned Start Date</p>
-                              <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
-                                  class="mt-10 ml-5">
-                          </div>
-                          <div class="col-sm-2">
-                              <p class="pb-25"></p>
-                              <p class="ft-10">Planned End Date</p>
-                              <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
-                                  class="mt-10 ml-5">
-                          </div>
-                          <div class="col-sm-3">
-                              <div class="btn button-save mt-47">View Details</div>
-                          </div>
-                      </div>
-                  </li>
-              -->
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</main>
-<footer>
     <div class="container-fluid">
-      <div class="footer">©HiveZen.All rights reserved</div>
+      <div class="page-heading">Milestones</div>
+  
+        <div class="row mb-5">
+            <div class="col-sm-12 milestons-list">
+                <ul>
+                  <ng-container *ngFor="let milestone of milestoneDtl;index as i">
+                  <li *ngIf="milestone.phaseId <=5" [class.active]="milestone.statusCode != 'In-Progress' && milestone.statusCode != 'Not Started' ">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <p  (click)="viewDetails(milestone)"  style="text-decoration: underline;cursor: pointer;" class="ft-gray ft-14 pb-2 txt-caps">Milestone {{i+1}}
+                              <span >
+                                  <i (click)="viewDetails(milestone)" class="fa fa-link fa-sm fa-fw mr-2 text-gray-400" style="font-size: 1.5em; cursor: pointer;color: #72308B;" aria-hidden="true"></i>
+                                  <!--<div (click)="viewDetails(milestone)" class="btn button-save">View</div>-->
+                              </span>    
+                            </p>
+                            <div class="ft-18 ft-normal lh-14">{{milestone.custPhaseName}}</div>
+                            <p *ngIf="milestone.statusCode != 'In-Progress' && milestone.statusCode != 'Not Started' " class="ft-gray ft-12">Completed on {{milestone.plannedEndDate | date}}</p>
+                            <p *ngIf="milestone.statusCode == 'In-Progress' ||  milestone.statusCode == 'Not Started'   " class="ft-gray ft-12">{{milestone.statusCode}}</p>
+  
+                        </div>
+                        <div class="bl-1-green pl-25"></div>
+                        <div class="col-sm-2">
+                            <p class="pb-25"></p>
+                            <p class="ft-10">Planned Start Date</p>
+                            <input [disabled]="milestone.statusCode == 'Completed'" (change)="onChangePlanStartDate($event,milestone)" type="date" [(ngModel)]="milestone.plannedStartDate" class="txt-outline w-100">
+                        </div>
+                        <div class="col-sm-2">
+                            <p class="pb-25"></p>
+                            <p class="ft-10">Planned End Date</p>
+                            <input [disabled]="milestone.statusCode == 'Completed'" (change)="onChangePlanEndDate($event,milestone)" type="date" [(ngModel)]="milestone.plannedEndDate" class="txt-outline w-100">
+                        </div>
+                        <div *ngIf="milestone.statusCode != 'Completed'"  class="col-sm-2">
+                          <p class="pb-25"></p>
+                          <p class="ft-10">Status</p>
+                          <select  [disabled]="milestone.statusCode == 'Completed'" class="txt-outline" id="selectOptionid" (change)="onChangeMilestoneStatus(milestone,$event)">
+                              <option value="null" id="null"></option>
+                              <option value="In-Progress" id="In-Progress">In-Progress </option>
+                              <option value="Completed" id="Completed">Completed </option>
+                          </select>
+                      </div>
+                      <div *ngIf="milestone.statusCode != 'Completed'"  class="col-sm-1">
+                          <div (click)="complete(milestone)" class="btn button-save mt-47 pull-left">Save</div>
+                      </div>
+                      <!--
+                        <div class="col-sm-3">
+                            <div (click)="viewDetails(milestone)" class="btn button-save mt-47 pull-left mr-3">View</div>
+                            <div (click)="complete(milestone, 'In-Progress')" class="btn button-save mt-47 pull-left mr-3">Save</div>
+                            <div (click)="complete(milestone, 'Completed')" class="btn button-save mt-47 pull-left">Complete</div>
+                        </div>
+                        -->
+                    </div>
+                   
+                </li>
+            </ng-container>
+            <!--
+                    <li class="active">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="ft-gray ft-12 pb-4">Milestone 1</p>
+                                <h4>Initial Requirement</h4>
+                                <p class="ft-gray ft-12">Completed on 31st Dec 2020</p>
+                            </div>
+                            <div class="col-sm-2 bl-2-green">
+                                <p class="pb-25"></p>
+                                <p class="ft-10">Planned Start Date</p>
+                                <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
+                                    class="mt-10 ml-5">
+                            </div>
+                            <div class="col-sm-2">
+                                <p class="pb-25"></p>
+                                <p class="ft-10">Planned End Date</p>
+                                <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
+                                    class="mt-10 ml-5">
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="btn button-save mt-47">View Details</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="ft-gray ft-12 pb-4">Milestone 2</p>
+                                <h4>Process Flow</h4>
+                                <p class="ft-gray ft-12">Inprogress</p>
+                            </div>
+                            <div class="col-sm-2 bl-2-gray">
+                                <p class="pb-25"></p>
+                                <p class="ft-10">Planned Start Date</p>
+                                <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
+                                    class="mt-10 ml-5">
+                            </div>
+                            <div class="col-sm-2">
+                                <p class="pb-25"></p>
+                                <p class="ft-10">Planned End Date</p>
+                                <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
+                                    class="mt-10 ml-5">
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="btn button-save mt-47">View Details</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="ft-gray ft-12 pb-4">Milestone 3</p>
+                                <h4>Application Flow</h4>
+                                <p class="ft-gray ft-12">Inprogress</p>
+                            </div>
+                            <div class="col-sm-2 bl-2-gray">
+                                <p class="pb-25"></p>
+                                <p class="ft-10">Planned Start Date</p>
+                                <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
+                                    class="mt-10 ml-5">
+                            </div>
+                            <div class="col-sm-2">
+                                <p class="pb-25"></p>
+                                <p class="ft-10">Planned End Date</p>
+                                <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
+                                    class="mt-10 ml-5">
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="btn button-save mt-47">View Details</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="ft-gray ft-12 pb-4">Milestone 4</p>
+                                <h4>Wireframe</h4>
+                                <p class="ft-gray ft-12">Inprogress</p>
+                            </div>
+                            <div class="col-sm-2 bl-2-gray">
+                                <p class="pb-25"></p>
+                                <p class="ft-10">Planned Start Date</p>
+                                <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
+                                    class="mt-10 ml-5">
+                            </div>
+                            <div class="col-sm-2">
+                                <p class="pb-25"></p>
+                                <p class="ft-10">Planned End Date</p>
+                                <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
+                                    class="mt-10 ml-5">
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="btn button-save mt-47">View Details</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="ft-gray ft-12 pb-4">Milestone 5</p>
+                                <h4>Prototype</h4>
+                                <p class="ft-gray ft-12">Not Started</p>
+                            </div>
+                            <div class="col-sm-2 bl-2-gray">
+                                <p class="pb-25"></p>
+                                <p class="ft-10">Planned Start Date</p>
+                                <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
+                                    class="mt-10 ml-5">
+                            </div>
+                            <div class="col-sm-2">
+                                <p class="pb-25"></p>
+                                <p class="ft-10">Planned End Date</p>
+                                <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
+                                    class="mt-10 ml-5">
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="btn button-save mt-47">View Details</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="ft-gray ft-12 pb-4">Milestone 6</p>
+                                <h4>Review</h4>
+                                <p class="ft-gray ft-12">Not Started</p>
+                            </div>
+                            <div class="col-sm-2 bl-2-gray">
+                                <p class="pb-25"></p>
+                                <p class="ft-10">Planned Start Date</p>
+                                <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
+                                    class="mt-10 ml-5">
+                            </div>
+                            <div class="col-sm-2">
+                                <p class="pb-25"></p>
+                                <p class="ft-10">Planned End Date</p>
+                                <input type="text" class="txt-outline w-80"><img src="assets/images/date-picker.png"
+                                    class="mt-10 ml-5">
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="btn button-save mt-47">View Details</div>
+                            </div>
+                        </div>
+                    </li>
+                -->
+          </ul>
+        </div>
+      </div>
+  
     </div>
-  </footer>
+  </main>
+  <footer>
+      <div class="container-fluid">
+        <div class="footer">©HiveZen.All rights reserved</div>
+      </div>
+    </footer>
+  

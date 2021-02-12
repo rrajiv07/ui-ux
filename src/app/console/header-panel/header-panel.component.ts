@@ -40,7 +40,8 @@ export class HeaderPanelComponent implements OnInit {
       //header: 'Setup your account',
       showHeader:false,
       closable:false,
-      width: '59%',
+      //width: '59%',
+      width: '30%',
       contentStyle: { "max-height": "30%", "overflow": "auto","padding":"0 1.1rem 0rem 1.5rem","border-radius":"10px"},
     });
   }

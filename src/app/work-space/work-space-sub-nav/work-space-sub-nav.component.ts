@@ -53,7 +53,7 @@ export class WorkSpaceSubNavComponent implements OnInit {
             if ( data.result_data !=null && defaultBoard !=null && defaultBoard !=undefined)
             { 
               this.commonService.setRole(data.result_data.userRoleToWorkspace);
-              this.boardName =defaultBoard.custPhaseName;
+              this.boardName =defaultBoard.phaseCode;
               this.boardId  =defaultBoard.id;
             }
 

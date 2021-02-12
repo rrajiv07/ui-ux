@@ -32,17 +32,17 @@
                 </a>
                 --> 
                 <a *ngIf="commonService.getRole() =='idea-owner'" class="dropdown-item" (click)="subscription()">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                    <i class="fa fa-shopping-cart fa-sm fa-fw mr-2 text-gray-400" aria-hidden="true"></i>
                     Subscription
                 </a>
             <div class="dropdown-divider"></div>
             <a (click)="changePassword()" class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                <i class="fa fa-sign-out fa-sm fa-fw mr-2 text-gray-400" aria-hidden="true"></i>
                 Change Password
             </a>
                 <div class="dropdown-divider"></div>
                 <a routerLink="/"  class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    <i class="fa fa-sign-out fa-sm fa-fw mr-2 text-gray-400" aria-hidden="true"></i>
                     Logout
                 </a>
             </div>

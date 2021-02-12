@@ -50,11 +50,11 @@ export class WorkSpaceSubMenuComponent implements OnInit {
             var defaultBoard =null;
             if (data.result_data != null && data.result_data.phaseList !=null && data.result_data.phaseList !=undefined)
             defaultBoard = data.result_data.phaseList[0];
-            //console.log(defaultBoard,">>>>>>>>>>>>>>>defaultBoard")
+            console.log(defaultBoard,">>>>>>>>>>>>>>>defaultBoard")
             if ( data.result_data !=null && defaultBoard !=null && defaultBoard !=undefined)
             { 
               this.commonService.setRole(data.result_data.userRoleToWorkspace);
-              this.boardName =defaultBoard.custPhaseName;
+              this.boardName =defaultBoard.phaseCode;
               this.boardId  =defaultBoard.id;
             }
             /*

@@ -47,6 +47,7 @@ export class WorkSpacePhaseComponent implements OnInit {
         (data: any) => {
           this.commonService.setRole(data.result_data.userRoleToWorkspace)
           this.workSpaceBoardNames = data.result_data['phaseList'];
+          console.log(this.workSpaceBoardNames,"workSpaceBoardNames")
         },
         error => {
         });
