@@ -159,7 +159,7 @@ export class SignUpSetUpAccountComponent implements OnInit {
     this.signupDialogPtr = this.dialogService.open(SignUpInviteTeamComponent, {
       showHeader: false,
       closable: false,
-      width: '50%',
+      width: '56%',
       data: objPubSub,
       contentStyle: { "max-height": "30%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "20px" },
     });

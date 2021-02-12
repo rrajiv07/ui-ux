@@ -4,21 +4,21 @@
     </button>
     <div class="row">
         <div class="col-sm-7">
-            <div class="dialog-left" style="padding:42px;">
+            <div class="dialog-left">
                 <div class="heading"><span>Yay! We're almost there</span></div>
-                <div class="sub-heading" style="font-weight: inherit;">Invite your teammates and build your workflows
+                <div class="sub-heading-sm">Invite your teammates and build your workflows
                     together</div>
                 <form autocomplete="off" [formGroup]="form">
-                    <div class="row pt-50">
+                    <div class="row mt-30">
                         <div class="col-sm-12">
                             <div class="txt-lable">Email</div>
                         </div>
                         <div class="col-sm-12" formArrayName="emailIds">
-                            <div *ngFor="let emailId of emailIds.controls; let i = index" [formGroupName]="i" style="padding-bottom: 5px;">
+                            <div *ngFor="let emailId of emailIds.controls; let i = index" [formGroupName]="i">
                              
                               
                               <div>
-                                <input type="text" class="form-control bg-white" id="Email" formControlName="emailId"
+                                <input type="text" class="txt-outline w-100" id="Email" formControlName="emailId"
                                   placeholder="Enter email here"
                                   [ngClass]="{ 'is-invalid': submitted && emailIds.controls[i].get('emailId').errors }">
                                   <div *ngIf="submitted && emailIds.controls[i].get('emailId').errors" class="invalid-feedback">
@@ -46,7 +46,7 @@
         <div class="col-sm-5" style="padding: 0px;">
             <div class="dialog-right">
                 <img src="assets/images/signup-3.png" class="mt-100">
-                <div class="mt-50">Work better together.</div>
+                <div class="mt-50 font-bold">Work better together.</div>
                 <div class="copy-rights mt-20">&copy; HiveZen, All rights reserved</div>
             </div>
         </div>
