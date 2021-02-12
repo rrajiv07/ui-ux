@@ -2,6 +2,7 @@
     <div class="container-fluid">
         <div class="page-heading mb-0">Welcome to your HiveZen account!</div>
         <div class="sub-heading">Let’s get you started with your first Workspace</div>
+        <div class="sub-heading" style="margin-top: 0px;font-size: 16px;">A workspace is a place where a POC is getting developed. You can easily organize your ideas, teams in one place through workspace</div>
         <form [formGroup]="formGroup" class="form-horizontal">
         <div class="row pt-50">
             <div class="col-sm-5">
@@ -18,10 +19,6 @@
                   </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row pt-50">
-            
             <div class="col-sm-5">
                 <div class="w-30 pull-left">
                     <div class="txt-lable">Description</div>
@@ -38,7 +35,32 @@
                 
             </div>
         </div>
-
+        <div class="row mb-5">
+          
+            <div class="col-sm-12">
+              <div class="page-sub-heading section-spacing" style="margin-top: 10px;">POC Development Steps</div>
+                <ng-container *ngFor="let workspaceBoardsDataObj of workspaceBoardsData;let i=index">
+                <div *ngIf="workspaceBoardsDataObj.name !='Development Documents' && workspaceBoardsDataObj.name !='POC Review' && workspaceBoardsDataObj.name !='Publish POC'  " >
+                    <div class="bg-white border-gray mt-10 radius-all-3 p-all-10">
+                      <div class="row">                       
+                        <div class="col-sm-3">
+                          <div><input (blur)="changePhaseEvent($event,workspaceBoardsDataObj)" [disabled]="workspaceBoardsDataObj.disabled==undefined || workspaceBoardsDataObj.disabled==null"  [value]="workspaceBoardsDataObj.name" class="txt-outline w-80" type="text">
+                            <img src="assets/images/edit-icon.svg" (click)="renamePhase(workspaceBoardsDataObj)" style="margin-left: 10px;cursor: pointer;" class="edit-icon"></div>
+                        </div>
+                        <div class="col-sm-7">
+                          <div>{{workSpaceBoardPhaseDescription[workspaceBoardsDataObj.code]}}</div>
+                        </div>
+                        <div  class="col-sm-2" style="text-align: right;">
+                          <div (click)="removePhase(workspaceBoardsDataObj,workspaceBoardsDataObj.name,i)" [ngClass]="{ 'disabled': i==0,'btn-secondary': i==0}" style="width: 100px;" class="btn button-save ml-10">Delete</div>
+                    
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+                </div>
+              </div>
+        <!--
         <div class="row pt-4">
             <div class="col-sm-12">
                 <ng-container *ngFor="let order of workspaceBoardsFormArray.controls; let i = index">
@@ -49,9 +71,10 @@
                 </ng-container>
                 </div>
                 </div>
+          -->
        <div class="row">
             <div class="col-sm-12 ml-30">
-                <div (click)="save()" class="btn button-save">Create Workspace</div>
+                <div (click)="createWorkSpace()" class="btn button-save">Create Workspace</div>
             </div>
         </div>
     </form>

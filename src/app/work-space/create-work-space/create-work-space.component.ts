@@ -13,6 +13,14 @@ import { CommonService } from '../../utils/common.service';
   styleUrls: ['./create-work-space.component.css']
 })
 export class CreateWorkSpaceComponent implements OnInit {
+  workSpaceBoardPhaseDescription =
+    {
+      "Initial Requirement": "Record customer problem your POC intended to solve, the solution brief and why it is important for your customer. Provides design guidelines for development",
+      "Process Flow": "Identify the target roles / user personal, the specific actions performed by the users as process flow",
+      "Application Flow": "Captures how the users would be navigating through the application and achieve their goals. Various screens and their links are detailed in Application flow",
+      "Wireframe": "Screens identified in “Application Flow” gets their skeleton structure. What controls comes in and they are combined to deliver the end result is captured as WireFrame",
+      "Prototype": "The mock Application comes to life in a colourful way. UX designs, colourful themes, Usability are considered to make the application unique"
+    };
   formGroup: FormGroup;
   workspaceBoardsData = [];
   pocBoardsList = [];
@@ -274,5 +282,66 @@ export class CreateWorkSpaceComponent implements OnInit {
     const filteredPhase = this.workspaceBoardsData.filter((item) => item.name !== phase);
     this.workspaceBoardsData = filteredPhase.slice();
     this.formGroup.get(control).setValue(null);
+  }
+  renamePhase(record){
+    record["disabled"]='N';
+  }
+  removePhase(record,phaseName,ix){
+   this.workspaceBoardsData.splice(ix,1);
+  }
+  changePhaseEvent(event,record){    
+   record["name"]=event.target.value;
+   record["disabled"]=null;
+  }
+  createWorkSpace() {
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.formGroup.invalid) {
+      return;
+    }
+
+    const formData = this.formGroup.getRawValue();
+    this.pocBoardsList =[];
+    var pocBoardsList = this.workspaceBoardsData;
+    pocBoardsList.forEach(element => {
+      const outputObj ={};
+      outputObj["phaseId"]=element.id;
+      outputObj["custPhaseName"]=element.name; 
+      this.pocBoardsList.push(outputObj)
+    }); 
+    console.log(this.pocBoardsList);
+    const reqdata = {
+      "wsName": formData.wsName,
+      "wsDesc": formData.wsDesc,
+      "micrositeId": localStorage.getItem('micrositeId'),
+      "phaseList": this.pocBoardsList
+    };
+    console.log(reqdata);
+    const token = localStorage.getItem('tempCurrentUserToken');
+    const header = {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+    };
+    this.Service.createWorkspace(reqdata, header)
+      .pipe(first())
+      .subscribe(
+        data => {
+          if (data['result_status'].toUpperCase() === 'SUCCESS') {
+            this.commonService.successMessage(data['result_msg']);
+            var wsPocId = data['result_data'].id;
+            var wsName = data['result_data'].wsName;
+            //localStorage.setItem('workspaceCreate','list');
+            //localStorage.setItem('SubMenuVar','summary');
+            this.environmentService.setPOCId(wsPocId);
+            this.route.navigateByUrl('/workspace/view/' + wsPocId + '/' + wsName + '/summary');
+            return;
+          }
+          else {
+            this.commonService.failureMessage(data['result_msg']);
+          }
+        },
+        error => {
+        });
+
   }
 }
