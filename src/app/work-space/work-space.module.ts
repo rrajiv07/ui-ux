@@ -36,9 +36,11 @@ import {CdkTableModule} from '@angular/cdk/table';
 import { ImageModelComponent } from './work-space-wireframe/image-model/image-model.component';
 import { PinchComponentComponent } from './work-space-wireframe/pinch-component/pinch-component.component';
 import { WorkspaceAiIntegrationComponent } from './workspace-ai-integration/workspace-ai-integration.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 @NgModule({
   declarations: [WorkSpaceListComponent,WorkSpaceSubNavComponent, WorkSpacePhaseComponent, WorkSpaceLandingComponent, CreateWorkSpaceComponent, WorkSpaceSummaryComponent, WorkSpaceInitialRequirementComponent, WorkSpaceProcessFlowComponent, WorkSpaceInformationArchitectureComponent, WorkSpaceWireframeComponent, WorkSpacePrototypeComponent, WorkSpacePocReviewComponent, WorkSpaceDevelopmentDocumentComponent, WorkSpaceSubMenuComponent, WorkSpaceTeamComponent, WorkSpaceDocumentsComponent, WorkSpaceMilestonesComponent, WorkSpaceFinancialsComponent,FileValidator, WorkSpaceUploadImageComponent, WorkSpacePublishPocComponent, AddInternalResourceComponent, WorkSpaceAddEstimationDetailsComponent, EditCommentsReceivedComponent, EditInternalResourceComponent, EditWorkSpaceComponent, WorkSpaceEditEstimationDetailsComponent, ImageModelComponent, PinchComponentComponent, WorkspaceAiIntegrationComponent],
   imports: [
+    NgxExtendedPdfViewerModule,
     CommonModule,
     WorkSpaceRoutingModule,
     ConsoleModule,

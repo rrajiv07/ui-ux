@@ -23,6 +23,10 @@ import { ImageModelComponent } from '../work-space-wireframe/image-model/image-m
   styleUrls: ['./work-space-process-flow.component.css']
 })
 export class WorkSpaceProcessFlowComponent implements OnInit {
+  pdfUrl:any=null;
+  documentName:any;
+  documentId:any;
+  documentDesc:any;
   imageObject: Array<object> = [];
   showFlag: boolean = false;
   selectedImageIndex: number = -1;
@@ -48,7 +52,7 @@ export class WorkSpaceProcessFlowComponent implements OnInit {
   allFiles = [];
   tableContent = [];
   status = [];
-  imageURL: any;
+  imageURL: any=null;
   formGroup: FormGroup;
   fileSelect: FileList;
   blob: any;
@@ -60,7 +64,7 @@ export class WorkSpaceProcessFlowComponent implements OnInit {
   wsPocId: any;
   currentIndex: any = -1;
   imageModelDialog: DynamicDialogRef;
-
+  
   constructor(private workspace: WorkSpaceProcessFlowService,
     private sanitizer: DomSanitizer,
     private formBuilder: FormBuilder,
@@ -90,7 +94,8 @@ export class WorkSpaceProcessFlowComponent implements OnInit {
 
           if (data.result_data != null) {
             this.allUploadedFile = data.result_data;
-            this.getCarouselImage();
+            this.getPdfViewer(this.allUploadedFile['0'])
+            //this.getCarouselImage();
             return;
           }
         },
@@ -147,6 +152,45 @@ export class WorkSpaceProcessFlowComponent implements OnInit {
     this.allFiles.slice(0);
     this.IX = ix;
   }
+  getPdfViewer(item){
+    var ext = item.fileName.substr(item.fileName.lastIndexOf('.') + 1).toUpperCase();
+    console.log(item,ext,ext.toUpperCase(),">>>>>>>>>>>>>>>item");
+    this.documentName =item.docName;
+    this.documentDesc =item.description;
+    this.documentId =item.id;
+    let param = new HttpParams().set("docDto", `{"docName": "${item.docName}","micrositeId": ${this.micrositeId},"workspaceId":${this.wsPocId},"workspaceDtlId":${this.boardId},"id":${item.id}}`);
+    this.workspace.onDownloadFile(param, this.header)
+      .pipe(first())
+      .subscribe(
+        (data: any) => {
+          this.activeCorosalImg = item;
+          var docType="";
+          if (ext =='PDF')
+          {
+            docType =  'image/pdf';
+          }
+          if (ext !='PDF')
+          {
+            docType =  'image/png';
+          }
+          this.blob = new Blob([data], { type: docType });
+          this.pdfUrl =null
+          this.imageURL =null;
+
+          if (ext =='PDF')
+          {
+            this.pdfUrl= window.URL.createObjectURL(data);
+          }
+          if (ext !='PDF')
+          {
+            this.imageURL= window.URL.createObjectURL(data);
+          }
+          
+          return;
+        },
+        error => {
+        });
+  }
   getImageUrl(item, allFilesObj, allFiles) {
     let param = new HttpParams().set("docDto", `{"docName": "${item.docName}","micrositeId": ${this.micrositeId},"workspaceId":${this.wsPocId},"workspaceDtlId":${this.boardId},"id":${item.id}}`);
     this.workspace.onDownloadFile(param, this.header)
@@ -179,8 +223,11 @@ export class WorkSpaceProcessFlowComponent implements OnInit {
     this.getParams();
     this.initForm();
     this.selectedReviewer = [];
+    /*
     this.allFiles = [];
     this.getAllUploadedFile();
+    */
+   this.getAllUploadedFile();
     this.getReviewerCombo();
     this.getAllReviewComments();
     this.getAssignedReviewer();
