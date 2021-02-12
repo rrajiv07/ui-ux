@@ -8,7 +8,7 @@
             <div class="dialog-left"> 
                     <div class="heading"><span>Add Estimation</span></div>
                       <div class="row pt-50">
-                        <div class="col-sm-12"><div class="txt-lable">Phase</div></div>
+                        <div class="col-sm-12"><div class="txt-lable">Phase<sup>*</sup></div></div>
                         <div class="col-sm-12">
                         <input formControlName="devPhase" type="text" class="form-control bg-white" id="Email" 
                         [ngClass]=" { 'is-invalid' : submitted && f1.devPhase.errors }"
@@ -17,7 +17,7 @@
                             <div *ngIf="f1.devPhase.errors.required">Phase is required</div>
                           </div>
                         </div>
-						<div class="col-sm-12"><div class="txt-lable">Man Month</div></div>
+						<div class="col-sm-12"><div class="txt-lable">Man Month<sup>*</sup></div></div>
                         <div class="col-sm-12">
                         <input formControlName="manMonthsEffort" type="text" class="form-control bg-white" 
                         [ngClass]=" { 'is-invalid' : submitted && f1.manMonthsEffort.errors }"
@@ -26,7 +26,7 @@
                             <div *ngIf="f1.manMonthsEffort.errors.required">Man Months Effort is required</div>
                           </div>
                         </div>
-                        <div class="col-sm-12"><div class="txt-lable">Cost(USD)</div></div>
+                        <div class="col-sm-12"><div class="txt-lable">Cost(USD)<sup>*</sup></div></div>
                         <div class="col-sm-12">
                         <input formControlName="costs" type="text" class="form-control bg-white" id="costs"
                         [ngClass]=" { 'is-invalid' : submitted && f1.costs.errors }"

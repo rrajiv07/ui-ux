@@ -23,17 +23,17 @@
                         <div class="bl-1-green pl-25"></div>
                         <div class="col-sm-2">
                             <p class="pb-25"></p>
-                            <p class="ft-10">Planned Start Date</p>
+                            <p class="ft-10">Planned Start Date<sup>*</sup></p>
                             <input [disabled]="milestone.statusCode == 'Completed'" (change)="onChangePlanStartDate($event,milestone)" type="date" [(ngModel)]="milestone.plannedStartDate" class="txt-outline w-100">
                         </div>
                         <div class="col-sm-2">
                             <p class="pb-25"></p>
-                            <p class="ft-10">Planned End Date</p>
+                            <p class="ft-10">Planned End Date<sup>*</sup></p>
                             <input [disabled]="milestone.statusCode == 'Completed'" (change)="onChangePlanEndDate($event,milestone)" type="date" [(ngModel)]="milestone.plannedEndDate" class="txt-outline w-100">
                         </div>
                         <div *ngIf="milestone.statusCode != 'Completed'"  class="col-sm-2">
                           <p class="pb-25"></p>
-                          <p class="ft-10">Status</p>
+                          <p class="ft-10">Status<sup>*</sup></p>
                           <select  [disabled]="milestone.statusCode == 'Completed'" class="txt-outline" id="selectOptionid" (change)="onChangeMilestoneStatus(milestone,$event)">
                               <option value="null" id="null"></option>
                               <option value="In-Progress" id="In-Progress">In-Progress </option>

@@ -10,7 +10,7 @@
                         <div class="sub-heading-sm" style="font-weight: inherit;">Let's get started with a few simple steps</div>
                         <form autocomplete="off" [formGroup]="signupForm" (ngSubmit)="signup()" id="Signup">
                         <div class="row mt-30">                        
-                            <div class="col-sm-12"><div class="txt-lable">Email*</div></div>
+                            <div class="col-sm-12"><div class="txt-lable">Email<sup>*</sup></div></div>
                             <div class="col-sm-12"><input type="text" class="txt-outline w-100" formControlName="email" id="email" placeholder="Enter email"
                                 [ngClass]="{ 'is-invalid': submitted && f1.email.errors }">
                                 <div *ngIf="submitted && f1.email.errors" class="invalid-feedback">

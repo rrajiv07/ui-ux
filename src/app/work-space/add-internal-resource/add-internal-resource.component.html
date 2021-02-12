@@ -9,7 +9,7 @@
         <form [formGroup]="form" (ngSubmit)="onSave()">
           <div class="row pt-50">
             <div class="col-sm-12">
-              <div class="txt-lable">Resource</div>
+              <div class="txt-lable">Resource<sup>*</sup></div>
             </div>
             <div class="col-sm-12" >
               <select class="form-control bg-white" formControlName="name" (change)="onChangeRes($event)"
@@ -23,7 +23,7 @@
               </div>
             </div>
             <div class="col-sm-12">
-              <div class="txt-lable">Role</div>
+              <div class="txt-lable">Role<sup>*</sup></div>
             </div>
             <div class="col-sm-12">
               <select class="form-control bg-white" formControlName="role"
@@ -37,7 +37,7 @@
               </div>
             </div>
             <div class="col-sm-12">
-              <div class="txt-lable">Email</div>
+              <div class="txt-lable">Email<sup>*</sup></div>
             </div>
             <div class="col-sm-12"><input class="form-control bg-white" formControlName="email" id="Email" [readonly] = "true"
                 placeholder="Add email here"></div>

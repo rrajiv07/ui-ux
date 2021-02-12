@@ -31,7 +31,7 @@
             <div class="form-group">
 
                 <div class="row mt-40" *ngIf="!isEditFlag">
-                    <label class="control-label col-sm-2 width-100" for="cname">Name</label>
+                    <label class="control-label col-sm-2 width-100" for="cname">Name<sup>*</sup></label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="docName" placeholder=""
                         formControlName="docName"
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="row mt-40"  *ngIf="isEditFlag" >
-                    <label class="control-label col-sm-2 width-100" for="cname">Name</label>
+                    <label class="control-label col-sm-2 width-100" for="cname">Name<sup>*</sup></label>
                     <div class="col-sm-8">                        
                         <select id ="selectOptionid" (change)="onChange($event.target.value,$event)" class="form-control" formControlName="docName" [(ngModel)]="selectedDocuments"
                         [ngClass]=" { 'is-invalid' : submitted && f1.docName.errors }">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="row mt-40" >
-                    <label class="control-label col-sm-2 width-100" for="acname">Description</label>
+                    <label class="control-label col-sm-2 width-100" for="acname">Description<sup>*</sup></label>
                     <div class="col-sm-8">
                         <!--[attr.disabled]="isEditFlag ? '' : null"-->
                         <textarea  class="form-control rounded-0 bg-white" 

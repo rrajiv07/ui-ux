@@ -9,21 +9,21 @@
                     <div class="sub-heading-sm">Let's get started with a few simple steps</div>
                     <form autocomplete="off" [formGroup]="signupForm"  (ngSubmit)="signup()" id="Signup">
                     <div class="row mt-30">
-                        <div class="col-sm-12"><div class="txt-lable">Full Name*</div></div>
+                        <div class="col-sm-12"><div class="txt-lable">Full Name<sup>*</sup></div></div>
                         <div class="col-sm-12"><input autocomplete="off" type="text" class="txt-outline w-100" id="FullName" placeholder="Enter full name"
                         formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f1.firstName.errors }">
                         <div *ngIf="submitted && f1.firstName.errors" class="invalid-feedback">
                             <div *ngIf="f1.firstName.errors.required">Full Name is required</div>
                           </div>
                     </div>
-                        <div class="col-sm-12 mt-10"><div class="txt-lable">Password*</div></div>
+                        <div class="col-sm-12 mt-10"><div class="txt-lable">Password<sup>*</sup></div></div>
                         <div class="col-sm-12"><input name="password" autocomplete="off" type="text" class="txt-outline w-100 password" id="Password" placeholder="Password"
                         formControlName="password" [ngClass]="{ 'is-invalid': submitted && f1.password.errors }">
                         <div *ngIf="submitted && f1.password.errors" class="invalid-feedback">
                             <div *ngIf="f1.password.errors.required">Password is required</div>
                           </div>
                     </div>
-                        <div class="col-sm-12 mt-10"><div class="txt-lable">Account Name*</div></div>
+                        <div class="col-sm-12 mt-10"><div class="txt-lable">Account Name<sup>*</sup></div></div>
                         <div class="input-group col-sm-12">
                             <input autocomplete="off" type="text" class="txt-outline" id="AccountName" placeholder="Enter account name"
                         formControlName="micrositeName" [ngClass]="{ 'is-invalid': submitted && f1.micrositeName.errors }">

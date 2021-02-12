@@ -33,7 +33,7 @@
                 placeholder="Enter name here"></div>
             -->
             <div class="col-sm-12">
-              <div class="txt-lable" id="mail">Email</div>
+              <div class="txt-lable" id="mail">Email<sup>*</sup></div>
             </div>
             <div class="col-sm-12" formArrayName="emailIds">
               <div *ngFor="let emailId of emailIds.controls; let i = index" [formGroupName]="i" style="padding-bottom: 5px;">
