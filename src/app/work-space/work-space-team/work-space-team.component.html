@@ -42,23 +42,26 @@
                   <div class="row">
   
                     <div class="col-sm-3">
-                      <div class="font-semibold pl-8">{{teamListObj.userName}}</div>
+                      <!--<div class="font-semibold pl-8">{{teamListObj.userName}}</div>-->
+                      <div class="profile-default">{{teamListObj.userName.charAt(0).toUpperCase()}}</div>
+                      <span class="profile-name">{{teamListObj.userName}}</span>
+
                     </div>
-                    <div class="col-sm-3">
-                      <div><!--<img src="assets/images/edit-icon.svg" class="edit-icon">-->{{teamListObj.email}}</div>
+                    <div class="col-sm-3 pt-13">
+                      <div class="font-semibold"><!--<img src="assets/images/edit-icon.svg" class="edit-icon">-->{{teamListObj.email}}</div>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-2 pt-13">
                       <div>{{teamListObj.usertype}}</div>
                     </div>
-                    <div class="col-sm-1">
+                    <div class="col-sm-1 pt-13">
                       <div>{{teamListObj.roleCode}}</div>
                     </div>
-                    <div class="col-sm-1">
+                    <div class="col-sm-1 pt-13">
                       <div><span class="badge badge-accepted"
                         [ngClass]="{'badge-rejected action_status_rejected': teamListObj.statusCode == 'Inactive'}"
                         >{{teamListObj.statusCode}}</span></div>
                     </div>
-                    <div class="col-sm-2" style="text-align: right;">
+                    <div class="col-sm-2 pt-13" style="text-align: right;">
                       <div style="width: 100px;" *ngIf="teamListObj.statusCode != 'Active' && teamListObj.usertype !='Idea Owner'"   (click)="changeTeamStatus(teamListObj,'Active')" class="btn button-save ml-10">Active</div>
 					            <div  style="width: 100px;" *ngIf="teamListObj.statusCode == 'Active' && teamListObj.usertype !='Idea Owner'"  (click)="changeTeamStatus(teamListObj,'Inactive')" class="btn button-save ml-10">InActive</div>
 					            <div  style="width: 100px;" *ngIf="teamListObj.usertype =='Idea Owner'" disabled class="btn btn-secondary ml-10">InActive</div>

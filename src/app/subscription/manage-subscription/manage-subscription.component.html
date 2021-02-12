@@ -29,7 +29,8 @@
             </div>
             <div class="row mt-20">
               <div class="col-sm-9">
-                <p class="ft-12 ft-light-gray pb-2">You are on the {{planType}} plan with {{totalLicense}} seats. You can buy more seats at
+                <p class="ft-12 ft-light-gray pb-2">You are on the {{planType}} plan with {{totalLicense}} seats. You
+                  can buy more seats at
                   any point of time.</p>
               </div>
               <div class="col-sm-3 p-0">
@@ -46,13 +47,16 @@
           <div class="plan-box">
             <div class="row">
               <div class="col-sm-4">
-                <p class="ft-22 ft-bold color-purple">{{totalLicense}} <span class="ft-14 ft-light-gray">Total Seats</span></p>
+                <p class="ft-22 ft-bold color-purple">{{totalLicense}} <span class="ft-14 ft-light-gray">Total
+                    Seats</span></p>
               </div>
               <div class="col-sm-4 border-left">
-                <p class="ft-22 ft-bold color-purple">{{unallocatedLicense}} <span class="ft-14 ft-light-gray">Unassigned Seats</span></p>
+                <p class="ft-22 ft-bold color-purple">{{unallocatedLicense}} <span
+                    class="ft-14 ft-light-gray">Unassigned Seats</span></p>
               </div>
               <div class="col-sm-4 border-left">
-                <p class="ft-22 ft-bold color-purple">{{allocatedLicense}} <span class="ft-14 ft-light-gray">Allocated Seats</span></p>
+                <p class="ft-22 ft-bold color-purple">{{allocatedLicense}} <span class="ft-14 ft-light-gray">Allocated
+                    Seats</span></p>
               </div>
             </div>
           </div>
@@ -105,50 +109,61 @@
           <div class="col-sm-12">
             <div class=" p-all-10">
               <div class="row">
-                  <div class="col-sm-4">
-                    <div class="ft-18">Email</div>
-                  </div>
-                  <div class="col-sm-5">
-                    <div class="ft-18">Name</div>
-                  </div>
-                  <div class="col-sm-1">
-                    <div class="ft-18 text-center">Status</div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="ft-18 text-center"></div>
-                  </div>
+                
+                <div class="col-sm-5">
+                  <div class="ft-18">Name</div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="ft-18">Email</div>
+                </div>
+                <div class="col-sm-1">
+                  <div class="ft-18">Status</div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="ft-18"></div>
                 </div>
               </div>
-              <div>
-    
-    
-                  <div class="bg-white border-gray mt-10 radius-all-3 lh-40" *ngFor="let item of membersList">
-                    <div class="row">
-    
-                      <div class="col-sm-4">
-                        <div class="font-semibold pl-8"><!--<img src="assets/images/edit-icon.svg" class="edit-icon">-->{{item.email}}</div>
-                      </div>
-                      <div class="col-sm-5">
-                        <div>{{item.userName}}</div>
-                      </div>
-                      <div class="col-sm-1">
-                        <div><span class="badge badge-accepted"
-                          [ngClass]="{'badge-rejected action_status_rejected': item.statusCode == 'Inactive'}"
-                          >{{item.statusCode}}</span></div>
-                      </div>
-                      <div class="col-sm-2" style="text-align: center;">
-                        <div style="width: 100px;" *ngIf="item.statusCode != 'Active' && item.userType !='Idea Owner'"   (click)="changeTeamStatus(item,'Active')" class="btn button-save ml-10">Active</div>
-                        <div  style="width: 100px;" *ngIf="item.statusCode == 'Active' && item.userType !='Idea Owner'"  (click)="changeTeamStatus(item,'Inactive')" class="btn button-save ml-10">InActive</div>
-                        <div  style="width: 100px;" *ngIf="item.userType =='Idea Owner'" disabled class="btn btn-secondary ml-10">InActive</div>
-          
-                      </div>
+            </div>
+            <div>
+
+              <div *ngFor="let item of membersList">
+              <div class="bg-white border-gray mt-10 radius-all-3 p-all-10">
+                <div class="row">
+
+                  <div class="col-sm-5">
+                  <!--  <div class="pl-8">{{item.userName}}</div>-->
+                  <div class="profile-default">{{item.userName.charAt(0).toUpperCase()}}</div>
+                      <span class="profile-name">{{item.userName}}</span>
+                  </div>
+
+                  <div class="col-sm-4 pt-13">
+                    <div class="font-semibold">
+                      <!--<img src="assets/images/edit-icon.svg" class="edit-icon">-->{{item.email}}
                     </div>
                   </div>
+                 
+                  <div class="col-sm-1 pt-13">
+                    <div><span class="badge badge-accepted"
+                        [ngClass]="{'badge-rejected action_status_rejected': item.statusCode == 'Inactive'}">{{item.statusCode}}</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-2 pt-13" style="text-align: center;">
+                    <div style="width: 100px;" *ngIf="item.statusCode != 'Active' && item.userType !='Idea Owner'"
+                      (click)="changeTeamStatus(item,'Active')" class="btn button-save ml-10">Active</div>
+                    <div style="width: 100px;" *ngIf="item.statusCode == 'Active' && item.userType !='Idea Owner'"
+                      (click)="changeTeamStatus(item,'Inactive')" class="btn button-save ml-10">InActive</div>
+                    <div style="width: 100px;" *ngIf="item.userType =='Idea Owner'" disabled
+                      class="btn btn-secondary ml-10">InActive</div>
+
+                  </div>
                 </div>
               </div>
-    
-    
             </div>
+            </div>
+          </div>
+
+
+        </div>
 
 
 
