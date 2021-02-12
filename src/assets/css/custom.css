@@ -6264,9 +6264,10 @@ hr {
 }
 .dialog-close {
   position: absolute;
-  right: 0;
+  right: 8px;
   z-index: 1200;
   margin: 10px;
+  top: 8px;
 }
 .sub-heading {
   font-size: 20px;
@@ -6274,8 +6275,14 @@ hr {
     color: #ababab;
     margin-top: 8px;
 }
+.sub-heading-sm {
+  font-size: 14px;
+    font-weight: lighter;
+    color: #ababab;
+    margin-top: 8px;
+}
 .dialog-left {
-  padding: 50px;
+  padding: 70px;
 }
 .modal-body .heading {
   font-size: 24px;
@@ -6302,7 +6309,7 @@ hr {
   color: #ffffff;
 }
 .modal-body .badge {
-  padding: 7px 10px;
+  padding: 7px 17px;
 }
 .mr-5 {
   margin-right: 5px;
@@ -7418,4 +7425,10 @@ sup {
 
 hr {
   border-top: 1px solid #d4d6dc;
+}
+
+.p-dialog .p-dialog-content {
+  color: #6d6d6d !important;
+  font-size: 14px;
+  font-weight: lighter;
 }

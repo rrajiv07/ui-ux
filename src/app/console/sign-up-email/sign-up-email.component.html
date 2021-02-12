@@ -7,11 +7,11 @@
             <div class="col-sm-12">
                 <div class="dialog-left"> 
                         <div class="heading"><span>Welcome to HiveZen</span></div>
-                        <div class="sub-heading" style="font-weight: inherit;">Let's get started with a few simple steps</div>
+                        <div class="sub-heading-sm" style="font-weight: inherit;">Let's get started with a few simple steps</div>
                         <form autocomplete="off" [formGroup]="signupForm" (ngSubmit)="signup()" id="Signup">
-                        <div class="row pt-50">                        
+                        <div class="row mt-30">                        
                             <div class="col-sm-12"><div class="txt-lable">Email*</div></div>
-                            <div class="col-sm-12"><input type="text" class="form-control bg-white" formControlName="email" id="email" placeholder="Enter email"
+                            <div class="col-sm-12"><input type="text" class="txt-outline w-100" formControlName="email" id="email" placeholder="Enter email"
                                 [ngClass]="{ 'is-invalid': submitted && f1.email.errors }">
                                 <div *ngIf="submitted && f1.email.errors" class="invalid-feedback">
                                     <div *ngIf="f1.email.errors.required">Email ID is required</div>
@@ -19,12 +19,12 @@
                                   </div>
                             
                             </div>
-                            <div class="col-sm-12 pt-20"><button class="btn button-save mt-5 w100" >Sign up</button></div>
+                            <div class="col-sm-12"><button class="btn button-save w100 mt-20" >Sign up</button></div>
                         </div>
                         </form>
                          <div class="row">
                             <div class="col-sm-3"><hr></div>
-                            <div class="col-sm-6"><div class="mtb-20 text-center">Or Sign up with</div></div>
+                            <div class="col-sm-6"><div class="mtb-20 text-center">or Sign up with</div></div>
                             <div class="col-sm-3"><hr></div>
                         </div>
                         <div class="row pb-20">
@@ -33,7 +33,7 @@
                             <div class="badge badge-pill badge-outline"><img src="assets/images/in.png">Linked In</div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12"><div class="text-center">Already have an Account? <a (click)="Close()" style="cursor: pointer;" ><span class="txt-purple">Log In</span></a></div></div>  
+                            <div class="col-sm-12"><div class="text-center">Already have an account? <a (click)="Close()" style="cursor: pointer;" ><span class="txt-purple font-bold">Log In</span></a></div></div>  
                         </div>
     
     
