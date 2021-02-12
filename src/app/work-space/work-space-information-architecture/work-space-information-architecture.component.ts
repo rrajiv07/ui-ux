@@ -19,6 +19,10 @@ declare var jQuery:any;
   styleUrls: ['./work-space-information-architecture.component.css']
 })
 export class WorkSpaceInformationArchitectureComponent implements OnInit {
+  pdfUrl:any=null;
+  documentName:any;
+  documentId:any;
+  documentDesc:any;
   imageObject: Array<object> = [];
   showFlag: boolean = false;
   selectedImageIndex: number = -1;
@@ -79,7 +83,8 @@ export class WorkSpaceInformationArchitectureComponent implements OnInit {
         (data: any) => {
           if (data.result_data !=null && data.result_data.length) {
             this.allUploadedFile = data.result_data;
-            this.getCarouselImage();
+            this.getPdfViewer(this.allUploadedFile['0'])
+            //this.getCarouselImage();
             return;
           }
         },
@@ -193,6 +198,45 @@ export class WorkSpaceInformationArchitectureComponent implements OnInit {
     this.getAllReviewComments();
     this.getAssignedReviewer();
     //this.proto() ;
+  }
+  getPdfViewer(item){
+    var ext = item.fileName.substr(item.fileName.lastIndexOf('.') + 1).toUpperCase();
+    console.log(item,ext,ext.toUpperCase(),">>>>>>>>>>>>>>>item");
+    this.documentName =item.docName;
+    this.documentDesc =item.description;
+    this.documentId =item.id;
+    let param = new HttpParams().set("docDto", `{"docName": "${item.docName}","micrositeId": ${this.micrositeId},"workspaceId":${this.wsPocId},"workspaceDtlId":${this.boardId},"id":${item.id}}`);
+    this.workspace.onDownloadFile(param, this.header)
+      .pipe(first())
+      .subscribe(
+        (data: any) => {
+          this.activeCorosalImg = item;
+          var docType="";
+          if (ext =='PDF')
+          {
+            docType =  'image/pdf';
+          }
+          if (ext !='PDF')
+          {
+            docType =  'image/png';
+          }
+          this.blob = new Blob([data], { type: docType });
+          this.pdfUrl =null
+          this.imageURL =null;
+
+          if (ext =='PDF')
+          {
+            this.pdfUrl= window.URL.createObjectURL(data);
+          }
+          if (ext !='PDF')
+          {
+            this.imageURL= window.URL.createObjectURL(data);
+          }
+          
+          return;
+        },
+        error => {
+        });
   }
   ClickCarousolLeftSlider()
   {

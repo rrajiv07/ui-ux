@@ -9,53 +9,112 @@
 
         <button *ngIf="commonService.getRole() !='reviewer'" class="btn btn-outline mr10px"
           (click)="upload()">Add/Replace Image</button>
-          <div class="clear-float"></div>
-        <!-- <button class="btn button-save" data-toggle="modal" data-target="#myModal">Upload</button> -->
+        <div class="clear-float"></div>
+        <!--
         <div class="row">
           <div class="col-sm-10">
-        <div *ngIf="allUploadedFile.length>0" class="carousel-container  mt-40">
-          <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="false" id="myCarousel">
+            <div *ngIf="allUploadedFile.length>0" class="carousel-container  mt-40">
+              <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="false" id="myCarousel">
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-              <div *ngFor="let allFile of allFiles;let i = index;" class="item" [class.active]="allFile.active">
-                <img [src]="getSantizeUrl(allFile.imageUrl) " width="100%" height="100%" alt="Image" />
+                <div class="carousel-inner">
+                  <div *ngFor="let allFile of allFiles;let i = index;" class="item" [class.active]="allFile.active">
+                    <img [src]="getSantizeUrl(allFile.imageUrl) " width="100%" height="100%" alt="Image" />
 
+                  </div>
+                  <img *ngIf="allUploadedFileIndex.length>0" src="assets/images/zoom.svg" class="carousel-zoom-icon">
+                </div>
+
+                <a (click)="ClickCarousolLeftSlider()" *ngIf="allUploadedFileIndex.length>1"
+                  class="left carousel-control" href="#myCarousel" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a (click)="ClickCarousolRightSlider()" *ngIf="allUploadedFileIndex.length>1"
+                  class="right carousel-control" href="#myCarousel" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                  <span class="sr-only">Next</span>
+                </a>
               </div>
-              <img *ngIf="allUploadedFileIndex.length>0" src="assets/images/zoom.svg" class="carousel-zoom-icon">
             </div>
-
-            <!-- Left and right controls -->
-            <a (click)="ClickCarousolLeftSlider()" *ngIf="allUploadedFileIndex.length>1" class="left carousel-control"
-              href="#myCarousel" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a (click)="ClickCarousolRightSlider()" *ngIf="allUploadedFileIndex.length>1" class="right carousel-control"
-              href="#myCarousel" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right"></span>
-              <span class="sr-only">Next</span>
-            </a>
+            <div *ngIf="allUploadedFile.length<=0" class="item">
+              <img src="assets/images/noData.png " width="100%" height="100%" alt="Image" />
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div *ngIf="allUploadedFile.length>0" class="slider-container">
+              <div class="slider-heading">{{heading}}</div>
+              <div class="slider-content">{{desc}}</div>
+              <div class="slider-thumb">
+                <span *ngFor="let item of allUploadedFile; let i = index;" (click)="onClickSlider(item,i)">
+                  <a href="javascript:void(0);"><img src="assets/images/slider-1.jpg"></a>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
-        <div *ngIf="allUploadedFile.length<=0" class="item">
+        -->
+
+        <div *ngIf="allUploadedFile.length <=0" class="item">
           <img src="assets/images/noData.png " width="100%" height="100%" alt="Image" />
         </div>
+        <div class=container>
+          <div class="row">
+            <ng-container *ngFor="let item of allUploadedFile; let i = index;">
+              <div [ngClass]="{'border-primary' : item.id===documentId}" class="card"
+                style="width: 11rem;margin: 15px 5px 5px 0px;">
+                <h5 class="card-header">
+                  <span (click)="getPdfViewer(item)" class="btn btn-primary"> View</span>
+                </h5>
+                <div class="card-body">
+                  <h5 class="card-title">{{item.docName}}</h5>
+                  <!--<p class="card-text">{{item.description}}</p>
+                    <a style="margin-left: 50px;" class="btn btn-primary">View</a>-->
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
         </div>
-        <div class="col-sm-2">
-        <div *ngIf="allUploadedFile.length>0" class="slider-container">
-          <div class="slider-heading">{{heading}}</div>
-          <div class="slider-content">{{desc}}</div>
-          <div class="slider-thumb">
-            <span *ngFor="let item of allUploadedFile; let i = index;" (click)="onClickSlider(item,i)">
-              <a href="javascript:void(0);"><img src="assets/images/slider-1.jpg"></a>
-            </span>
+
+
+      </div>
+      <div class="clear-float"></div>
+      <div *ngIf="pdfUrl !=null || imageURL !=null">
+
+        <div class="page-sub-heading section-spacing">Document Details</div>
+        <div class="row pb-10">
+          <div class="col-sm-3">
+            <div class="txt-lable">Document Name</div>
+          </div>
+          <div class="col-sm-4">
+            <input type="text" disabled [value]="documentName" class="txt-outline w-100" id="documentName">
+
           </div>
         </div>
+
+        <div class="row pb-10">
+          <div class="col-sm-3">
+            <div class="txt-lable">Document Description</div>
+          </div>
+          <div class="col-sm-9">
+            <textarea disabled [value]="documentDesc" class="txt-outline w-100" id="documentDesc"></textarea>
+
+          </div>
+        </div>
+        <div *ngIf="pdfUrl !=null" style="border: 2px solid #C5C7D0;;padding: 5px;background: #ffffff;">
+          <ngx-extended-pdf-viewer [showOpenFileButton]="false" [showRotateButton]="false" [showToolbar]="true"
+            [showSecondaryToolbarButton]="false" [contextMenuAllowed]="false" [showSpreadButton]="false"
+            [showHandToolButton]="false" [showPropertiesButton]="false" [showBookmarkButton]="false"
+            [showSidebarButton]="false" useBrowserLocale="true" height="80vh" [src]="pdfUrl"></ngx-extended-pdf-viewer>
+        </div>
+        <div *ngIf="imageURL !=null" style="border: 2px solid #C5C7D0;">
+
+          <img [src]="getSantizeUrl(imageURL) " (click)="zoomImage()"
+            style="height: 80vh !important;width: 100%;padding: 5px;" alt="Image" />
+
+        </div>
+
       </div>
-    </div>
-      </div>
-    
 
       <div class="clear-float"></div>
       <form class="form-horizontal" [formGroup]="formGroup">
@@ -63,8 +122,8 @@
           <div class="col-sm-10 pr-0 processflow_pt_20">
             <div class="form-group">
               <label class="control-label width-125" for="cname">Review Comments</label>
-              <textarea formControlName="reviewComment" class="form-control rounded-0 bg-white" id="reviewComment" rows="3"
-                [ngClass]=" { 'is-invalid' : submitted && f1.reviewComment.errors }"></textarea>
+              <textarea formControlName="reviewComment" class="form-control rounded-0 bg-white" id="reviewComment"
+                rows="3" [ngClass]=" { 'is-invalid' : submitted && f1.reviewComment.errors }"></textarea>
               <div *ngIf="submitted && f1.reviewComment.errors" class="invalid-feedback">
                 <div *ngIf="f1.reviewComment.errors.required">Comment is required</div>
               </div>
@@ -83,7 +142,7 @@
           <div class="col-sm-3 pr-0">
             <div class="form-group">
               <select class="txt-outline w-100" [(ngModel)]="selectedRole" (change)="onChangeReview($event)">
-                
+
                 <option *ngFor="let item of reviewers" value={{item.userId}} id={{item.userId}}>{{item.userName}}
                 </option>
               </select>
@@ -91,8 +150,8 @@
           </div>
           <div class="col-sm-2 pl-10 pb-20">
             <!--<button (click)="selectReviewer()" class="btn button-save">Select</button>
-        --> 
-        <button (click)="mapReviewer()" class="btn btn-outline-purple">Request Review</button>
+        -->
+            <button (click)="mapReviewer()" class="btn btn-outline-purple">Request Review</button>
           </div>
         </div>
         <!--
@@ -113,7 +172,7 @@
         </div>
         -->
         <div class="row pl-3">
-          <div class="ft-14">Reviewers Assigned</div>
+          <div class="page-sub-heading section-spacing">Reviewers Assigned</div>
         </div>
         <div class="row" *ngIf="existingReviewer.length ==0">
           <div class="col-sm-12">
@@ -124,8 +183,8 @@
           <div class="col-sm-12">
             <button *ngFor="let item of existingReviewer;let i = index;" class="btn btn-outline btn-close"><span
                 class="ft-black">{{item['name']}}<img (click)="deleteExistingReviewer(item,i)"
-                src="assets/images/btn-close.png"></span></button>
-    
+                  src="assets/images/btn-close.png"></span></button>
+
             <!--
             <button class="btn btn-outline btn-close" disabled><span class="ft-black">Reviewer 1</span></button>
             <button class="btn btn-outline btn-close" disabled><span class="ft-black">Reviewer 2</span></button>
@@ -155,26 +214,30 @@
         <tbody>
           <tr *ngFor="let commentsReceiveddtl of commentsReceived">
             <td>
-              <a *ngIf="commentsReceiveddtl.commentStatus !='Closed' && ( commonService.getRole() =='idea-owner' ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='developer' &&  commentsReceiveddtl.commentStatus =='Allocated' ) ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='developer' &&  commentsReceiveddtl.commentStatus =='In-Progress' )  ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='reviewer' &&  commentsReceiveddtl.commentStatus =='Completed' ) ) "  (click)="editComments(commentsReceiveddtl)" style="cursor: pointer;">
+              <a *ngIf="commentsReceiveddtl.commentStatus !='Closed' && ( commonService.getRole() =='idea-owner' ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='developer' &&  commentsReceiveddtl.commentStatus =='Allocated' ) ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='developer' &&  commentsReceiveddtl.commentStatus =='In-Progress' )  ||   (commentsReceiveddtl.assignedToUserName !=null && commonService.getRole() =='reviewer' &&  commentsReceiveddtl.commentStatus =='Completed' ) ) "
+                (click)="editComments(commentsReceiveddtl)" style="cursor: pointer;">
                 <img src="assets/images/edit-icon.svg" class="edit-icon">
               </a>
             </td>
             <td>{{commonService.convertDateTimeFormat(commentsReceiveddtl.enteredDate, 'true')}}</td>
-            <td><span class="badge-reviewer"><img src="assets/images/review.png"> {{commentsReceiveddtl.enteredByName}}</span>
+            <td><span class="badge-reviewer"><img src="assets/images/review.png">
+                {{commentsReceiveddtl.enteredByName}}</span>
             </td>
             <td>{{commentsReceiveddtl.reviewComment}}</td>
-            <td *ngIf="commonService.getRole() =='idea-owner'"><span class="badge" *ngIf="commentsReceiveddtl.actionStatus !='Pending'"
+            <td *ngIf="commonService.getRole() =='idea-owner'"><span class="badge"
+                *ngIf="commentsReceiveddtl.actionStatus !='Pending'"
                 [ngClass]="{'badge-accepted': commentsReceiveddtl.actionStatus == 'Accepted'}">Accepted</span></td>
-            <td *ngIf="commonService.getRole() =='idea-owner'"><span class="badge" *ngIf="commentsReceiveddtl.actionStatus !='Pending'" [ngClass]="{'badge-rejected action_status_rejected': commentsReceiveddtl.actionStatus == 'Rejected'}">Reject</span>
+            <td *ngIf="commonService.getRole() =='idea-owner'"><span class="badge"
+                *ngIf="commentsReceiveddtl.actionStatus !='Pending'"
+                [ngClass]="{'badge-rejected action_status_rejected': commentsReceiveddtl.actionStatus == 'Rejected'}">Reject</span>
             </td>
             <td *ngIf="commonService.getRole() =='idea-owner'">{{commentsReceiveddtl.assignedToUserName}}</td>
-            <td class="badge-status"
-            [ngClass]="{'comment_status_allocated': commentsReceiveddtl.commentStatus == 'Allocated',
+            <td class="badge-status" [ngClass]="{'comment_status_allocated': commentsReceiveddtl.commentStatus == 'Allocated',
                       'comment_status_inprogres': commentsReceiveddtl.commentStatus == 'In-Progress',
                       'comment_status_completed': commentsReceiveddtl.commentStatus == 'Completed',
                       'comment_status_closed': commentsReceiveddtl.commentStatus == 'Closed',
-                      'comment_status_pending': commentsReceiveddtl.commentStatus == 'Pending'}"
-            ><span>{{commentsReceiveddtl.commentStatus}}</span></td>
+                      'comment_status_pending': commentsReceiveddtl.commentStatus == 'Pending'}">
+              <span>{{commentsReceiveddtl.commentStatus}}</span></td>
           </tr>
         </tbody>
       </table>
@@ -184,6 +247,6 @@
 
 <footer>
   <div class="container-fluid">
-      <div class="footer">©HiveZen.All rights reserved</div>
+    <div class="footer">©HiveZen.All rights reserved</div>
   </div>
 </footer>
