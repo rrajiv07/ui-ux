@@ -1,14 +1,16 @@
-<main class="ml-60">
+<main class="ml-60 mr-15">
     <div class="container-fluid">
                 <div class="page-heading text-center">Purchase Subscriptions</div>
-        <div class="row mt-5">
-            <div class="row margin-auto">
-                <div class="col-sm-12">
-                    <div class="float-left purchase-menu">3 Seats<br>minimum</div>
-                <button (click)="selectedSeats(seatlist,seatlist.seats,i)" 
-                *ngFor="let seatlist of seatLists;let i = index;" class="btn button-save btn-outline"
-                [ngClass]="{'button-save': i === selectedSeatsIndex}">
-                    {{seatlist['seats']}} seats</button>
+            <div class="row subscription">
+                <div class="col-sm-2"></div>
+                    <div class="col-sm-1 lh-14">3 Seats<br>minimum</div>
+                    <div class="col-sm-8">
+                        <div class="row margin-auto">
+                            <button (click)="selectedSeats(seatlist,seatlist.seats,i)" 
+                            *ngFor="let seatlist of seatLists;let i = index;" class="btn button-save btn-outline float-left"
+                            [ngClass]="{'button-save': i === selectedSeatsIndex}">
+                                {{seatlist['seats']}} seats</button>
+                    </div>
                 </div>
                 <!--
                 <button class="btn button-save mr-2">5 seats</button>
@@ -22,15 +24,13 @@
                 <button class="btn btn-outline mr-2">100 seats</button>
                 -->
         </div>
-        </div>
-        <div class="row purchase-subscription mt-5">
-            <div class="col-sm-2"></div>
-            <div  style="top: 45%;position: absolute;" class="col-sm-2">
-               
-                <div class="purchase-container">
-                    <p *ngFor="let subscriptionFeaturesObj of subscriptionFeatures;let ix = index;" 
+        <div class="row mt-5">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-2">
+                <div class="purchase-lable">
+                    <div *ngFor="let subscriptionFeaturesObj of subscriptionFeatures;let ix = index;" 
                     [ngClass]="{'bt-bottom': subscriptionFeatureCnt != ix }"
-                    class="ft-14">{{subscriptionFeaturesObj.features}}</p>
+                    class="ft-14">{{subscriptionFeaturesObj.features}}</div>
                     <!--
                     <p class="ft-14 bt-bottom">Number of POCs</p>
                     <p class="ft-14 bt-bottom">File storage size</p>
@@ -39,23 +39,26 @@
                     -->
                 </div>
             </div>
+            <div class="col-sm-8">
+                <div class="row">
             <ng-container *ngFor="let subscriptionPlanDetailsObj of subscriptionPlanDetails;let i = index;">
 
-            <div class="col-sm-2">
+           
+                    <div class="col-sm-4">
                 <div class="{{subscriptionPlanDetailsObj.style1}}">{{subscriptionPlanDetailsObj.planType}}</div>
                 <div class="purchase-container">
                     <div class="price-container {{subscriptionPlanDetailsObj.style2}}">
-                        <h1>${{subscriptionPlanDetailsObj.monthlyPrice}}</h1>
-                        <span class="pb-1">per user/month</span>
-                        <span  class="ft-12 {{subscriptionPlanDetailsObj.style3}} pb-3">Total ${{subscriptionPlanDetailsObj.basicAmt}} per month</span>
+                        <div class="subscription-price">${{subscriptionPlanDetailsObj.monthlyPrice}}</div>
+                        <div class="subscription-user">per user/month</div>
+                        <div class="ft-12 font-bold {{subscriptionPlanDetailsObj.style3}} pb-3">Total ${{subscriptionPlanDetailsObj.basicAmt}} per month</div>
                     </div>
 
-                    <button (click)="makePayment(subscriptionPlanDetailsObj.id,subscriptionPlanDetailsObj.basicAmt,subscriptionPlanDetailsObj.planType)"  class="btn ft-white bg-90-black pl-4 pr-4 mt-3">Continue</button>
+                    <div class="align-center"><button (click)="makePayment(subscriptionPlanDetailsObj.id,subscriptionPlanDetailsObj.basicAmt,subscriptionPlanDetailsObj.planType)"  class="btn ft-white bg-90-black mt-30">Continue</button></div>
                     <ng-container *ngFor="let subscriptionFeature of subscriptionPlanDetailsObj.subscriptionFeatures;let ix = index;" >
-                        <p 
+                        <div 
                         [ngClass]="{'bt-bottom': subscriptionFeatureCnt != ix }"
-                        class="ft-14">
-                        {{subscriptionFeature.offerings}}</p>
+                        class="list-item">
+                        {{subscriptionFeature.offerings}}</div>
                         </ng-container>
                     <!--
                     <p class="ft-14 bt-bottom">10</p>
@@ -65,7 +68,12 @@
                     -->
                 </div>
             </div>
+          
+           
             </ng-container>
+        </div>
+    </div>
+            <div class="col-sm-1"></div>
             <!--
             <div class="col-sm-2">
                 <div class="plan-basic">Basic</div>
@@ -121,9 +129,13 @@
         -->
         </div>
         <div class="col-sm-2"></div>
-        <div class="row ml-5 mr-5 pb-2 bt-bottom">
+    </div>
+        <div class="row ml-5 mr-5 bt-bottom section-spacing">
+            <div class="col-sm-2"></div>
+            <div class="row">
+                <div class="col-sm-8">
             <h4>Frequently asked questions</h4>
-        </div>
+       
 
         <div class="row ml-5 mr-5 pt-3 pb-3 bt-bottom">
             <p class="ft-14 ft-bold">Q <span class="pl-4">"Quote doesn't seem to include the post implementatino
@@ -155,5 +167,8 @@
             <p class="ft-14 ft-light-gray">A <span class="pl-4">"Quote doesn't seem to include the post implementatino
                     support. Kindly add in the cost and effort for the same"</span></p>
         </div>
+</div>
+<div class="col-sm-2"></div>
+</div>
 </div>
 </main>
