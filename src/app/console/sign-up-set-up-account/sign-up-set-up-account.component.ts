@@ -161,7 +161,7 @@ export class SignUpSetUpAccountComponent implements OnInit {
       closable: false,
       width: '50%',
       data: objPubSub,
-      contentStyle: { "max-height": "30%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "10px" },
+      contentStyle: { "max-height": "30%", "overflow": "auto", "padding": "0 1.1rem 0rem 1.5rem", "border-radius": "20px" },
     });
   }
   privacyPolicy() {
