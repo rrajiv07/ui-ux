@@ -6156,7 +6156,6 @@ hr {
 
 .heading {
   font-size: 24px;
-  margin-bottom: 20px;
   color: #333333;
   line-height: 14px;
   text-align: center;
@@ -6218,7 +6217,7 @@ hr {
 }
 .badge-outline {
   background-color: transparent !important;
-  border: 1px solid #ebeced;
+  border: 1px solid #d4d6dc;
   color: #333333;
   font-size: 14px;
 }
@@ -7415,4 +7414,8 @@ sup {
         url('fonts/text-security-disc.woff') format('woff'),
         url('fonts/text-security-disc.ttf') format('truetype'),
         url('images/text-security-disc.svg#text-security') format('svg');
+}
+
+hr {
+  border-top: 1px solid #d4d6dc;
 }

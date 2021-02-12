@@ -13,7 +13,7 @@
               <div class="txt-lable text-right">Email</div>
             </div>
             <div class="col-sm-7">
-              <input autocomplete="off" type="text" class="form-control bg-white" id="emailId" placeholder="Enter email"
+              <input autocomplete="off" type="text" class="txt-outline w-100" id="emailId" placeholder="Enter email"
                 formControlName="emailId" [ngClass]="{ 'is-invalid': submitted && f1.emailId.errors }">
               <div *ngIf="submitted && f1.emailId.errors" class="invalid-feedback">
                 <div *ngIf="f1.emailId.errors.required">Email ID is required</div>
@@ -26,7 +26,7 @@
               <div class="txt-lable text-right">Password</div>
             </div>
             <div class="col-sm-7">
-              <input name="password" autocomplete="off" type="text" class="form-control password bg-white" id="password" placeholder="Enter password"
+              <input name="password" autocomplete="off" type="text" class="txt-outline password w-100" id="password" placeholder="Enter password"
                 formControlName="password" [ngClass]="{ 'is-invalid': submitted && f1.password.errors }">
               <div *ngIf="submitted && f1.password.errors" class="invalid-feedback">
                 <div *ngIf="f1.password.errors.required">Password is required</div>
@@ -43,11 +43,11 @@
             <div class="col-sm-3"></div>
             <div class="col-sm-7"><button class="btn button-save mt-10 w100">Log In</button></div>
           </div>
-          <div class="row mt-50">
+          <div class="row mt-30">
             <div class="col-sm-4">
               <hr>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 mb-30">
               <div class="mtb-20 text-center">Or Sign in with</div>
             </div>
             <div class="col-sm-4">
