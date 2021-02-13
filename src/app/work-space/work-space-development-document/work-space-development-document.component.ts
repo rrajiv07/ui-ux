@@ -120,7 +120,10 @@ export class WorkSpaceDevelopmentDocumentComponent implements OnInit {
             this.formGroup.reset();
             this.getDocumentList();
             this.commonService.successMessage(data['result_msg']);
+            return;
           }
+          else
+          this.commonService.failureMessage(data['result_msg']);
         },
         error => {
         });

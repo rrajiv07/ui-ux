@@ -29,7 +29,7 @@ export class SignUpInviteTeamComponent implements OnInit {
     private signUpService: SignUpInviteTeamService, private commonService: CommonService, private service: SubcriptionService) { }
 
   ngOnInit(): void {
-    /*
+    
     this.micrositeId = this.config.data.micrositeId;
     this.token = this.config.data.token;
     this.header = {
@@ -38,7 +38,7 @@ export class SignUpInviteTeamComponent implements OnInit {
     };
     
     this.micrositeName = this.config.data.micrositeName;
-    */
+    
     this.init();
   }
   init() {
