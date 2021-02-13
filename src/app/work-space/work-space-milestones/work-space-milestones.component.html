@@ -23,22 +23,22 @@
                         <div class="bl-1-green pl-25"></div>
                         <div class="col-sm-2">
                             <p class="pb-25"></p>
-                            <p class="ft-10">Planned Start Date<sup>*</sup></p>
+                            <p *ngIf="i==0" class="ft-10">Planned Start Date<sup>*</sup></p>
                             <input [disabled]="milestone.statusCode == 'Completed'" (change)="onChangePlanStartDate($event,milestone)" type="date" [(ngModel)]="milestone.plannedStartDate" class="txt-outline w-100">
                         </div>
                         <div class="col-sm-2">
                             <p class="pb-25"></p>
-                            <p class="ft-10">Planned End Date<sup>*</sup></p>
+                            <p *ngIf="i==0" class="ft-10">Planned End Date<sup>*</sup></p>
                             <input [disabled]="milestone.statusCode == 'Completed'" (change)="onChangePlanEndDate($event,milestone)" type="date" [(ngModel)]="milestone.plannedEndDate" class="txt-outline w-100">
                         </div>
                         <div class="col-sm-2">
                             <p class="pb-25"></p>
-                            <p class="ft-10">Status</p>
-                            <input style="background: #F5F6F8;" readonly type="text" [value]="milestone.statusCode" class="txt-outline w-100">
+                            <p *ngIf="i==0" class="ft-10">Status</p>
+                            <input readonly type="text" [value]="milestone.statusCode" class="txt-outline w-100">
                         </div>
                         <div class="col-sm-2">
-                          <p class="pb-25"></p>
-                          <p class="ft-10">Change Status<sup>*</sup></p>
+                          <p  class="pb-25"></p>
+                          <p *ngIf="i==0" class="ft-10">Change Status<sup>*</sup></p>
                           <select  [disabled]="milestone.statusCode == 'Completed'" class="txt-outline" id="selectOptionid" (change)="onChangeMilestoneStatus(milestone,$event)">
                               <option value="null" id="null"></option>
                               <option value="In-Progress" id="In-Progress">In-Progress </option>
@@ -46,8 +46,12 @@
                           </select>
                       </div>
                       <div class="col-sm-1">
-                          <div *ngIf="milestone.statusCode !='Completed'" (click)="complete(milestone)" class="btn button-save mt-47 pull-left">Save</div>
-                          <div  *ngIf="milestone.statusCode =='Completed'" disabled class="btn btn-secondary mt-47 pull-left">Save</div>
+                          <div *ngIf="milestone.statusCode !='Completed'" (click)="complete(milestone)" 
+                          [ngClass]=" { 'mt-47' : i==0,'mt-37' : i !=0 }"
+                          class="btn button-save mt-47 pull-left">Save</div>
+                          <div  *ngIf="milestone.statusCode =='Completed'" 
+                          [ngClass]=" { 'mt-47' : i==0,'mt-37' : i !=0 }"
+                          disabled class="btn btn-secondary mt-47 pull-left">Save</div>
                       </div>
                       <!--
                         <div class="col-sm-3">

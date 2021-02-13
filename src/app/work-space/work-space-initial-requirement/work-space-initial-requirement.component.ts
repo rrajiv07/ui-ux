@@ -108,7 +108,9 @@ export class WorkSpaceInitialRequirementComponent implements OnInit {
             this.submitted = false;
             //this.formGroup.reset();
             this.commonService.successMessage(data['result_msg']);
+            return;
           }
+          this.commonService.failureMessage(data['result_msg']);
 
         },
         error => {
