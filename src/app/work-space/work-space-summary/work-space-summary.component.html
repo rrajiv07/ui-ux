@@ -22,7 +22,7 @@
                                 <button class="btn button-save ml-3 mt-8p" (click)="onClosePOC()">Close WorkSpace</button>
                             </div>
                         </div>
-                        <div *ngIf="commonService.getRole() =='idea-owner' && POCDetails.statusCode != 'Closed'">
+                        <div style="display: none;" *ngIf="commonService.getRole() =='idea-owner' && POCDetails.statusCode != 'Closed'">
                             <div class="btn-box mt-1">
                                 <button class="btn button-save ml-3 mt-8p" (click)="onManagePOC()">Manage Workspace</button>
 
@@ -40,10 +40,10 @@
                               <label class="ft-18">Team Members</label>
                             </div>
                             <div class="col-sm-4">
-                              <label class="ft-18">Role</label>
+                              <label class="ft-18">Email</label>
                             </div>
                             <div class="col-sm-3">
-                              <label class="ft-18">Last Login</label>
+                              <label class="ft-18">Onboarded date</label>
                             </div>
               
                           </div>
@@ -56,7 +56,7 @@
                                   <span class="profile-name">{{item.userName}}</span>
                                 </div>
                                 <div class="col-sm-4 pt-13 pl-10">
-                                  <span>{{item.roleCode}}</span>
+                                  <span>{{item.email}}</span>
                                 </div>
                                 <div class="col-sm-3  pt-13 pl-25">
                                   <span>{{commonService.convertDateTimeFormat(item.createdDate, 'false')}}</span>

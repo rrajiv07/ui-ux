@@ -44,7 +44,10 @@
                     <div class="bg-white border-gray mt-10 radius-all-3 p-all-10">
                       <div class="row">                       
                         <div class="col-sm-3">
-                          <div><input (blur)="changePhaseEvent($event,workspaceBoardsDataObj)" [disabled]="workspaceBoardsDataObj.disabled==undefined || workspaceBoardsDataObj.disabled==null"  [value]="workspaceBoardsDataObj.name" class="txt-outline w-80" type="text">
+                          <div><input (blur)="changePhaseEvent($event,workspaceBoardsDataObj)" 
+                            [disabled]="workspaceBoardsDataObj.disabled==undefined || workspaceBoardsDataObj.disabled==null"
+                            [ngClass]="{ 'input-disabled': workspaceBoardsDataObj.disabled==undefined,'input-disabled': workspaceBoardsDataObj.disabled==null}"
+                            [value]="workspaceBoardsDataObj.name" class="txt-outline w-80" type="text">
                             <img src="assets/images/edit-icon.svg" (click)="renamePhase(workspaceBoardsDataObj)" style="margin-left: 10px;cursor: pointer;" class="edit-icon"></div>
                         </div>
                         <div class="col-sm-7">

@@ -23,7 +23,7 @@
               </div>
             </div>
             <div class="col-sm-12">
-              <div class="txt-lable">Role<sup>*</sup></div>
+              <div class="txt-lable">Access<sup>*</sup></div>
             </div>
             <div class="col-sm-12">
               <select class="form-control bg-white" formControlName="role"
@@ -33,7 +33,7 @@
                 <option value="Reviewer">Reviewer</option> -->
               </select>
               <div *ngIf="submitted && f1.role.errors" class="invalid-feedback">
-                <div *ngIf="f1.role.errors.required">Role is required</div>
+                <div *ngIf="f1.role.errors.required">Access is required</div>
               </div>
             </div>
             <div class="col-sm-12">

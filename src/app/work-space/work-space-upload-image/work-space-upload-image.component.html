@@ -73,7 +73,7 @@
                 </div>
                 <div class="row mt-40" >
                     <label class="control-label col-sm-2 width-100" for="acname">&nbsp;</label>
-                    <div class="col-sm-8">
+                    <div class="col-sm-4">
                         <input formControlName="uploadFile" class="txt-lable" id="uploadFile" type="file"
                         (change)="fileUpload($event.target.files)" name="uploadFile" 
                         [ngClass]=" { 'is-invalid' : submitted &&  f1.uploadFile.errors }" />
@@ -82,13 +82,19 @@
                           </div>
                         
                     </div>
+                    <div class="col-sm-4" >
+                        <button  class="btn button-save ml-4">Save</button>
+                        
+                    </div>
                 </div>
+                <!--
                 <div class="row">
                     <label class="control-label col-sm-2 width-100" for="cname">&nbsp;</label>
                     <div class="col-sm-10 ml-4" style="text-align: right;">
                     <button class="btn button-save ml-4">Save</button>
                 </div>
                 </div>
+                -->
             </div>
         </form>
 

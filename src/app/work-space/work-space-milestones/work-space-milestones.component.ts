@@ -76,7 +76,7 @@ export class WorkSpaceMilestonesComponent implements OnInit {
   viewDetails(record) {
     this.phaseId = record.phaseId;
     this.workspaceDtlId = record.workspaceDtlId;
-    this.route.navigateByUrl('/workspace/view/' + this.wsPocId + '/' + this.wsPocName + '/' + this.workspaceDtlId + '/phase/' + this.workSpaceBoardRouterLink[record.custPhaseName]);
+    this.route.navigateByUrl('/workspace/view/' + this.wsPocId + '/' + this.wsPocName + '/' + this.workspaceDtlId + '/phase/' + this.workSpaceBoardRouterLink[record.phaseCode]);
   }
   
   complete(record) {

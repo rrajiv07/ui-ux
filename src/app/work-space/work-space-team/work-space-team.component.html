@@ -22,13 +22,15 @@
                 <div class="col-sm-3">
                   <label class="ft-18">Email</label>
                 </div>
+                <!--
                 <div class="col-sm-2">
                   <label class="ft-18">Type</label>
                 </div>
-                <div class="col-sm-1">
-                  <label class="ft-18">Role</label>
+                -->
+                <div class="col-sm-2">
+                  <label class="ft-18">Access</label>
                 </div>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                   <label class="ft-18">Status</label>
                 </div>
                 <div class="col-sm-2">
@@ -50,13 +52,15 @@
                     <div class="col-sm-3 pt-13">
                       <div class="font-semibold"><!--<img src="assets/images/edit-icon.svg" class="edit-icon">-->{{teamListObj.email}}</div>
                     </div>
+                    <!--
                     <div class="col-sm-2 pt-13">
                       <div>{{teamListObj.usertype}}</div>
                     </div>
-                    <div class="col-sm-1 pt-13">
-                      <div>{{teamListObj.roleCode}}</div>
+                    -->
+                    <div class="col-sm-2 pt-13">
+                      <div>{{teamListObj.roleName}}</div>
                     </div>
-                    <div class="col-sm-1 pt-13">
+                    <div class="col-sm-2 pt-13">
                       <div><span class="badge badge-accepted"
                         [ngClass]="{'badge-rejected action_status_rejected': teamListObj.statusCode == 'Inactive'}"
                         >{{teamListObj.statusCode}}</span></div>

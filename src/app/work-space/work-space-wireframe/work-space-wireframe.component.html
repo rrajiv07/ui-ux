@@ -25,7 +25,7 @@
       <div *ngIf="commonService.getRole() !='developer'" class="row pt-4">
 
         <div class="col-sm-12">
-          <label class="control-label" for="cname">Review Comments</label>
+          <div class="page-sub-heading section-spacing">Review Comments</div>
           <textarea formControlName="reviewComment"  class="form-control rounded-0 bg-white" id="reviewComment" rows="3"
           [ngClass]=" { 'is-invalid' : submitted && f1.reviewComment.errors }"
           ></textarea>
@@ -96,8 +96,9 @@
           </div>
         </div>
       </div>
-      <div  [ngClass]="{'wireframe_pt_20': commonService.getRole() !='idea-owner'}"  class="page-sub-heading section-spacing">Comments Received</div>
-      <table id="example" class="table">
+      <div  [ngClass]="{'wireframe_pt_20': commonService.getRole() !='idea-owner'}"  
+      class="page-sub-heading section-spacing">Comments Received</div>
+      <table id="example" class="table table-custom">
         <thead>
           <tr>
             <th>Edit</th>
@@ -121,9 +122,11 @@
             <td><span class="badge-reviewer"><img src="assets/images/review.png"> {{commentsReceiveddtl.enteredByName}}</span>
             </td>
             <td>{{commentsReceiveddtl.reviewComment}}</td>
-            <td *ngIf="commonService.getRole() =='idea-owner'"><span class="badge" *ngIf="commentsReceiveddtl.actionStatus !='Pending'"
+            <td *ngIf="commonService.getRole() =='idea-owner'">
+              <span class="badge" 
                 [ngClass]="{'badge-accepted': commentsReceiveddtl.actionStatus == 'Accepted'}">Accepted</span></td>
-            <td *ngIf="commonService.getRole() =='idea-owner'"><span class="badge" *ngIf="commentsReceiveddtl.actionStatus !='Pending'" [ngClass]="{'badge-rejected action_status_rejected': commentsReceiveddtl.actionStatus == 'Rejected'}">Reject</span>
+            <td *ngIf="commonService.getRole() =='idea-owner'">
+              <span class="badge"  [ngClass]="{'badge-rejected action_status_rejected': commentsReceiveddtl.actionStatus == 'Rejected'}">Reject</span>
             </td>
             <td *ngIf="commonService.getRole() =='idea-owner'">{{commentsReceiveddtl.assignedToUserName}}</td>
             <td class="badge-status"

@@ -87,7 +87,7 @@
             <div class="txt-lable">Document Name</div>
           </div>
           <div class="col-sm-4">
-            <input type="text" disabled [value]="documentName" class="txt-outline w-100" id="documentName">
+            <input style="background: #F5F6F8;" type="text" disabled [value]="documentName" class="txt-outline w-100" id="documentName">
 
           </div>
         </div>
@@ -97,7 +97,7 @@
             <div class="txt-lable">Document Description</div>
           </div>
           <div class="col-sm-9">
-            <textarea disabled [value]="documentDesc" class="txt-outline w-100" id="documentDesc"></textarea>
+            <textarea style="background: #F5F6F8;" disabled [value]="documentDesc" class="txt-outline w-100" id="documentDesc"></textarea>
 
           </div>
         </div>
@@ -119,9 +119,9 @@
       <div class="clear-float"></div>
       <form class="form-horizontal" [formGroup]="formGroup">
         <div *ngIf="commonService.getRole() !='developer'" class="row">
-          <div class="col-sm-10 pr-0 processflow_pt_20">
+          <div class="col-sm-12 pr-0 processflow_pt_20">
             <div class="form-group">
-              <label class="control-label width-125" for="cname">Review Comments</label>
+              <div class="page-sub-heading section-spacing">Review Comments</div>
               <textarea formControlName="reviewComment" class="form-control rounded-0 bg-white" id="reviewComment"
                 rows="3" [ngClass]=" { 'is-invalid' : submitted && f1.reviewComment.errors }"></textarea>
               <div *ngIf="submitted && f1.reviewComment.errors" class="invalid-feedback">
@@ -225,10 +225,9 @@
             </td>
             <td>{{commentsReceiveddtl.reviewComment}}</td>
             <td *ngIf="commonService.getRole() =='idea-owner'"><span class="badge"
-                *ngIf="commentsReceiveddtl.actionStatus !='Pending'"
+          
                 [ngClass]="{'badge-accepted': commentsReceiveddtl.actionStatus == 'Accepted'}">Accepted</span></td>
             <td *ngIf="commonService.getRole() =='idea-owner'"><span class="badge"
-                *ngIf="commentsReceiveddtl.actionStatus !='Pending'"
                 [ngClass]="{'badge-rejected action_status_rejected': commentsReceiveddtl.actionStatus == 'Rejected'}">Reject</span>
             </td>
             <td *ngIf="commonService.getRole() =='idea-owner'">{{commentsReceiveddtl.assignedToUserName}}</td>

@@ -118,9 +118,11 @@
               </td>
               
               <td>{{commentsReceiveddtl.reviewComment}}</td>
-              <td *ngIf="commonService.getRole() =='idea-owner'"><span class="badge" *ngIf="commentsReceiveddtl.actionStatus !='Pending'"
+              <td *ngIf="commonService.getRole() =='idea-owner'">
+                <span class="badge" 
                   [ngClass]="{'badge-accepted': commentsReceiveddtl.actionStatus == 'Accepted'}">Accepted</span></td>
-              <td *ngIf="commonService.getRole() =='idea-owner'"><span class="badge" *ngIf="commentsReceiveddtl.actionStatus !='Pending'" [ngClass]="{'badge-rejected action_status_rejected': commentsReceiveddtl.actionStatus == 'Rejected'}">Reject</span>
+              <td *ngIf="commonService.getRole() =='idea-owner'">
+                <span class="badge"  [ngClass]="{'badge-rejected action_status_rejected': commentsReceiveddtl.actionStatus == 'Rejected'}">Reject</span>
               </td>
               <td *ngIf="commonService.getRole() =='idea-owner'">{{commentsReceiveddtl.assignedToUserName}}</td>
               <td class="badge-status"
